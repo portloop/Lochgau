@@ -1,0 +1,82 @@
+{
+    "teams": [
+      {
+        "name": "FV Löchgau",
+        "slug": "fv-lochgau",
+        "shortName": "Löchgau",
+        "gender": "F",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "category": {
+          "name": "Germany Amateur",
+          "slug": "germany-amateur",
+          "sport": {
+            "name": "Football",
+            "slug": "football",
+            "id": 1
+          },
+          "id": 122,
+          "flag": "germany",
+          "alpha2": "DE"
+        },
+        "tournament": {
+          "name": "DFB Pokal, Women",
+          "slug": "dfb-pokal-women",
+          "category": {
+            "name": "Germany",
+            "slug": "germany",
+            "sport": {
+              "name": "Football",
+              "slug": "football",
+              "id": 1
+            },
+            "id": 30,
+            "flag": "germany",
+            "alpha2": "DE"
+          },
+          "uniqueTournament": {
+            "name": "DFB Pokal, Women",
+            "slug": "dfb-pokal-women",
+            "primaryColorHex": "#7a7a7a",
+            "secondaryColorHex": "#ed0000",
+            "category": {
+              "name": "Germany",
+              "slug": "germany",
+              "sport": {
+                "name": "Football",
+                "slug": "football",
+                "id": 1
+              },
+              "id": 30,
+              "flag": "germany",
+              "alpha2": "DE"
+            },
+            "userCount": 2977,
+            "id": 686,
+            "country": {},
+            "hasPerformanceGraphFeature": false,
+            "displayInverseHomeAwayTeams": false
+          },
+          "priority": 0,
+          "id": 11022
+        },
+        "userCount": 1,
+        "nameCode": "LOC",
+        "national": false,
+        "type": 0,
+        "id": 36653,
+        "country": {
+          "alpha2": "DE",
+          "name": "Germany"
+        },
+        "teamColors": {
+          "primary": "#52b030",
+          "secondary": "#52b030",
+          "text": "#ffffff"
+        }
+      }
+    ]
+  }
