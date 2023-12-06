@@ -66,7 +66,7 @@ export default {
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('http://localhost:3000/players');
+                const response = await axios.get('https://yourufx.space/players');
                 this.players = Object.freeze(response.data);
                 console.log(this.players)
             } catch (error) {
@@ -83,7 +83,7 @@ export default {
         deletePlayer(event) {
             const dataIdValue = event.target.dataset.id;
 
-            axios.delete(`http://localhost:3000/players/${dataIdValue}`)
+            axios.delete(`https://yourufx.space/players/${dataIdValue}`)
                 .then((response) => {
                     console.log('Article successfully deleted');
                     this.fetchPlayers(); // Запускаем метод для получения обновленного списка

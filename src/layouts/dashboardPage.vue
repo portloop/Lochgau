@@ -164,7 +164,7 @@ export default {
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('http://localhost:3000/players');
+                const response = await axios.get('https://yourufx.space/players');
                 this.players = Object.freeze(response.data);
                 console.log(this.players)
             } catch (error) {
@@ -178,7 +178,7 @@ export default {
 
         getNewsList() {
             console.log('Method is called');
-            axios.get('http://localhost:3000/api/news')
+            axios.get('https://yourufx.space/api/news')
                 .then((response) => {
                     this.news = response.data;
 
@@ -211,7 +211,7 @@ export default {
         deleteArticle(event) {
             const dataIdValue = event.target.dataset.id;
 
-            axios.delete(`http://localhost:3000/api/news/${dataIdValue}`)
+            axios.delete(`https://yourufx.space/api/news/${dataIdValue}`)
                 .then((response) => {
                     console.log('Article successfully deleted');
                     this.getNewsList(); // Запускаем метод для получения обновленного списка
@@ -224,7 +224,7 @@ export default {
 
 
         getGallery () {
-            axios.get(`http://localhost:3000/gallery`)
+            axios.get(`https://yourufx.space/gallery`)
             .then((response) => {
                 console.log(response.data)
                 this.gallery = Object.freeze(response.data)

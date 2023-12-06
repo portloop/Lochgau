@@ -48,7 +48,7 @@
         const newsId = this.$route.params.id;
         console.log(newsId);
   
-        axios.get(`http://localhost:3000/api/news/${newsId}`)
+        axios.get(`https://yourufx.space/api/news/${newsId}`)
           .then((response) => {
             this.articleData = response.data
             const formattedDate = new Date(this.articleData.publishedAt).toLocaleString('ru-RU', {

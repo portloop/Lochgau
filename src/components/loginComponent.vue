@@ -63,7 +63,7 @@ export default {
 
         login() {
             if (this.isEmailValid() && this.isPasswordValid() && this.email.length > 0 && this.password.length > 0) {
-                axios.post('http://localhost:3000/auth/login', {
+                axios.post('https://yourufx.space/auth/login', {
                     username: this.email,
                     password: this.password
                 })
