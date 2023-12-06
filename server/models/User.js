@@ -4,12 +4,17 @@ import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema = new mongoose.Schema({
   username: String,
+  name: String,
+  avatar: String,
+  firstName: String,
+  lastName: String,
+  dateOfBirth: String,
   password: String,
+  role: String
   // Другие поля вашей схемы пользователя
 });
 
-// Подключение passport-local-mongoose к схеме пользователя
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
 
 // Создание модели пользователя
 const User = mongoose.model('User', userSchema);
