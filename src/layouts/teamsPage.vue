@@ -35,8 +35,8 @@
     </div>
 </template>
 <script>
-import dashboardHeader from '../components/dashboardHeader.vue';
-import sideBar from '../components/sideBar.vue';
+import dashboardHeader from '@/components/dashboardHeader.vue';
+import sideBar from '@/components/sideBar.vue';
 import axios from 'axios';
 export default {
     components: {

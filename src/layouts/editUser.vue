@@ -202,9 +202,9 @@
     <footerComponent />
 </template>
 <script>
-import headerComponent from '../components/HeaderComponent.vue';
-import footerComponent from '../components/footerComponent.vue';
-import redButton from '../components/redButton.vue';
+import headerComponent from '@/components/HeaderComponent.vue';
+import footerComponent from '@/components/footerComponent.vue';
+import redButton from '@/components/redButton.vue';
 import axios from 'axios';
 
 export default {

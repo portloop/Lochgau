@@ -32,7 +32,7 @@
   
   <script>
   import axios from 'axios';
-  import headerComponent from '../components/headerComponent.vue';
+  import headerComponent from '@/components/headerComponent.vue';
   
   export default {
     data () {

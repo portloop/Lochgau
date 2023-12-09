@@ -107,8 +107,8 @@
 </template>
 <script>
 import axios from 'axios';
-import sideBar from '../components/sideBar.vue';
-import dashboardHeader from '../components/dashboardHeader.vue';
+import sideBar from '@/components/sideBar.vue';
+import dashboardHeader from '@/components/dashboardHeader.vue';
 
 export default {
     components: {
