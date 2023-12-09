@@ -50,7 +50,8 @@
 </template>
 <script>
 import dashboardHeader from '@/components/dashboardHeader.vue';
-import sideBar from '@/components/sideBar.vue';
+import sideBar from './sidebar.vue'
+
 import axios from 'axios';
 export default {
     components: {

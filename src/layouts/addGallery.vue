@@ -117,7 +117,7 @@ import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import axios from "axios";
 import dashboardHeader from '@/components/dashboardHeader.vue'
-import sideBar from "@/components/sideBar.vue";
+import sideBar from "./sidebar.vue";
 import MarkdownIt from 'markdown-it';
 
 
