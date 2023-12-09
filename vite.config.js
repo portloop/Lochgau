@@ -1,13 +1,15 @@
-// vite.config.js
-
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  optimizeDeps: {
-    // Добавьте vue в imports
-    imports: ['vue'],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
   },
-});
+})
+
