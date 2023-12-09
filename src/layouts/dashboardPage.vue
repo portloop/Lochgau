@@ -144,7 +144,7 @@
     {{ this.$store.state.userData }}
 </template>
 <script>
-import sideBar from '@/components/sideBar.vue';
+import sideBar from './sidebar.vue'
 import axios from 'axios';
 import dashboardHeader from '@/components/dashboardHeader.vue';
 export default {
