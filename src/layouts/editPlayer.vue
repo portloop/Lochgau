@@ -18,6 +18,7 @@
             <div class="content-box__title">
                 Edit player profile of
             </div>
+            <!--  -->
             <div class="content-container ">
                 <div class="preview-table bg-gray-100">
 

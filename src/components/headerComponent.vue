@@ -22,6 +22,7 @@
                 </a>
                 <a href="/sponsoring" class="header-menu_item">
                     Sponsoring
+                    <!--  -->
                 </a>
             </div>
             <div class="header-botside_container">

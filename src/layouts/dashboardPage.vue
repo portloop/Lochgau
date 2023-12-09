@@ -160,7 +160,7 @@ export default {
         sideBar,
         dashboardHeader
     },
-
+// 
     methods: {
         async fetchPlayers() {
             try {
