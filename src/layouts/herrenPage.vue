@@ -37,9 +37,9 @@
     <footerComponent />
 </template>
 <script>
-import headerComponent from '@/components/headerComponent.vue'
-import footerComponent from '@/components/footerComponent.vue'
-import socialMedia from '@/components/socialMedia.vue';
+import headerComponent from '../components/headerComponent.vue'
+import footerComponent from '../components/footerComponent.vue'
+import socialMedia from '../components/socialMedia.vue';
 import axios from 'axios';
 export default {
     data() {

@@ -93,15 +93,15 @@
 
 </template>
 <script>
-import resultLine from '@/components/resultLine.vue';
+import resultLine from '../components/resultLine.vue';
 import axios from 'axios'
-import redButton from '@/components/redButton.vue';
-import galleryPreview from '@/components/galleryPreview.vue'
-import loginComponent from '@/components/loginComponent.vue';
-import headerComponent from '@/components/headerComponent.vue';
-import socialMedia from '@/components/socialMedia.vue';
-import footerComponent from '@/components/footerComponent.vue'
-import registerComponent from '@/components/registerComponent.vue'
+import redButton from '../components/redButton.vue';
+import galleryPreview from '../components/galleryPreview.vue'
+import loginComponent from '../components/loginComponent.vue';
+import headerComponent from '../components/headerComponent.vue';
+import socialMedia from '../components/socialMedia.vue';
+import footerComponent from '../components/footerComponent.vue'
+import registerComponent from '../components/registerComponent.vue'
 export default {
     components: {
         resultLine,

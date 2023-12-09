@@ -109,7 +109,7 @@
 import axios from 'axios';
 import sideBar from './sidebar.vue'
 
-import dashboardHeader from '@/components/dashboardHeader.vue';
+import dashboardHeader from '../components/dashboardHeader.vue';
 
 export default {
     components: {
