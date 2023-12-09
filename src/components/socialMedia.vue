@@ -4,30 +4,78 @@
             <div class="social-title">
                 Social Media
             </div>
-            <div class="social-post-container">
+            <div id="flockler-embed-18c49bc82e105f18d4dcd7bd63612743"></div>
+            <div class="social-post-container" style="overflow-y: hidden;">
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49bc82e105f18d4dcd7bd63612743"
+                    id="flockler-embed-iframe-18c49bc82e105f18d4dcd7bd63612743"
+                    height="350" 
+                    style="display: block; border: none; width: 100%;">
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
                 <div class="post-container">
-                    UNAVAILABLE
+                    <iframe
+                    src="https://plugins.flockler.com/embed/iframe/18c4913d9fe08484455ae29f46753308/18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    id="flockler-embed-iframe-18c49b65a9d0c0a8a80ea8e2d90e1c23"
+                    height="100%" 
+                    style="display: block; border: none; width: 100%;"
+                    allowfullscreen>
+                  </iframe>
                 </div>
             </div>
         </div>
@@ -88,6 +136,30 @@ export default {
         align-items: center;
         justify-content: center;
         margin-bottom: 10px;
+        overflow: hidden;
+
     }
 
+    .flockler-wall_v2-items {
+        padding-bottom: 0 !important;
+    }
+
+    div.flockler-grid-item__footer {
+        display: none !important;
+    }
+
+    .flockler-posts, .flockler-wall_v2-items[data-container-width=">=0"] .flockler-wall_v2-item {
+        height: 350px !important;
+    }
+
+    .flockler-posts.flockler-wall_v2-items {
+        height: unset !important;
+    }
+
+    .flockler-grid-item__meta {
+        display: none !important;
+    }
+
+
+    
 </style>

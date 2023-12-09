@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div id="flockler-embed-18c4915964d04f22af88b938077d01b8"></div>
         
     </div>
 </template>
@@ -14,7 +15,7 @@ export default {
 
     methods: {
         getGalleryList () {
-            axios.get('https://yourufx.space/gallery/')
+            axios.get('http://localhost:3000/gallery/')
             .then((response) => {
                 console.log(response)
             })
@@ -28,7 +29,14 @@ export default {
         this.getGalleryList()
     }
 }
+
+setTimeout(function() {
+        var script = document.createElement('script');
+        script.src = 'https://fl-1.cdn.flockler.com/embed/embed-v2.js';
+        document.body.appendChild(script);
+    }, 5000); // Задержка в 5 секунд
 </script>
+
 <style scoped>
    
 </style>

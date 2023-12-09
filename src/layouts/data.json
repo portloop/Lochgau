@@ -1,0 +1,137 @@
+[{
+    "_id": {
+      "$oid": "6574709d7d11be3f30fa8bb2"
+    },
+    "username": "simon@gmail.com",
+    "firstName": "Simon",
+    "lastName": "Kretschmer",
+    "password": "testdata",
+    "role": "User",
+    "photo": "/uploads/players/1702129814614.jpg",
+    "dateOfBirth": {
+      "$date": "2222-02-22T00:00:00.000Z"
+    },
+    "team": "Herren",
+    "position": "Offensiver Mittelfeldspieler",
+    "nationality": "Garmany",
+    "street": "Test Data",
+    "zip": "Test Data",
+    "city": "Test Data",
+    "phone": "Test Data",
+    "parent": "Test Data",
+    "parentPhone": "Test Data",
+    "passport": "1312-3123",
+    "salt": "fa2daee93a3642f0d6b9823c2b56b12f4ccdb822e1cb171dc8aedc3e4c7165ce",
+    "hash": "df2a105b52aa49356f00e4c884706bad5309ce2dd6c8357ea0a2126b6a4853ce908e065d46af4ace48363185fc0e28dd98b6e1c42114181d6b836c7bfff57f991aae0ec5e78a94048fb92cdc3af312e00bd2eea7993f8ee8b5be0aa57a6f6f78924e2990083607c0c5cd54aac8255ee54d1535440aaeb8fd590a6348a2a2630a87f4299c5fb5652f73fc45a1c5de05d2fc2520388fd8f8b76f1256f6ca252ce79a78de9b161104ce3df8883f6f4bc8baec6fff1381cacb561beb7ae8af40c08e4f24992490b5f27b7271e2d864cdd834c5c8a981cae6807bac34600351c1ad5e0b1f40466b8c620615c54aa2083c9b4694aba95ef2b0acd05f5e50dab6af02bdf73b086e84e6c7d9d5d611ab452535af25054054063d5adda4c5a140e686b5806b04e824ac8f074788a7b48e21bbd97d59e710ffd7d510783813a639bf64649d9faab9c18834af0bc94e7998b8cd95516e6c536411b00399aa7d747a56c9c0c326289eca430b6bfb907bb69584d085955d2b12552f55d55e03eed828073fa15d9f60f7282317b44e869a79ab419dc91ebef46483b00661d57a2561f883b65b6dc6df6d8382fd9adb424772189628f63828a1afa2cb2c2acc871c5471c77ab2d45cc0b86248df4477876d2c2d2676f6008a0bcd490c59dcbda966b6f24ee2966903187c7cda0311a4f4318bc2263b36c96a9dead13c39f4a130302632860e81b7",
+    "__v": 0
+  },
+
+  {
+    "_id": {
+      "$oid": "6574709d7d11be3f30fa8bb2"
+    },
+    "username": "simon@gmail.com",
+    "firstName": "Sven",
+    "lastName": "Altmann",
+    "password": "testdata",
+    "role": "User",
+    "photo": "/uploads/players/1702129814614.jpg",
+    "dateOfBirth": {
+      "$date": "2222-02-22T00:00:00.000Z"
+    },
+    "team": "Herren",
+    "position": "Offensiver Mittelfeldspieler",
+    "nationality": "Garmany",
+    "street": "Test Data",
+    "zip": "Test Data",
+    "city": "Test Data",
+    "phone": "Test Data",
+    "parent": "Test Data",
+    "parentPhone": "Test Data",
+    "passport": "1312-3123",
+    "salt": "fa2daee93a3642f0d6b9823c2b56b12f4ccdb822e1cb171dc8aedc3e4c7165ce",
+    "hash": "df2a105b52aa49356f00e4c884706bad5309ce2dd6c8357ea0a2126b6a4853ce908e065d46af4ace48363185fc0e28dd98b6e1c42114181d6b836c7bfff57f991aae0ec5e78a94048fb92cdc3af312e00bd2eea7993f8ee8b5be0aa57a6f6f78924e2990083607c0c5cd54aac8255ee54d1535440aaeb8fd590a6348a2a2630a87f4299c5fb5652f73fc45a1c5de05d2fc2520388fd8f8b76f1256f6ca252ce79a78de9b161104ce3df8883f6f4bc8baec6fff1381cacb561beb7ae8af40c08e4f24992490b5f27b7271e2d864cdd834c5c8a981cae6807bac34600351c1ad5e0b1f40466b8c620615c54aa2083c9b4694aba95ef2b0acd05f5e50dab6af02bdf73b086e84e6c7d9d5d611ab452535af25054054063d5adda4c5a140e686b5806b04e824ac8f074788a7b48e21bbd97d59e710ffd7d510783813a639bf64649d9faab9c18834af0bc94e7998b8cd95516e6c536411b00399aa7d747a56c9c0c326289eca430b6bfb907bb69584d085955d2b12552f55d55e03eed828073fa15d9f60f7282317b44e869a79ab419dc91ebef46483b00661d57a2561f883b65b6dc6df6d8382fd9adb424772189628f63828a1afa2cb2c2acc871c5471c77ab2d45cc0b86248df4477876d2c2d2676f6008a0bcd490c59dcbda966b6f24ee2966903187c7cda0311a4f4318bc2263b36c96a9dead13c39f4a130302632860e81b7",
+    "__v": 0
+  },
+    {
+      "username": "test2@gmail.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "password": "testpassword",
+      "role": "User",
+      "photo": "/uploads/players/photo2.jpg",
+      "dateOfBirth": "2000-02-02",
+      "team": "Herren",
+      "position": "Defensive Midfielder",
+      "nationality": "USA",
+      "street": "Test Street 2",
+      "zip": "12345",
+      "city": "Test City 2",
+      "phone": "555-555-5555",
+      "parent": "Parent 2",
+      "parentPhone": "555-555-5556",
+      "passport": "5432-9876"
+    },
+    {
+      "username": "test3@gmail.com",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "password": "testpassword",
+      "role": "User",
+      "photo": "/uploads/players/photo3.jpg",
+      "dateOfBirth": "1998-03-03",
+      "team": "Herren",
+      "position": "Striker",
+      "nationality": "England",
+      "street": "Test Street 3",
+      "zip": "56789",
+      "city": "Test City 3",
+      "phone": "555-555-5557",
+      "parent": "Parent 3",
+      "parentPhone": "555-555-5558",
+      "passport": "9876-5432"
+    },
+    {
+      "username": "test4@gmail.com",
+      "firstName": "Megan",
+      "lastName": "Smith",
+      "password": "testpassword",
+      "role": "User",
+      "photo": "/uploads/players/photo4.jpg",
+      "dateOfBirth": "1995-04-04",
+      "team": "Herren",
+      "position": "Goalkeeper",
+      "nationality": "Canada",
+      "street": "Test Street 4",
+      "zip": "10101",
+      "city": "Test City 4",
+      "phone": "555-555-5559",
+      "parent": "Parent 4",
+      "parentPhone": "555-555-5560",
+      "passport": "1234-5678"
+    },
+    {
+      "username": "test5@gmail.com",
+      "firstName": "Robert",
+      "lastName": "Williams",
+      "password": "testpassword",
+      "role": "User",
+      "photo": "/uploads/players/photo5.jpg",
+      "dateOfBirth": "1990-05-05",
+      "team": "Herren",
+      "position": "Midfielder",
+      "nationality": "Australia",
+      "street": "Test Street 5",
+      "zip": "20202",
+      "city": "Test City 5",
+      "phone": "555-555-5561",
+      "parent": "Parent 5",
+      "parentPhone": "555-555-5562",
+      "passport": "5678-1234"
+    }
+  
+  
+
+]
+
+  

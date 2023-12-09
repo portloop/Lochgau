@@ -71,7 +71,12 @@ body {
     -o-border-radius: 16px;
     overflow: hidden;
     margin-bottom: 20px;
+    max-height: 180px;
 
+}
+
+.news-item:hover{
+    cursor: pointer;
 }
 
 .news-item img {
@@ -93,6 +98,10 @@ body {
         justify-content: center;
         font-size: 22px;
         text-decoration: none;
+}
+
+.all-news:hover {
+    cursor: pointer;
 }
 
 
@@ -206,5 +215,6 @@ body {
 
 .social-section {
     margin-top: 170px;
+    margin-bottom: 250px;
 }
 

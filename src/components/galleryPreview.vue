@@ -99,7 +99,7 @@ export default {
 
     methods: {
         getContent() {
-  axios.get('https://yourufx.space/gallery')
+  axios.get('http://localhost:3000/gallery')
     .then((response) => {
       this.content = response.data
         .filter(item => item.videos && item.videos.length > 0)

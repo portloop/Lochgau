@@ -63,17 +63,23 @@ async function updateGalleryItem(req, res) {
 }
 
 async function deleteGalleryItem(req, res) {
+  const galleryItemId = req.params.id;
+
   try {
-    const galleryItem = await Gallery.findById(req.params.id);
-    if (galleryItem == null) {
-      return res.status(404).json({ message: 'Cannot find gallery item' });
+    // Удаление игрока из базы данных по указанному ID
+    const deleteItem = await Gallery.findByIdAndDelete(galleryItemId);
+    console.log(deleteItem)
+    if (!deleteItem) {
+      return res.status(404).send('Gallery item is undefined');
     }
-    await galleryItem.remove();
-    res.json({ message: 'Deleted Gallery Item' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+
+    res.status(200).send('Gallery item has been deleted');
+  } catch (error) {
+    console.error('Ошибка при удалении игрока:', error);
+    res.status(500).send('Ошибка сервера при удалении игрока');
   }
 }
+
 
 
 export {

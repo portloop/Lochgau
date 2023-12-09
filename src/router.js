@@ -10,6 +10,13 @@ import galleryPage from './layouts/galleryPage.vue'
 import playersList from './layouts/playersList.vue'
 import addGallery from './layouts/addGallery.vue'
 import usersList from './layouts/usersList.vue'
+import registerComponent from './layouts/registerComponent.vue'
+import editUser from './layouts/editUser.vue'
+
+import teamsPage from './layouts/teamsPage.vue'
+import addTeam from './layouts/addNewTeam.vue'
+import teamList from './layouts/teamList.vue'
+import herrenPage from './layouts/herrenPage.vue'
 
 
 const router = createRouter({
@@ -25,8 +32,14 @@ const router = createRouter({
     { path: '/gallery', component: galleryPage, meta: { requiresAuth: true} },
     { path: '/dashboard/players', component: playersList, meta: { requiresAuth: true, role: !'User' }  },
     { path: '/dashboard/gallery/add', component: addGallery, meta: { requiresAuth: true, role: !'User' }  },
-    { path: '/users/list', component: usersList, meta: { requiresAuth: true, role: 'admin' }  }
+    { path: '/users/list', component: usersList, meta: { requiresAuth: true, role: 'admin' }  },
+    { path: '/user/register/:key?', component: registerComponent },
+    { path: '/user/edit/:id', component: editUser, meta: { requiresAuth: true, role: !'User' }  },
 
+    { path: '/dashboard/teams', component: teamsPage, meta: { requiresAuth: true, role: !'User' } },
+    { path: '/dashboard/teams/add', component: addTeam, meta: { requiresAuth: true, role: !'User' } },
+    { path: '/team/:teamName/list', component: teamList, meta: { requiresAuth: true, role: !'User' } },
+    { path: '/herren', component: herrenPage }
   ]
 });
 
@@ -35,28 +48,31 @@ router.beforeEach((to, from, next) => {
   const userRole = store.state.userRole;
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // Маршруты, требующие авторизации
     if (!isAuthenticated) {
       if (to.path !== '/') {
-        // Перенаправление на главную страницу, если пользователь не аутентифицирован и не находится на главной странице
         next('/');
       } else {
-        // Если пользователь находится на главной странице и не аутентифицирован, пропускаем дальше
         next();
       }
     } else {
       if (to.meta.role && to.meta.role !== userRole) {
-        // Перенаправление на главную страницу, если у пользователя нет нужной роли
         next('/');
       } else {
-        // Переход допускается
         next();
       }
     }
+  } else if (to.matched.some(record => record.meta.requiresKey)) {
+    const key = to.params.key;
+    if (!key) {
+      next('/');
+    } else {
+      next();
+    }
   } else {
-    // Для маршрутов без требований авторизации
     next();
   }
 });
+
+
 
 export default router;

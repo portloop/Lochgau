@@ -243,7 +243,7 @@ export default {
         },
         async fetchData() {
             try {
-                const response = await axios.get('https://yourufx.space/data');
+                const response = await axios.get('http://localhost:3000/data');
                 this.eventData = Object.freeze(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);

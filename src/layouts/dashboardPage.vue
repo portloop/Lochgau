@@ -47,7 +47,7 @@
 
                         </div>
                         <div class="preview-table-container bg-gray-50">
-                            <div v-for="(newsItem, index) in news" :key="index" class="preview-table-item">
+                            <div v-for="(newsItem, index) in news" :key="newsItem._id" class="preview-table-item">
                                 <div class="preview-table-item-name">
                                     {{ newsItem.title }}
                                 </div>
@@ -72,8 +72,7 @@
                                         </svg>
                                     </button>
 
-                                    <button @click="deleteArticle" type="button" :data-id="newsItem._id"
-                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    <button @click="deleteNews(newsItem._id, index)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                         <svg width="20" height="20" :data-id="newsItem._id" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                             <path :data-id="newsItem._id"
@@ -97,7 +96,7 @@
 
                         </div>
                         <div class="preview-table-container bg-gray-50">
-                            <div v-for="(galleryItem, index) in gallery" :key="index" class="preview-table-item">
+                            <div v-for="(galleryItem, index) in gallery" :key="galleryItem._id" class="preview-table-item">
                                 <div class="preview-table-item-name">
                                     {{ galleryItem._id }}
                                 </div>
@@ -111,7 +110,8 @@
                                     {{ galleryItem.text }}
                                 </div>
                                 <div class="preview-table-item-button">
-                                    <button @click="this.$router.push('/dashboard/gallery/add')" type="button" :data-id="galleryItem._id"
+                                    <button @click="goToGalleryItem" type="button"
+                                        :data-id="galleryItem._id"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                         <svg clip-rule="evenodd" :data-id="galleryItem._id" fill-rule="evenodd"
                                             stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
@@ -122,8 +122,8 @@
                                         </svg>
                                     </button>
 
-                                    <button @click="deleteArticle" type="button" :data-id="galleryItem._id"
-                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    <button @click="deleteGallery(galleryItem, index)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+
                                         <svg width="20" height="20" :data-id="galleryItem._id" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                             <path :data-id="galleryItem._id"
@@ -164,7 +164,7 @@ export default {
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('https://yourufx.space/players');
+                const response = await axios.get('http://localhost:3000/players');
                 this.players = Object.freeze(response.data);
                 console.log(this.players)
             } catch (error) {
@@ -178,7 +178,7 @@ export default {
 
         getNewsList() {
             console.log('Method is called');
-            axios.get('https://yourufx.space/api/news')
+            axios.get('http://localhost:3000/api/news')
                 .then((response) => {
                     this.news = response.data;
 
@@ -200,38 +200,57 @@ export default {
                 });
         },
 
-        goToNews() {
-            const dataIdValue = event.target.dataset.id;
-            // console.log('Data ID value:', dataIdValue); // Вывод значения атрибута data-id
-            // Вы можете использовать это значение или передать его для дальй обработки
-            this.$router.push(`/news/${dataIdValue}`)
-        },
+        goToNews(event) {
+    const dataIdValue = event.target.dataset.id;
+    if (dataIdValue) {
+        this.$router.push(`/news/${dataIdValue}`);
+    } else {
+        console.error('Data ID value is not available.');
+    }
+},
+
+goToGalleryItem(event) {
+    const dataIdValue = event.target.dataset.id;
+    this.$router.push(`/gallery/${dataIdValue}`)
+},
 
 
-        deleteArticle(event) {
-            const dataIdValue = event.target.dataset.id;
 
-            axios.delete(`https://yourufx.space/api/news/${dataIdValue}`)
+        deleteGallery(galleryItem, index) {
+            const itemId = galleryItem._id;
+
+            axios.delete(`http://localhost:3000/gallery/${itemId}`)
                 .then((response) => {
-                    console.log('Article successfully deleted');
-                    this.getNewsList(); // Запускаем метод для получения обновленного списка
-                    this.$router.push('/dashboard');
+                    console.log(response);
+                    // Видаляємо елемент з масиву за його індексом
+                    this.gallery.splice(index, 1);
                 })
                 .catch((error) => {
-                    console.log('Error while deleting data', error);
+                    console.error(error);
                 });
         },
 
-
-        getGallery () {
-            axios.get(`https://yourufx.space/gallery`)
+        deleteNews(newsId, index) {
+        axios.delete(`http://localhost:3000/api/news/${newsId}`)
             .then((response) => {
-                console.log(response.data)
-                this.gallery = Object.freeze(response.data)
+                console.log(response);
+                // Видаляємо елемент з масиву за його індексом
+                this.news.splice(index, 1);
             })
             .catch((error) => {
-                console.log('Error while get gallery:', error)
-            })
+                console.error(error);
+            });
+    },
+
+        getGallery() {
+            axios.get(`http://localhost:3000/gallery`)
+                .then((response) => {
+                    console.log(response.data)
+                    this.gallery = response.data
+                })
+                .catch((error) => {
+                    console.log('Error while get gallery:', error)
+                })
         }
     },
 

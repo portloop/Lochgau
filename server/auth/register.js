@@ -5,7 +5,23 @@ import User from '../models/User.js';
 const router = express.Router();
 
 router.post('/register', (req, res) => {
-  const { username, password, firstName, lastName, dateOfBirth, role, avatar } = req.body;
+  const { username,
+    password,
+    firstName,
+    lastName,
+    dateOfBirth,
+    role, 
+    photo,
+    team,
+    position,
+    nationality,
+    street,
+    zip,
+    city,
+    phone,
+    parent,
+    parentPhone,
+    passport, } = req.body;
 
   const newUser = new User({
     username,
@@ -14,7 +30,18 @@ router.post('/register', (req, res) => {
     lastName,
     dateOfBirth,
     role, 
-    avatar
+    photo,
+    team,
+    position,
+    nationality,
+    street,
+    zip,
+    city,
+    phone,
+    parent,
+    parentPhone,
+    passport,
+
   });
 
   User.register(newUser, password, (err, user) => {

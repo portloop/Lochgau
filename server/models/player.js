@@ -27,6 +27,28 @@ const playerSchema = new mongoose.Schema({
   nationality: {
     type: String
   },
+  street: {
+    type: String
+  },
+  zip: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  parent: {
+    type: String
+  },
+  parentPhone: {
+    type: String
+  },
+  passport: {
+    type: String
+  },
+
   // Другие дополнительные данные, если есть
 });
 

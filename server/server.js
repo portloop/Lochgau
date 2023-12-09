@@ -20,6 +20,9 @@ import sessionChecker from './sessionChecker.js';
 import Player from './models/player.js'; 
 import fileUploadRouter from './fileUpload.js';
 import newsRoutes from './newsFunctions.js';
+import InviteKey from './models/InviteKey.js';
+import teamRoutes from './teamFunctions.js';
+
 import {
   getAllGalleryItems,
   getGalleryItemById,
@@ -27,6 +30,8 @@ import {
   updateGalleryItem,
   deleteGalleryItem
 } from './galleryFunctions.js';
+import { generateLink } from './controllers/InviteController.js';
+
 
 
 
@@ -131,6 +136,16 @@ app.get('/users/list', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+app.get('/users/list/:id', async (req, res) => {
+  try {
+    const userId = req.params.id; // Отримуємо ID з URL
+    const user = await User.findById(userId); // Використовуємо ID для пошуку користувача
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 app.put('/users/list/:id', async (req, res) => {
   const userId = req.params.id;
@@ -314,6 +329,8 @@ app.get('/players/:playerId', async (req, res) => {
   }
 });
 
+// Teams routes
+app.use('/api', teamRoutes);
 
 
 // Add new player routes
@@ -354,6 +371,39 @@ app.delete('/players/:id', async (req, res) => {
   } catch (error) {
     console.error('Ошибка при удалении игрока:', error);
     res.status(500).send('Ошибка сервера при удалении игрока');
+  }
+});
+
+// Link generator
+
+app.get('/generate-link', async (req, res) => {
+  try {
+    const link = await generateLink();
+    res.json({ link });
+  } catch (error) {
+    console.error('Error generating link:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/check-key/:key', async (req, res) => {
+  try {
+    const key = req.params.key;
+
+    // Проведите логику проверки ключа в базе данных
+    const result = await InviteKey.findOne({ key: key });
+
+    if (result) {
+      // Ключ найден в базе данных
+      res.json({ isValid: true });
+    } else {
+      // Ключ не найден в базе данных
+      res.json({ isValid: false });
+    }
+  } catch (error) {
+    console.error('Error checking key:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

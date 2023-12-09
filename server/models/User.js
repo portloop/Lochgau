@@ -4,13 +4,58 @@ import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema = new mongoose.Schema({
   username: String,
-  name: String,
-  avatar: String,
   firstName: String,
   lastName: String,
-  dateOfBirth: String,
   password: String,
-  role: String
+  role: String,
+  photo: {
+    type: String,
+    required: true
+  },
+  
+  dateOfBirth: {
+    type: Date,
+    required: true
+  },
+  team: {
+    type: String,
+    required: true
+  },
+  position: {
+    type: String
+  },
+  nationality: {
+    type: String
+  },
+  street: {
+    type: String
+  },
+  zip: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  parent: {
+    type: String
+  },
+  parentPhone: {
+    type: String
+  },
+  passport: {
+    type: String
+  },
+  height: {
+    type: String
+  },
+
+  weight: {
+    type: String
+  }
+
   // Другие поля вашей схемы пользователя
 });
 

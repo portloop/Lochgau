@@ -17,10 +17,10 @@ export default {
       try {
         const token = Cookies.get('token'); // Получаем токен из кук (если необходимо)
 
-        const checkTokenResponse = await axios.post('https://yourufx.space/checkToken', { token });
+        const checkTokenResponse = await axios.post('http://localhost:3000/checkToken', { token });
         const user = checkTokenResponse.data.user;
         if (user) {
-        const userDetailsResponse = await axios.get(`https://yourufx.space/userDetails/${user.userId}`);
+        const userDetailsResponse = await axios.get(`http://localhost:3000/userDetails/${user.userId}`);
 
         // Сохранение данных пользователя в состоянии Vuex
         this.$store.dispatch('updateUserData', userDetailsResponse.data);

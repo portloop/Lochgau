@@ -147,7 +147,7 @@ export default {
         },
 
         getNews () {
-            axios.get('https://yourufx.space/api/news')
+            axios.get('http://localhost:3000/api/news')
             .then((response) => {
                 this.newsArray = response.data;
                 console.log(this.newsArray)
@@ -163,7 +163,7 @@ export default {
         },
 
        getGalleryItems () {
-        axios.get('https://yourufx.space/gallery')
+        axios.get('http://localhost:3000/gallery')
         .then((response) => {
             this.galleryArray = response.data.slice(-3)
             console.log(this.galleryArray)
