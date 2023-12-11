@@ -134,7 +134,7 @@ export default {
     register() {
       if (this.isEmailValid() && this.isPasswordValid() && this.isNameValid() && this.isDateOfBirthValid()) {
         axios
-          .post('http://localhost:3000/auth/register', {
+          .post('http://yourufx.space/auth/register', {
             username: this.email,
             password: this.password,
             firstName: this.firstName,

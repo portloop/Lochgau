@@ -15,7 +15,7 @@ export default {
 
     methods: {
         getGalleryList () {
-            axios.get('http://localhost:3000/gallery/')
+            axios.get('http://yourufx.space/gallery/')
             .then((response) => {
                 console.log(response)
             })

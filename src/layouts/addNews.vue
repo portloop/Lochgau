@@ -99,7 +99,7 @@ export default defineComponent({
                     const form = new FormData();
                     form.append('file', file);
 
-                    return axios.post('http://localhost:3000/api/news/upload', form, {
+                    return axios.post('http://yourufx.space/api/news/upload', form, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -123,7 +123,7 @@ export default defineComponent({
 
             const folder = 'videos';
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://yourufx.space/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -133,7 +133,7 @@ export default defineComponent({
                 this.videoLink = videoUrl
 
                 console.log(this.videoLink)
-                // this.text += `![Video](http://localhost:3000${videoUrl})\n`;
+                // this.text += `![Video](http://yourufx.space${videoUrl})\n`;
             }).catch(error => {
                 console.error('Error uploading video:', error);
             });
@@ -146,7 +146,7 @@ export default defineComponent({
 
             const folder = 'news'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://yourufx.space/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -161,7 +161,7 @@ export default defineComponent({
         },
 
         seendDataToDb() {
-            axios.post('http://localhost:3000/api/news', {
+            axios.post('http://yourufx.space/api/news', {
                 title: this.title,
                 videoLink: this.videoLink,
                 markdownContent: this.markdownContent,

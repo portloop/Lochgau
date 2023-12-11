@@ -53,7 +53,7 @@ export default {
 
     methods: {
         getTeams() {
-            axios.get('http://localhost:3000/api/teams')
+            axios.get('http://yourufx.space/api/teams')
                 .then((response) => {
                     console.log(response.data)
                     this.teams = response.data
@@ -64,7 +64,7 @@ export default {
                 })
         },
         getPlayers() {
-            axios.get('http://localhost:3000/users/list')
+            axios.get('http://yourufx.space/users/list')
                 .then((response) => {
                     console.log(response.data)
                     this.players = response.data
@@ -95,7 +95,7 @@ deleteTeam(team) {
       const teamId = team._id;
 
       axios
-        .delete(`http://localhost:3000/api/teams/${teamId}`)
+        .delete(`http://yourufx.space/api/teams/${teamId}`)
         .then((response) => {
           console.log(response);
           this.getTeams()

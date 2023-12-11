@@ -132,7 +132,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://yourufx.space/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -161,7 +161,7 @@ export default {
 
 
         sendData() {
-            axios.post('http://localhost:3000/players/add', {
+            axios.post('http://yourufx.space/players/add', {
                 photo: this.playerImg,
                 name: this.name,
                 dateOfBirth: this.dateOfBirth,

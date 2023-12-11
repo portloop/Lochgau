@@ -245,7 +245,7 @@ export default {
     methods: {
         async getTeams() {
             try {
-                const response = await axios.get('http://localhost:3000/api/teams');
+                const response = await axios.get('http://yourufx.space/api/teams');
                 this.teamList = response.data.teams;
                 console.log('Team List:', this.teamList); // Додайте цей рядок
             } catch (error) {
@@ -256,7 +256,7 @@ export default {
         getUser() {
     const userID = this.$route.params.id;
 
-    axios.get(`http://localhost:3000/users/list/${userID}`)
+    axios.get(`http://yourufx.space/users/list/${userID}`)
         .then((response) => {
             console.log('User:', response.data);
 
@@ -300,7 +300,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://yourufx.space/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -341,7 +341,7 @@ export default {
             // Отправляем POST-запрос
             const userID = this.$route.params.id;
 
-            axios.put(`http://localhost:3000/users/list/${userID}`, userData)
+            axios.put(`http://yourufx.space/users/list/${userID}`, userData)
                 .then(response => {
                     // Обрабатываем успешный ответ
                     console.log(response.data);
