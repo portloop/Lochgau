@@ -422,6 +422,7 @@ app.delete('/gallery/:id', deleteGalleryItem);
 
 
 
+
 const distPath = path.join(__dirname, '../dist');
 app.use(express.static(distPath));
 const photoPath = path.join(__dirname, '../uploads/players/');
