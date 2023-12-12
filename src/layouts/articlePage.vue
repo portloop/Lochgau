@@ -28,11 +28,13 @@
         </div>
     </div>
   </div>
+  <footerComponent/>
 </template>
   
   <script>
   import axios from 'axios';
   import headerComponent from '../components/headerComponent.vue';
+  import footerComponent from '../components/footerComponent.vue';
   
   export default {
     data () {
@@ -41,7 +43,8 @@
         }
     },
     components: {
-      headerComponent
+      headerComponent,
+      footerComponent
     },
     methods: {
       getNewsById() {

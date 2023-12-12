@@ -13,7 +13,7 @@
     <headerComponent />
     <div class="main-container">
         <div class="register-title">
-            Register User:
+            Benutzer registrieren:
         </div>
         <div class="register-form">
 
@@ -44,15 +44,15 @@
 
             <div class="profile-info">
                 <div class="fields-container mb-2">
-                    <label for="first_name" class="block text-sm  font-medium text-gray-900 dark:text-white">First
-                        name</label>
+                    <label for="first_name" class="block text-sm  font-medium text-gray-900 dark:text-white">Erste
+                        Name</label>
                     <input type="text" id="first_name" v-model="firstName"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="First Name" required>
                 </div>
                 <div class="fields-container">
-                    <label for="last_name" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Last
-                        name</label>
+                    <label for="last_name" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Letzte
+                        Name</label>
                     <input type="text" v-model="lastName" id="last_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Last Name" required>
@@ -66,20 +66,20 @@
                 </div>
                 <div class="fields-container">
                     <label for="nationality" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Nationality</label>
+                        Nationalität</label>
                     <input type="text" v-model="nationality" id="nationality"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Last Name" required>
                 </div>
                 <div class="fields-container">
-                    <label for="date" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Date of birth
+                    <label for="date" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Datum der Geburt
                     </label>
                     <input type="date" @input="formatDate" v-model="selectedDate" id="date"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Date of birth" required>
                 </div>
                 <div class="fields-container">
-                    <label for="street" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Street
+                    <label for="street" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">Straße
                     </label>
                     <input type="text" v-model="street" id="street"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -95,7 +95,7 @@
 
                 <div class="fields-container">
                     <label for="city" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        City
+                        Stadt
                     </label>
                     <input type="text" v-model="city" id="city"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -103,15 +103,15 @@
                 </div>
                 <div class="fields-container">
                     <label for="phone" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Phone
+                        Telefon
                     </label>
                     <input type="text" v-model="phone" id="phone"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Phone" required>
                 </div>
                 <div class="field mb-2 fields-container">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        a team</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wählen Sie
+                        ein Team</label>
                     <select v-model="selectedTeam" id="countries"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Choose a team</option>
@@ -121,8 +121,8 @@
                     </select>
                 </div>
                 <div class="field mb-2 fields-container">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        a position</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wählen Sie
+                        eine Position</label>
                     <select v-model="position" id="countries"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Choose a position</option>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="parent" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Parent
+                        Elternteil
                     </label>
                     <input type="text" v-model="parent" id="parent"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -149,7 +149,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="parentPhone" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Parent Phone
+                        Telefon der Eltern
                     </label>
                     <input type="text" v-model="parentPhone" id="parentPhone"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -157,7 +157,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="passport" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Passport Number DFB
+                        Reisepassnummer DFB
                     </label>
                     <input type="text" v-model="inputValue" maxlength="9" id="passport"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -165,7 +165,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="height" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Height
+                        Höhe
                     </label>
                     <input type="text" v-model="height" id="height"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -173,7 +173,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="weight" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Weight
+                        Gewicht
                     </label>
                     <input type="text" v-model="weight" id="weight"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -181,7 +181,7 @@
                 </div>
                 <div class="fields-container">
                     <label for="password" class="block mb-2 text-sm  font-medium text-gray-900 dark:text-white">
-                        Password
+                        Passwort
                     </label>
                     <input type="password" v-model="password" id="password"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

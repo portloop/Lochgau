@@ -5,22 +5,22 @@
                 <img src="../assets/logo.png" alt="">
             </a>
             <div class="header-menu">
-                <a href="/aktuelles" class="header-menu_item">
+                <a @click="this.$router.push('/news')" class="header-menu_item">
                     Aktuelles
                 </a>
-                <a href="/verein" class="header-menu_item">
+                <a @click="this.$router.push('/verein')" class="header-menu_item">
                     Verein
                 </a>
-                <a href="/herren" class="header-menu_item">
+                <a @click="this.$router.push('/herren')" class="header-menu_item">
                     Herren
                 </a>
-                <a href="/frauen" class="header-menu_item">
+                <a @click="this.$router.push('/frauen')" class="header-menu_item">
                     Frauen
                 </a>
-                <a href="/junioren" class="header-menu_item">
+                <a @click="this.$router.push('/junioren')" class="header-menu_item">
                     Junioren
                 </a>
-                <a href="/sponsoring" class="header-menu_item">
+                <a @click="this.$router.push('/sponsoring')" class="header-menu_item">
                     Sponsoring
                     <!--  -->
                 </a>
@@ -200,5 +200,9 @@ export default {
 
 .botside-item svg {
     fill: #003333;
+}
+
+.header-menu a {
+    cursor: pointer;
 }
 </style>

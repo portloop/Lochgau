@@ -5,7 +5,7 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
-                Team :
+                Mannschaft :
 
             </div>
 
@@ -17,7 +17,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Full name
+                                Vollständiger Name
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Email
@@ -26,13 +26,13 @@
                                 Position
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Team
+                                Mannschaft
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Phone
+                                Telefon
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Action
+                                Aktion
                             </th>
                         </tr>
                     </thead>
@@ -56,7 +56,7 @@
                             </td>
                             <td class="px-6 py-4" :data-id="player._id">
                                 <a @click="editUser" :data-id="player._id"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Bearbeiten</a>
                             </td>
                         </tr>
                     </tbody>

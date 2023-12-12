@@ -16,15 +16,15 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box__title">
-                Edit player profile of
+                Spielerprofil bearbeiten
             </div>
             <!--  -->
             <div class="content-container ">
                 <div class="preview-table bg-gray-100">
 
                     <div class="flex mb-2 photo-player items-center justify-center w-full">
-                        <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Player
-                            photo:</label>
+                        <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Spieler Foto:</label>
                         <div class="current-photo">
                             <img v-if="playerImg" :src="`${playerImg}`" alt="">
                         </div>
@@ -52,14 +52,15 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="mb-2 field">
-                        <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of
-                            birth:</label>
+                        <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Datum der Geburt:
+                        </label>
                         <input v-model="dateOfBirth" type="date" id="base-input"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="field mb-2">
-                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                            a team</label>
+                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Wählen Sie den Befehl</label>
                         <select v-model="team" id="countries"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Choose a team</option>
@@ -69,8 +70,9 @@
                         </select>
                     </div>
                     <div class="field mb-2">
-                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                            a position</label>
+                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Wählen Sie eine Position
+                        </label>
                         <select v-model="position" id="countries"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Choose a position</option>
@@ -89,14 +91,14 @@
                     </div>
                     <div class="mb-3 field">
                         <label for="base-input"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationalität</label>
                         <input v-model="nationality" type="text" id="base-input"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <button type="button" @click="updatePlayerData"
-                        class="text-white  field bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+                        class="text-white  field bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Speichern Sie</button>
                     <button type="button" @click="deletePlayerById"
-                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Löschen</button>
 
                 </div>
             </div>

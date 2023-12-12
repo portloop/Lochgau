@@ -23,7 +23,6 @@
                 </div>
                 <div class="additional-links">
                     <span class="reset">Forgot password?</span>
-                    <span class="reset" @click="openRegisterPopup">Sign Up</span>
                 </div>
 
             </form>

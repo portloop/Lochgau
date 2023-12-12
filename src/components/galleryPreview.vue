@@ -198,6 +198,11 @@ export default {
     margin-bottom: 45px;
 }
 
+.video-title {
+    font-family: 'metropolis', sans-serif;
+    margin-top: 10px;
+}
+
 .result-line__date {
     font-family: 'dCondensed', sans-serif;
     font-size: 14px;

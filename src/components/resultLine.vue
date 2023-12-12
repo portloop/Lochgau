@@ -465,7 +465,7 @@ export default {
     justify-content: center;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     margin-right: 0 !important;
-    width: 409px !important;
+    width: 384px !important;
 }
 </style>
 

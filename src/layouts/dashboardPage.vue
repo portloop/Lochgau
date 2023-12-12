@@ -11,10 +11,10 @@
                 <div class="content-container ">
                     <div class="preview-table bg-gray-100">
                         <div class="preview-table-title coolGray">
-                            <span>Players</span>
+                            <span>Spieler</span>
                             <button type="button" @click="this.$router.push('/player/add')"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Add new
+                                Neu hinzufügen
                             </button>
 
                         </div>
@@ -29,7 +29,7 @@
                                 <div class="preview-table-item-button">
                                     <button @click="viewPlayer(player)" :data-id="player._id" type="button"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        View
+                                        Siehe
                                     </button>
                                 </div>
                             </div>
@@ -39,10 +39,10 @@
                 <div class="content-container">
                     <div class="preview-table bg-gray-100">
                         <div class="preview-table-title coolGray">
-                            <span>News</span>
+                            <span>Nachrichten</span>
                             <button type="button" @click="this.$router.push('/news/add')"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Add new
+                                Neu hinzufügen 
                             </button>
 
                         </div>
@@ -88,10 +88,10 @@
                 <div class="content-container gallery">
                     <div class="preview-table bg-gray-100">
                         <div class="preview-table-title coolGray">
-                            <span>Gallery</span>
+                            <span>Galerie</span>
                             <button type="button" @click="this.$router.push('/dashboard/gallery/add')"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Add new
+                                Neu hinzufügen 
                             </button>
 
                         </div>

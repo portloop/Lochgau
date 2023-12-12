@@ -17,6 +17,12 @@ import teamsPage from './layouts/teamsPage.vue'
 import addTeam from './layouts/addNewTeam.vue'
 import teamList from './layouts/teamList.vue'
 import herrenPage from './layouts/herrenPage.vue'
+import frauenPage from './layouts/frauenPage.vue'
+import juniorenPage from './layouts/juniorenPage.vue'
+import newsPage from './layouts/newsPage.vue'
+import galleryItem from './layouts/galleryItem.vue'
+import sponsoringPage from './layouts/sponsoringPage.vue'
+import analyticsPage from './layouts/analyticsPage.vue'
 
 
 const router = createRouter({
@@ -38,8 +44,14 @@ const router = createRouter({
 
     { path: '/dashboard/teams', component: teamsPage, meta: { requiresAuth: true, role: !'User' } },
     { path: '/dashboard/teams/add', component: addTeam, meta: { requiresAuth: true, role: !'User' } },
+    { path: '/analytics', component: analyticsPage, meta: { requiresAuth: true, role: !'User' } },
     { path: '/team/:teamName/list', component: teamList, meta: { requiresAuth: true, role: !'User' } },
-    { path: '/herren', component: herrenPage }
+    { path: '/frauen', component: frauenPage },
+    { path: '/junioren', component: juniorenPage },
+    { path: '/herren', component: herrenPage },
+    { path: '/news', component: newsPage },
+    { path: '/gallery/:id', component: galleryItem },
+    { path: '/sponsoring', component: sponsoringPage }
   ]
 });
 

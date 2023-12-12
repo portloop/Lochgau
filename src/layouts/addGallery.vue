@@ -18,23 +18,23 @@
         <div class="form">
 
 
-            <div class="form-title text-3xl mb-3">Add gallery item:</div>
+            <div class="form-title text-3xl mb-3">Fügen Sie ein Galerieelement hinzu:</div>
 
             <div class="mb-2 field">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titel</label>
                 <input v-model="title" required maxlength="100" type="text" id="base-input"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
             <div class="mb-2 field">
                 <label for="base-input"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Beschreibung</label>
                 <input v-model="description" required maxlength="100" type="text" id="base-input"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 
             <form class="w-full mx-auto mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload preview
-                    image:
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Vorschau auf den Download
+                    Bild:
                 </label>
                 <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -42,16 +42,16 @@
 
             </form>
             <form class="w-full mx-auto mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload
-                    files:
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Hochladen
+                    Dateien:
                 </label>
                 <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="user_avatar_help" id="user_avatar" type="file" @change="uploadMedia">
 
             </form>
-            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                option</label>
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wählen Sie
+                Option</label>
             <select id="countries"
                 v-model="team"
                 class="bg-gray-50 border mb-6 select-input border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -62,7 +62,7 @@
             </select>
             <div class="preview-content">
                 <div class="preview-content-title">
-                    Preview content:
+                    Inhaltsvorschau:
                 </div>
                 <div class="preview-content-container">
                     <div class="img-container">
@@ -102,8 +102,8 @@
 
 
             <button type="button" @click="sendContent"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Send
-                data</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Senden Sie
+                Daten</button>
 
         </div>
 
