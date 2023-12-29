@@ -22,6 +22,8 @@ import fileUploadRouter from './fileUpload.js';
 import newsRoutes from './newsFunctions.js';
 import InviteKey from './models/InviteKey.js';
 import teamRoutes from './teamFunctions.js';
+import history from 'connect-history-api-fallback';
+
 
 import {
   getAllGalleryItems,
@@ -51,6 +53,16 @@ app.use(cors({
   origin: true,
   credentials: true,
 }));
+
+
+app.use(history({
+  verbose: true
+}));
+
+// Подключение middleware и статических файлов
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use('/', express.static(path.join(__dirname, 'dist')));
 
 
 // Разрешите использование куки в запросах
