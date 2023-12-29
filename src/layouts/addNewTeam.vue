@@ -53,7 +53,7 @@ export default {
 
     methods: {
         createNew () {
-            axios.post('http://localhost:3000/api/teams', {
+            axios.post('http://194.15.113.90/api/teams', {
                 name: this.name
             })
             .then((response) => {
