@@ -60,7 +60,6 @@ app.use(history({
 }));
 
 // Подключение middleware и статических файлов
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'dist')));
 
