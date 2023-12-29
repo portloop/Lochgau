@@ -71,4 +71,22 @@ router.put('/teams/:id', async (req, res) => {
   }
 });
 
+// Эндпоинт для получения данных о команде по ID через POST запрос
+router.post('/teams/getTeamById', async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const team = await Team.findById(id);
+    if (!team) {
+      return res.status(404).json({ error: 'Team not found' });
+    }
+
+    res.json({ team });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 export default router;

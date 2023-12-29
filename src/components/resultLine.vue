@@ -41,7 +41,7 @@
         <div class="result-line">
             <div class="result-line__container">
 
-                <swiper :slides-per-view="5" @swiper="onSwiper" @slideChange="onSlideChange"
+                <swiper class="resultSlider" :slides-per-view="5" @swiper="onSwiper" @slideChange="onSlideChange"
                     :pagination="{ clickable: true }">
                     <div class="swiper-pagination"></div>
                     <swiper-slide v-for="(event, index) in eventData" :key="index" class="result-line__item"
@@ -243,7 +243,7 @@ export default {
         },
         async fetchData() {
             try {
-                const response = await axios.get('http://yourufx.space/data');
+                const response = await axios.get('http://localhost:3000/data');
                 this.eventData = Object.freeze(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -465,7 +465,46 @@ export default {
     justify-content: center;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     margin-right: 0 !important;
-    width: 384px !important;
+    width: 425px !important;
+}
+
+
+
+@media screen and (max-width:635px) {
+    .near-event-info__container {
+        padding: 10px 0 ;
+    }    
+
+    .near-event {
+        height: 260px;
+        top: -2px;
+        width: 350px;
+        left: calc(50% - 175px);
+    }
+
+    .result-line__vs {
+        font-size: 26px;
+    }
+
+    .near-event-timer {
+        font-size: 16px;
+    }
+
+    .near-event-tournament, .near-event-time, .near-event .result-line__team_name {
+        font-size: 14px;
+    }
+
+    .resultSlider {
+        display: none;
+    }
+    .result-line__container {
+        height: 140px;
+
+    }
+
+    .arrow-left, .arrow-right {
+        display: none;
+    }
 }
 </style>
 

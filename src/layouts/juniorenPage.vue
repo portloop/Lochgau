@@ -55,7 +55,7 @@ export default {
 
     methods: {
         getPlayers() {
-            axios.get('http://yourufx.space/users/list')
+            axios.get('http://localhost:3000/users/list')
                 .then((response) => {
                     console.log(response);
                     this.players = response.data.filter(player => player.team == 'Junioren');

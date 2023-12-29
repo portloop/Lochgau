@@ -5,7 +5,7 @@
                 <img src="../assets/logo-footer.png" alt="Logo footer">
             </a>
             <div class="footer-slider">
-                <swiper  :slides-per-view="5" @swiper="onSwiper" @slideChange="onSlideChange"
+                <swiper :slides-per-view="slidesPerView" @swiper="onSwiper" @slideChange="onSlideChange"
                 :pagination="{ clickable: true }">
                 <div class="swiper-pagination"></div>
                 <swiper-slide class="result-line__item">
@@ -121,6 +121,8 @@ export default {
         return {
             activeSlide: 0,
             swiper: null,
+            slidesPerView: 5, // Начальное количество отображаемых слайдов
+
         }
     },
 
@@ -136,8 +138,25 @@ export default {
             onSlideChange,
         };
     },
+    mounted() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize(); // Вызываем функцию при монтировании компонента для начальной настройки Swiper
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.onResize);
+  },
 
     methods: {
+        onResize() {
+      // Логика изменения slidesPerView в зависимости от ширины экрана
+      if (window.innerWidth < 768) {
+        this.slidesPerView = 1; // Например, при ширине экрана менее 768px отображаем по одному слайду
+      } else if (window.innerWidth < 1024) {
+        this.slidesPerView = 3; // При ширине экрана менее 1024px отображаем по три слайда
+      } else {
+        this.slidesPerView = 5; // По умолчанию отображаем 5 слайдов
+      }
+    },
         onSlideChange() {
             if (this.swiper) {
                 this.activeSlide = this.swiper.activeIndex;

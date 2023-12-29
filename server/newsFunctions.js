@@ -43,18 +43,17 @@ router.post('/news', async (req, res) => {
 
 // 4. Редактировать статью (put)
 router.put('/news/:id', getNews, async (req, res) => {
-  if (req.body.title != null) {
-    res.news.title = req.body.title;
-  }
-  if (req.body.content != null) {
-    res.news.content = req.body.content;
-  }
-  if (req.body.author != null) {
-    res.news.author = req.body.author;
-  }
-  // Обновляем другие поля, если есть
-
   try {
+    res.news.title = req.body.title;
+    res.news.videoLink = req.body.videoLink;
+    res.news.markdownContent = req.body.markdownContent;
+    res.news.content = req.body.content;
+    res.news.author = req.body.author;
+    res.news.publishedAt = req.body.publishedAt;
+    res.news.previewImg = req.body.previewImg;
+    // Обновление всех других полей
+
+    // Сохраняем обновленную статью в базе данных
     const updatedNews = await res.news.save();
     res.json(updatedNews);
   } catch (err) {

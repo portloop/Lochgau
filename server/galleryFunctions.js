@@ -81,11 +81,30 @@ async function deleteGalleryItem(req, res) {
 }
 
 
+async function getGalleryItemPost(req, res) {
+  try {
+    const { id } = req.body; // Получаем id из тела запроса
+
+    const galleryItem = await Gallery.findById(id);
+    if (!galleryItem) {
+      return res.status(404).json({ message: 'Cannot find gallery item' });
+    }
+    res.json(galleryItem);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+ 
+
+
+
 
 export {
     getAllGalleryItems,
     getGalleryItemById,
     createGalleryItem,
     updateGalleryItem,
-    deleteGalleryItem
+    deleteGalleryItem,
+    getGalleryItemPost
 }

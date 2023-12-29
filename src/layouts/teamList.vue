@@ -91,7 +91,7 @@ export default {
 
             console.log(teamName);
 
-            axios.get(`http://yourufx.space/users/list/`)
+            axios.get(`http://localhost:3000/users/list/`)
                 .then((response) => {
                     console.log('Users:', response.data);
 

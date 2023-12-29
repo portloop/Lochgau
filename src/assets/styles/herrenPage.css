@@ -59,3 +59,18 @@
     text-transform: uppercase;
 }
 
+@media screen and (max-width: 1500px) {
+    .social-section-container, .result-container, .social-post-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #widget1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+   
+}
+

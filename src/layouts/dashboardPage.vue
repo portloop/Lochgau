@@ -42,7 +42,7 @@
                             <span>Nachrichten</span>
                             <button type="button" @click="this.$router.push('/news/add')"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Neu hinzufügen 
+                                Neu hinzufügen
                             </button>
 
                         </div>
@@ -71,8 +71,18 @@
                                                 fill-rule="nonzero" />
                                         </svg>
                                     </button>
+                                    <button @click="EditNews(event)" type="button" :data-id="newsItem._id"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        <svg :data-id="newsItem._id" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                            stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path :data-id="newsItem._id"
+                                                d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z"
+                                                fill-rule="nonzero" />
+                                        </svg>
+                                    </button>
 
-                                    <button @click="deleteNews(newsItem._id, index)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    <button @click="deleteNews(newsItem._id, index)" type="button"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                         <svg width="20" height="20" :data-id="newsItem._id" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                             <path :data-id="newsItem._id"
@@ -91,7 +101,7 @@
                             <span>Galerie</span>
                             <button type="button" @click="this.$router.push('/dashboard/gallery/add')"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Neu hinzufügen 
+                                Neu hinzufügen
                             </button>
 
                         </div>
@@ -110,8 +120,7 @@
                                     {{ galleryItem.text }}
                                 </div>
                                 <div class="preview-table-item-button">
-                                    <button @click="goToGalleryItem" type="button"
-                                        :data-id="galleryItem._id"
+                                    <button @click="goToGalleryItem" type="button" :data-id="galleryItem._id"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                         <svg clip-rule="evenodd" :data-id="galleryItem._id" fill-rule="evenodd"
                                             stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
@@ -121,8 +130,19 @@
                                                 fill-rule="nonzero" />
                                         </svg>
                                     </button>
+                                    <button @click="editGalleryItem" type="button" :data-id="galleryItem._id"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        <svg :data-id="galleryItem._id" clip-rule="evenodd" fill-rule="evenodd"
+                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m4.481 15.659c-1.334 3.916-1.48 4.232-1.48 4.587 0 .528.46.749.749.749.352 0 .668-.137 4.574-1.492zm1.06-1.061 3.846 3.846 11.321-11.311c.195-.195.293-.45.293-.707 0-.255-.098-.51-.293-.706-.692-.691-1.742-1.74-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z"
+                                                fill-rule="nonzero" />
+                                        </svg>
+                                    </button>
 
-                                    <button @click="deleteGallery(galleryItem, index)" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    <button @click="deleteGallery(galleryItem, index)" type="button"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
 
                                         <svg width="20" height="20" :data-id="galleryItem._id" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -160,11 +180,11 @@ export default {
         sideBar,
         dashboardHeader
     },
-// 
+    // 
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('http://yourufx.space/players');
+                const response = await axios.get('http://localhost:3000/players');
                 this.players = Object.freeze(response.data);
                 console.log(this.players)
             } catch (error) {
@@ -178,7 +198,7 @@ export default {
 
         getNewsList() {
             console.log('Method is called');
-            axios.get('http://yourufx.space/api/news')
+            axios.get('http://localhost:3000/api/news')
                 .then((response) => {
                     this.news = response.data;
 
@@ -201,25 +221,30 @@ export default {
         },
 
         goToNews(event) {
-    const dataIdValue = event.target.dataset.id;
-    if (dataIdValue) {
-        this.$router.push(`/news/${dataIdValue}`);
-    } else {
-        console.error('Data ID value is not available.');
-    }
-},
+            const dataIdValue = event.target.dataset.id;
+            if (dataIdValue) {
+                this.$router.push(`/news/${dataIdValue}`);
+            } else {
+                console.error('Data ID value is not available.');
+            }
+        },
 
-goToGalleryItem(event) {
-    const dataIdValue = event.target.dataset.id;
-    this.$router.push(`/gallery/${dataIdValue}`)
-},
+        goToGalleryItem(event) {
+            const dataIdValue = event.target.dataset.id;
+            this.$router.push(`/gallery/${dataIdValue}`)
+        },
 
+
+        editGalleryItem() {
+            const dataIdValue = event.target.dataset.id;
+            this.$router.push(`/gallery/edit/${dataIdValue}`)
+        },
 
 
         deleteGallery(galleryItem, index) {
             const itemId = galleryItem._id;
 
-            axios.delete(`http://yourufx.space/gallery/${itemId}`)
+            axios.delete(`http://localhost:3000/gallery/${itemId}`)
                 .then((response) => {
                     console.log(response);
                     // Видаляємо елемент з масиву за його індексом
@@ -231,19 +256,19 @@ goToGalleryItem(event) {
         },
 
         deleteNews(newsId, index) {
-        axios.delete(`http://yourufx.space/api/news/${newsId}`)
-            .then((response) => {
-                console.log(response);
-                // Видаляємо елемент з масиву за його індексом
-                this.news.splice(index, 1);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    },
+            axios.delete(`http://localhost:3000/api/news/${newsId}`)
+                .then((response) => {
+                    console.log(response);
+                    // Видаляємо елемент з масиву за його індексом
+                    this.news.splice(index, 1);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
 
         getGallery() {
-            axios.get(`http://yourufx.space/gallery`)
+            axios.get(`http://localhost:3000/gallery`)
                 .then((response) => {
                     console.log(response.data)
                     this.gallery = response.data
@@ -251,6 +276,12 @@ goToGalleryItem(event) {
                 .catch((error) => {
                     console.log('Error while get gallery:', error)
                 })
+        },
+
+        EditNews () {
+            const newsId = event.target.dataset.id;
+
+            this.$router.push(`/news/edit/${newsId}`)
         }
     },
 
@@ -261,6 +292,4 @@ goToGalleryItem(event) {
     }
 }
 </script>
-<style scoped>
-@import url(../assets/styles/coachPage.css);
-</style>
+<style scoped>@import url(../assets/styles/coachPage.css);</style>

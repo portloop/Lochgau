@@ -92,7 +92,7 @@ export default {
 
     methods: {
         getGalleryList () {
-            axios.get('http://yourufx.space/gallery/')
+            axios.get('http://localhost:3000/gallery/')
             .then((response) => {
                 console.log(response)
                 this.galleryList = response.data

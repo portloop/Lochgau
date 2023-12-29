@@ -50,7 +50,7 @@ export default {
             this.$router.push(`/news/${newsId}`)
         },
         getNewsList() {
-            axios.get('http://yourufx.space/api/news')
+            axios.get('http://localhost:3000/api/news')
                 .then((response) => {
                     this.news = response.data.map(item => {
                         const date = new Date(item.publishedAt);

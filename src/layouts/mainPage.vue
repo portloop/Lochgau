@@ -17,7 +17,7 @@
             </div>
             <div class="news-container" v-if="newsArray && newsArray.length > 0">
                 <div class="news-absolute">
-                    <div v-for="(news, index) in newsArray.slice(-3).reverse()" :key="index" class="news-item" :data-id="news._id">
+                    <div v-if="newsArray" v-for="(news, index) in newsArray.slice(-3).reverse()" :key="index" class="news-item" :data-id="news._id">
                         <a :data-id="news._id" @click="goToNews(event)">
                             <img :src="news.previewImg" :data-id="news._id" :alt="news.title">
                         </a>
@@ -85,10 +85,9 @@
 
     <loginComponent v-if="showPopup" :eventHandler="openPopup" />
     <registerComponent v-if="showRegisterPopup" :eventHandler="openRegisterPopup" />
-    <footerComponent />
+    <footerComponent /> 
 
 
-<!-- sad -->
 
 
 </template>
@@ -147,7 +146,7 @@ export default {
         },
 
         getNews () {
-            axios.get('http://yourufx.space/api/news')
+            axios.get('http://localhost:3000/api/news')
             .then((response) => {
                 this.newsArray = response.data;
                 console.log(this.newsArray)
@@ -163,7 +162,7 @@ export default {
         },
 
        getGalleryItems () {
-        axios.get('http://yourufx.space/gallery')
+        axios.get('http://localhost:3000/gallery')
         .then((response) => {
             this.galleryArray = response.data.slice(-3)
             console.log(this.galleryArray)
@@ -204,6 +203,7 @@ export default {
     
 };
 </script>
-<style>
+<style scoped>
 @import url(../assets/styles/mainPage.css);
+@import url(../assets/styles/mainPageResponsive.css);
 </style>

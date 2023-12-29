@@ -1,16 +1,14 @@
 <template>
     <div class="result-main-container">
-        <div class="bg-text">
-            GALERIE
-        </div>
+
         <div class="result-line">
             <div class="gallery-title red-title-text">FOTOGALERIE</div>
             <div class="result-line__container">
-                <swiper :slides-per-view="4" @swiper="onSwiper" @slideChange="onSlideChange"
+                <swiper :slides-per-view="slidesPerView" @swiper="onSwiper" @slideChange="onSlideChange"
                     :pagination="{ clickable: true }">
                     <div class="swiper-pagination"></div>
                     <swiper-slide v-for="(item, index) in content" :key="index">
-                        <div v-if="content.length > 0" class="video-container">
+                        <div v-if="content.length > 0 && item.video && item.previewImg" class="video-container">
                             <div class="video-content">
                                 <video :ref="'myVideo_' + index" :src="item.video" @play="handleVideoPlay(index)"
                                     @pause="handleVideoPause(index)" @ended="handleVideoEnded(index)"></video>
@@ -26,7 +24,8 @@
                         </div>
                     </swiper-slide>
                 </swiper>
-                <redButton class="rd-btn" path="/gallery" text="View gallery"/>
+                
+                <redButton class="rd-btn" path="/gallery" text="View gallery" />
 
 
                 <div class="arrow-right" @click="swiper.slideNext()">
@@ -91,7 +90,7 @@ export default {
             swiper: null,
             content: [],
             showPlayButton: reactive([]),
-
+            slidesPerView: 4, // Начальное количество слайдов на экране
 
 
         };
@@ -99,79 +98,95 @@ export default {
 
     methods: {
         getContent() {
-  axios.get('http://yourufx.space/gallery')
+  axios.get('http://localhost:3000/gallery')
     .then((response) => {
       this.content = response.data
-        .filter(item => item.videos && item.videos.length > 0)
+        .filter(item => item.videos && item.videos.length > 0 && item.previewImg)
         .map(item => ({
           title: item.title,
-          video: item.videos[0]
+          video: item.videos[0],
+          previewImg: item.previewImg
         }));
 
-      // Проверка на наличие контента перед инициализацией массива showPlayButton
+      console.log(this.content);
+
       if (this.content && this.content.length > 0) {
         this.showPlayButton = Array.from({ length: this.content.length }, () => true);
+      } else {
+        console.log('Filtered content is empty or does not meet the criteria.');
       }
-
-      console.log(this.content);
     })
     .catch((error) => {
-      console.log(error);
+      console.error('Error fetching data:', error);
     });
 },
-        
-
-        togglePlayPause(index) {
-            const video = this.$refs['myVideo_' + index][0];
-
-            if (video) {
-                if (video.paused) {
-                    video.play();
-                    this.showPlayButton[index] = false;
-                } else {
-                    video.pause();
-                    this.showPlayButton[index] = true;
-                }
-            } else {
-                console.error("Video element is not yet available.");
-            }
-        },
-
-        handleVideoPlay(index) {
-            this.showPlayButton[index] = false;
-        },
-
-        handleVideoPause(index) {
-            this.showPlayButton[index] = true;
-        },
-
-        handleVideoEnded(index) {
-            this.showPlayButton[index] = true;
-        },
 
 
-        onSlideChange() {
-            if (this.swiper) {
-                this.activeSlide = this.swiper.activeIndex;
-            }
-        },
-        onSwiper(swiper) {
-            this.swiper = swiper;
-        },
-
+    onResize() {
+      if (window.innerWidth < 768) {
+        this.slidesPerView = 1;
+      } else if (window.innerWidth < 1024) {
+        this.slidesPerView = 2;
+      } else {
+        this.slidesPerView = 4;
+      }
     },
+    togglePlayPause(index) {
+      const video = this.$refs['myVideo_' + index][0];
+      if (video) {
+        if (video.paused) {
+          video.play();
+          this.showPlayButton[index] = false;
+        } else {
+          video.pause();
+          this.showPlayButton[index] = true;
+        }
+      } else {
+        console.error("Video element is not yet available.");
+      }
+    },
+    handleVideoPlay(index) {
+      this.showPlayButton[index] = false;
+    },
+    handleVideoPause(index) {
+      this.showPlayButton[index] = true;
+    },
+    handleVideoEnded(index) {
+      this.showPlayButton[index] = true;
+    },
+    onSlideChange() {
+      if (this.swiper) {
+        this.activeSlide = this.swiper.activeIndex;
+      }
+    },
+    onSwiper(swiper) {
+      this.swiper = swiper;
+    },
+  },
+  
+  destroyed() {
+    window.removeEventListener('resize', this.onResize);
+  },
     mounted() {
         this.getContent()
+        window.addEventListener('resize', this.onResize);
+        this.onResize();
+    },
+
+    destroyed() {
+        window.removeEventListener('resize', this.onResize);
     },
 };
 </script>
 
 <style scoped>
-
 .result-main-container {
     background: rgba(235, 234, 234, 0.4);
     z-index: 0;
+
+    padding-bottom: 100px;
 }
+
 .result-line {
     padding: 60px 0;
     position: relative;
@@ -408,9 +423,23 @@ export default {
     display: flex;
 }
 
-.gallery-title  {
+.gallery-title {
     text-align: center;
     margin-bottom: 50px;
+    color: #cc3366;
+    font-family: 'goboldI', sans-serif;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.video-content {
+    position: relative;
+}
+
+.play-btn {
+    position: absolute;
+    top: calc(50% - 35px);
+    left: calc(50% - 35px);
 }
 
 .rd-btn {
@@ -421,22 +450,23 @@ export default {
     margin-top: 60px;
 }
 
-.swiper-wrapper  {
+.swiper-wrapper {
     margin-bottom: 60px !important;
 }
 
-.bg-text {
-    position: absolute;
-    top: 21%;
-    left: 10%;
-    width: 100%;
-    height: 100%;
-    font-family: 'goboldB', sans-serif;
-    color: #fff;
-    -o-object-fit: cover;
-    object-fit: cover;
-    line-height: 510px;
-    font-size: 510px;
+
+@media screen and (max-width: 768px) {
+
+    .arrow-left,
+    .arrow-right {
+        display: none;
+    }
+
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>
 

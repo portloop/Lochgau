@@ -28,7 +28,8 @@ import {
   getGalleryItemById,
   createGalleryItem,
   updateGalleryItem,
-  deleteGalleryItem
+  deleteGalleryItem,
+  getGalleryItemPost
 } from './galleryFunctions.js';
 import { generateLink } from './controllers/InviteController.js';
 
@@ -417,6 +418,7 @@ app.use('/api', newsRoutes);
 app.get('/gallery', getAllGalleryItems);
 app.get('/gallery/:id', getGalleryItemById);
 app.post('/gallery', createGalleryItem);
+app.post('/gallery/getById', getGalleryItemPost);
 app.patch('/gallery/:id', updateGalleryItem);
 app.delete('/gallery/:id', deleteGalleryItem);
 
@@ -427,6 +429,8 @@ const distPath = path.join(__dirname, '../dist');
 app.use(express.static(distPath));
 const photoPath = path.join(__dirname, '../uploads/players/');
 app.use(express.static(photoPath));
+const previewPath = path.join(__dirname, '../uploads/videos/');
+app.use(express.static(previewPath));
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 

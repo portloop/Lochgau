@@ -22,7 +22,10 @@
                     <div class="player-item age">
                         {{ countPlayersInTeam(team.name) }}
                     </div>
-                    <button :data-id="team.name" @click="seeMember(event)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mitglieder</button>
+                    <button :data-id="team.name" @click="seeMember(event)" type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mitglieder</button>
+                    <button :data-id="team._id" @click="editTeam(event)"   type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
 
                     <button type="button" :data-id="team._id" @click="deleteTeam(team)"
                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Löschen</button>
@@ -52,8 +55,12 @@ export default {
     },
 
     methods: {
+        editTeam () {
+            const teamId = event.target.dataset.id;
+            this.$router.push(`/editTeam/${teamId}`)
+        },
         getTeams() {
-            axios.get('http://yourufx.space/api/teams')
+            axios.get('http://localhost:3000/api/teams')
                 .then((response) => {
                     console.log(response.data)
                     this.teams = response.data
@@ -64,7 +71,7 @@ export default {
                 })
         },
         getPlayers() {
-            axios.get('http://yourufx.space/users/list')
+            axios.get('http://localhost:3000/users/list')
                 .then((response) => {
                     console.log(response.data)
                     this.players = response.data
@@ -79,38 +86,38 @@ export default {
         },
 
         countPlayersInTeam(name) {
-  let countPlayers = 0;
-  for (let i = 0; i < this.players.length; i++) {
-    const player = this.players[i];
-    console.log('Input Data', player.team, name)
-    if (player.team === name) {
-      countPlayers++;
-    }
-  }
-  console.log('Players in team:', countPlayers);
-  return countPlayers;
-},
+            let countPlayers = 0;
+            for (let i = 0; i < this.players.length; i++) {
+                const player = this.players[i];
+                console.log('Input Data', player.team, name)
+                if (player.team === name) {
+                    countPlayers++;
+                }
+            }
+            console.log('Players in team:', countPlayers);
+            return countPlayers;
+        },
 
-deleteTeam(team) {
-      const teamId = team._id;
+        deleteTeam(team) {
+            const teamId = team._id;
 
-      axios
-        .delete(`http://yourufx.space/api/teams/${teamId}`)
-        .then((response) => {
-          console.log(response);
-          this.getTeams()
-        //   this.teams = this.teams.filter((t) => t._id !== teamId);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+            axios
+                .delete(`http://localhost:3000/api/teams/${teamId}`)
+                .then((response) => {
+                    console.log(response);
+                    this.getTeams()
+                    //   this.teams = this.teams.filter((t) => t._id !== teamId);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
 
-    seeMember () {
-        const dataIdValue = event.target.dataset.id;
+        seeMember() {
+            const dataIdValue = event.target.dataset.id;
 
-        this.$router.push(`/team/${dataIdValue}/list`)
-    }
+            this.$router.push(`/team/${dataIdValue}/list`)
+        }
     },
 
     mounted() {
@@ -119,6 +126,4 @@ deleteTeam(team) {
     }
 }
 </script>
-<style scoped>
-@import url(../assets/styles/playersList.css);
-</style>
+<style scoped>@import url(../assets/styles/playersList.css);</style>

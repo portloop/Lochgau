@@ -161,5 +161,13 @@ export default {
     }
 
 
+
+@media screen and (max-width: 750px) {
+    .social-post-container {
+        justify-content: center;
+    }
+}
+
+
     
 </style>

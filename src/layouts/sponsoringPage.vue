@@ -14,7 +14,7 @@
                     Alwa - ein natürliches, frisches und reines Vergnügen. Ob erfrischendes Mineralwasser oder köstliches Getränk - alwa ist der perfekte Begleiter im Leben und bietet für jeden Geschmack und Anlass das passende Getränk. Als regionaler Mineralbrunnen verkörpert alwa ein echtes Stück Heimat und Originalität.
                 </div>
             </div>
-            <div class="sponsor-item">
+            <div class="sponsor-item top">
                
                 <div class="sponsor-text">
                     Artinger Stahlrohr GmbH & Co. KG - Ein großer Lagerplatz für Stahlrohre im Süden Deutschlands. Wir spezialisieren uns auf die Lieferung von nahtlosen Stahlrohren, Präzisionsstahlrohren für hydraulische und pneumatische Systeme. Unser Team garantiert qualitativ hochwertigen Service und pünktliche Auftragsabwicklung.
@@ -35,7 +35,7 @@ Es wartet schon auf Dich.
                 </div>
                
             </div>
-            <div class="sponsor-item">
+            <div class="sponsor-item top">
                
                 <div class="sponsor-text">
                     Konzelmann GmbH, shortly KKI -> Konzelmann Kunststoff Innovationen, headquartered in Löchgau between Stuttgart and Heilbronn in southwestern Germany, develops and produces high-quality plastic injection molding products.

@@ -8,7 +8,7 @@
                 <a @click="this.$router.push('/news')" class="header-menu_item">
                     Aktuelles
                 </a>
-                <a @click="this.$router.push('/verein')" class="header-menu_item">
+                <a @click="this.$router.push('/verein/unser-verein/vereinsfuehrung')" class="header-menu_item">
                     Verein
                 </a>
                 <a @click="this.$router.push('/herren')" class="header-menu_item">
@@ -68,6 +68,62 @@
 
             </div>
 
+            <div class="mobile-menu" @click="toggleMobile">
+                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11 16.745c0-.414.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75h-9.5c-.414 0-.75-.336-.75-.75zm-9-5c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm4-5c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75z" fill-rule="nonzero"/></svg>
+            </div>
+
+            <div class="mobile-popup" v-show="isMobile">
+                <div class="mobile-popup-container">
+                    <div class="close" @click="closeMobileMenu">
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToNews" class="header-menu_item">
+                            Aktuelles
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToVereinsfuehrung" class="header-menu_item">
+                            Verein
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToHerren" class="header-menu_item">
+                            Herren
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToFrauen" class="header-menu_item">
+                            Frauen
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToJunioren" class="header-menu_item">
+                            Junioren
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToSponsoring" class="header-menu_item">
+                            Sponsoring
+                            <!--  -->
+                        </a>
+                    </div>
+                    <div class="mobile-item">
+                        <a @click="goToSponsoring" class="header-menu_item">
+                            Search
+                            <!--  -->
+                        </a>
+                    </div>
+                    <div class="mobile-item" @click="openPopup" v-if="this.$store.state.isAuthenticated == false">
+                            <span>Login</span>
+                    </div>
+                    <div @click="logout" class="mobile-item" v-if="this.$store.state.isAuthenticated == true">
+                            <span>Logout</span>
+                    </div>
+                 
+                </div>
+            </div>
+
 
 
         </div>
@@ -77,6 +133,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 export default {
+    data () {
+        return {
+            isMobile: false
+        }
+    },
     props: {
         eventHandler: Function
     },
@@ -90,6 +151,49 @@ export default {
         logout() {
             Cookies.remove('token');
             window.location.href = '/'
+        },
+
+        toggleMobile () {
+            this.isMobile = true;
+        },
+
+        closeMobileMenu () {
+            this.isMobile = false;
+        },
+        goToNews () {
+            this.$router.push('/news')
+            this.isMobile = false;
+
+        },
+        goToVereinsfuehrung () {
+            this.$router.push('/verein/unser-verein/vereinsfuehrung')
+            this.isMobile = false;
+
+        },
+
+        goToHerren () {
+            this.$router.push('/herren')
+            this.isMobile = false;
+
+        },
+
+
+        goToFrauen () {
+            this.$router.push('/frauen')
+            this.isMobile = false;
+
+        },
+
+        goToJunioren () {
+            this.$router.push('/junioren')
+            this.isMobile = false;
+
+        },
+
+        goToSponsoring () {
+            this.$router.push('/sponsoring')
+            this.isMobile = false;
+
         }
     },
 
@@ -107,7 +211,7 @@ export default {
 .header {
     border-bottom: 1px solid #cccccc;
     font-family: 'dCondensed', sans-serif;
-    margin-bottom: 166px;
+    margin-bottom: 166px !important;
 
 }
 
@@ -204,5 +308,172 @@ export default {
 
 .header-menu a {
     cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+    width: 30px;
+    height: 30px;
+}
+
+.mobile-menu svg {
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20px;
+    color:#003333;
+    font-size: 24px;
+    background-color: #fff;
+    z-index: 199999;
+}
+
+.mobile-popup-container {
+    width: 100%;
+    padding-top: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 5;
+    width: 30px;
+    height: 30px;
+}
+
+
+
+
+.mobile-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 51, 51, 0.4);
+    width: 100%
+}
+
+@media screen and (max-width: 1470px) {
+    .header-botside_container {
+        right: 20px;
+    }
+}
+
+
+@media screen and (max-width: 1125px) {
+    .header-menu {
+        justify-content: flex-end;
+    }
+
+    .header-menu a  {
+        margin: 0 30px;
+    }
+}
+
+@media screen and (max-width: 1125px) {
+    .header-menu a  {
+        margin: 0 20px;
+    }
+
+   
+
+   
+
+    
+} 
+
+
+@media screen and (max-width: 900px) {
+    .header{
+        margin-bottom: 80px !important;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .logo{
+        height: 100px;
+        top: calc(50% - -17px);
+    }
+
+    .logo::before {
+        top: 50px;
+       
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .header-menu a {
+        margin: 0 15px;
+        font-size: 20px;
+    }
+
+    .header-botside_container {
+        font-size: 14px;
+    }
+
+    .header-container {
+        padding-top: 30px;
+    }
+
+    .logo {
+        height: 100px;
+        top: calc(50% - 11px);
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .header-menu {
+        display: none;
+    }
+
+    .header-botside_container {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .logo {
+        position: relative;
+        height: 100%;
+        display: flex;
+        width: 100px;
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px;
+        border: 0;
+    }
+
+    .header {
+        border: 0;
+        padding-top: 15px;
+    }
+
+}
+
+@media screen and (max-width: 505px) {
+    .logo {
+        position: relative;
+        height: 80px;
+        display: flex;
+        width: 80px;
+    }
+
+    .header {
+        margin-bottom: 50px;
+    }
 }
 </style>

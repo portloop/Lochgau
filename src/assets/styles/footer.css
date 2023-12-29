@@ -118,3 +118,43 @@
     margin: 0 45px;
     margin-bottom: 60px;
 }
+
+
+@media screen and (max-width: 1510px) {
+    .arrow-left, .arrow-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 915px) {
+    .links a {
+        margin: 0 15px 15px 15px;
+    }
+
+    .footer-links {
+        font-size: 20px;
+    }
+
+    .footer {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .footer-slider {
+        padding-bottom: 40px;
+    }
+
+    .license {
+        font-size: 15px;
+    }
+
+    .footer-links {
+        max-width: unset;
+        width: unset;
+    }
+
+    .links {
+        flex-direction: column;
+
+    }
+}
