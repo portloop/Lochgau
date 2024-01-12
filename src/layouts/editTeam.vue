@@ -47,7 +47,7 @@ export default {
         getTeam () {
             const teamId = this.$route.params.id
 
-            axios.post(`http://localhost:3000/api/teams/getTeamById`, { id: teamId })
+            axios.post(`http://194.15.113.90/api/teams/getTeamById`, { id: teamId })
             .then((response) => {
                 this.teamId = response.data.team._id;
                 this.teamName = response.data.team.name
@@ -59,7 +59,7 @@ export default {
         sendData () {
             const teamId = this.$route.params.id
 
-            axios.put(`http://localhost:3000/api/teams/${teamId}`, {
+            axios.put(`http://194.15.113.90/api/teams/${teamId}`, {
                 name: this.teamName
             })
             .then((response) => {

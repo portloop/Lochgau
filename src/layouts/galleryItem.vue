@@ -55,7 +55,7 @@ export default {
       const itemId = this.$route.params.id;
       console.log(itemId);
 
-      axios.get(`http://localhost:3000/gallery/${itemId}`)
+      axios.get(`http://194.15.113.90/gallery/${itemId}`)
         .then(response => {
           console.log(response.data.images); // Убедитесь, что вам выводится массив изображений
           this.dataGallery = response.data

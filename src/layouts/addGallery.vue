@@ -156,7 +156,7 @@ export default defineComponent({
                     const form = new FormData();
                     form.append('file', file);
 
-                    return axios.post('http://localhost:3000/api/media/upload', form, {
+                    return axios.post('http://194.15.113.90/api/media/upload', form, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -180,7 +180,7 @@ export default defineComponent({
 
             const folder = 'media';
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -214,7 +214,7 @@ export default defineComponent({
 
             if (allowedVideoExtensions.includes(fileExtension)) {
                 // Если расширение файла соответствует видео, загружаем его в массив videos
-                axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+                axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -229,7 +229,7 @@ export default defineComponent({
                 });
             } else {
                 // Если это не видео, загружаем файл в массив images
-                axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+                axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -253,7 +253,7 @@ export default defineComponent({
 
             const folder = 'news'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -269,7 +269,7 @@ export default defineComponent({
 
 
         sendContent() {
-            axios.post('http://localhost:3000/gallery/', {
+            axios.post('http://194.15.113.90/gallery/', {
                 title: this.title,
                 team: this.team,
                 previewImg: this.previewImg,

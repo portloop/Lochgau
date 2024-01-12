@@ -40,7 +40,7 @@ export default {
     methods: {
         // async fetchPlayers() {
         //     try {
-        //         const response = await axios.get('http://localhost:3000/users/list');
+        //         const response = await axios.get('http://194.15.113.90/users/list');
         //         this.players = Object.freeze(response.data);
         //         console.log(this.players)
         //     } catch (error) {
@@ -50,7 +50,7 @@ export default {
 
         async fetchPlayers() {
     try {
-        const response = await axios.get('http://localhost:3000/users/list');
+        const response = await axios.get('http://194.15.113.90/users/list');
         const allPlayers = Object.freeze(response.data);
 
         // Фильтруем только тренеров
@@ -100,7 +100,7 @@ export default {
         deletePlayer(event) {
             const dataIdValue = event.target.dataset.id;
 
-            axios.delete(`http://localhost:3000/users/list/${dataIdValue}`)
+            axios.delete(`http://194.15.113.90/users/list/${dataIdValue}`)
                 .then((response) => {
                     console.log('Article successfully deleted');
                     this.fetchPlayers(); // Запускаем метод для получения обновленного списка
@@ -112,7 +112,7 @@ export default {
         },
 
         generateLink () {
-            axios.get('http://localhost:3000/generate-link')
+            axios.get('http://194.15.113.90/generate-link')
             .then((response) => {
                 this.registrationLink = response.data.link
                 console.log(response.data.link)
