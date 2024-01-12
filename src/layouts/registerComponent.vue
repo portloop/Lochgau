@@ -247,7 +247,7 @@ export default {
     created() {
         const key = this.$route.params.key;
 
-        axios.get(`http://194.15.113.90/check-key/${key}`)
+        axios.get(`http://localhost:3000/check-key/${key}`)
             .then((response) => {
                 console.log(response.data.isValid)
                 this.isValidKey = response.data.isValid
@@ -270,7 +270,7 @@ export default {
     methods: {
         async getTeams() {
   try {
-    const response = await axios.get('http://194.15.113.90/api/teams');
+    const response = await axios.get('http://localhost:3000/api/teams');
     this.teamList = response.data.teams;
     console.log('Team List:', this.teamList); // Додайте цей рядок
   } catch (error) {
@@ -285,7 +285,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -329,7 +329,7 @@ export default {
             };
 
             // Отправляем POST-запрос
-            axios.post('http://194.15.113.90/auth/register', userData)
+            axios.post('http://localhost:3000/auth/register', userData)
                 .then(response => {
                     // Обрабатываем успешный ответ
                     console.log(response.data);

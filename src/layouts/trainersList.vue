@@ -5,7 +5,7 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
-                Spielerliste:
+                Trainers:
                 <button type="button" @click="generateLink"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Einen Link erstellen
@@ -73,15 +73,58 @@ export default {
     },
 
     methods: {
+        // async fetchPlayers() {
+        //     try {
+        //         const response = await axios.get('http://localhost:3000/users/list');
+        //         this.players = Object.freeze(response.data);
+        //         console.log(this.players)
+        //     } catch (error) {
+        //         console.error('Error fetching players:', error);
+        //     }
+        // },
+
         async fetchPlayers() {
-            try {
-                const response = await axios.get('http://localhost:3000/users/list');
-                this.players = Object.freeze(response.data);
-                console.log(this.players)
-            } catch (error) {
-                console.error('Error fetching players:', error);
-            }
-        },
+    try {
+        const response = await axios.get('http://localhost:3000/users/list');
+        const allPlayers = Object.freeze(response.data);
+
+        // Фильтруем только тренеров
+        const trainers = allPlayers.filter(player => player.role === "trainer");
+
+        // Преобразуем формат даты
+        const playersFormatted = trainers.map(player => {
+            return {
+                _id: player._id,
+                username: player.username,
+                firstName: player.firstName,
+                lastName: player.lastName,
+                dateOfBirth: new Date(player.dateOfBirth).toLocaleDateString('en-GB'), // Форматируем дату
+                password: player.password,
+                role: player.role,
+                __v: player.__v,
+                team: player.team,
+                parentPhone: player.parentPhone,
+                passport: player.passport,
+                phone: player.phone,
+                photo: player.photo,
+                position: player.position,
+                street: player.street,
+                zip: player.zip,
+                parent: player.parent,
+                city: player.city,
+                nationality: player.nationality,
+                height: player.height,
+                weight: player.weight
+            };
+        });
+
+        this.players = Object.freeze(playersFormatted);
+        console.log(this.players);
+    } catch (error) {
+        console.error('Error fetching trainers:', error);
+    }
+},
+
 
         viewPlayer(player) {
             console.log(player.id);

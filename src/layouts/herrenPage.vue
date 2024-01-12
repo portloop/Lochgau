@@ -55,7 +55,7 @@ export default {
 
     methods: {
         getPlayers() {
-            axios.get('http://194.15.113.90/users/list')
+            axios.get('http://localhost:3000/users/list')
                 .then((response) => {
                     console.log(response);
                     this.players = response.data.filter(player => player.team == 'Herren');

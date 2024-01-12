@@ -12,6 +12,7 @@ import playersList from './layouts/playersList.vue'
 import addGallery from './layouts/addGallery.vue'
 import editGalleryItem from './layouts/editGalleryItem.vue'
 import usersList from './layouts/usersList.vue'
+import trainersList from './layouts/trainersList.vue'
 import registerComponent from './layouts/registerComponent.vue'
 import editUser from './layouts/editUser.vue'
 import editTeam from './layouts/editTeam.vue'
@@ -22,7 +23,9 @@ import teamList from './layouts/teamList.vue'
 import herrenPage from './layouts/herrenPage.vue'
 import frauenPage from './layouts/frauenPage.vue'
 import juniorenPage from './layouts/juniorenPage.vue'
+import documentsLayout from './layouts/documentsLayout.vue'
 import newsPage from './layouts/newsPage.vue'
+import dashboardNews from './layouts/dashboardNews.vue'
 import galleryItem from './layouts/galleryItem.vue'
 import sponsoringPage from './layouts/sponsoringPage.vue'
 import analyticsPage from './layouts/analyticsPage.vue'
@@ -46,6 +49,7 @@ import neubauKunstrasenLayout from './layouts/verein/vereinsgelaende/neubauKunst
 import mitgliedschaftLayout from './layouts/verein/vereinsgelaende/mitgliedschaftLayout.vue'
 import ehrenamtLayout from './layouts/verein/vereinsgelaende/ehrenamtLayout.vue'
 import foerdervereinLayout from './layouts/verein/vereinsgelaende/foerdervereinLayout.vue'
+
 
 
 // Interaktiv
@@ -76,8 +80,10 @@ const router = createRouter({
     { path: '/gallery', component: galleryPage, meta: { requiresAuth: true} },
     { path: '/gallery/edit/:id', component: editGalleryItem, meta: { requiresAuth: true} },
     { path: '/dashboard/players', component: playersList, meta: { requiresAuth: true, role: !'User' }  },
+    { path: '/dashboard/documents', component: documentsLayout, meta: { requiresAuth: true, role: !'User' }  },
     { path: '/dashboard/gallery/add', component: addGallery, meta: { requiresAuth: true, role: !'User' }  },
     { path: '/users/list', component: usersList, meta: { requiresAuth: true, role: 'admin' }  },
+    { path: '/trainers/list', component: trainersList, meta: { requiresAuth: true, role: 'admin' }  },
     { path: '/user/register/:key?', component: registerComponent },
     { path: '/user/edit/:id', component: editUser, meta: { requiresAuth: true, role: !'User' }  },
     { path: '/editTeam/:id', component: editTeam, meta: { requiresAuth: true, role: !'User' }  },
@@ -92,6 +98,7 @@ const router = createRouter({
     { path: '/news', component: newsPage },
     { path: '/gallery/:id', component: galleryItem },
     { path: '/sponsoring', component: sponsoringPage },
+    { path: '/dashboard/news', component: dashboardNews, meta: { requiresAuth: true, role: !'User'} },
 
 
     // Verein Routers

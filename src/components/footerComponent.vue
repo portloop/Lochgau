@@ -96,7 +96,7 @@
                     <a href="">Sponsoring</a>
                 </div>
                 <div class="license">
-                    © Copyright FV Löchgau e.V. website of RB Leipzig
+                    © Copyright FV Löchgau e.V.
                 </div>
             </div>
            

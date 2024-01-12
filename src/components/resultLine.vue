@@ -243,7 +243,7 @@ export default {
         },
         async fetchData() {
             try {
-                const response = await axios.get('http://194.15.113.90/data');
+                const response = await axios.get('http://localhost:3000/data');
                 this.eventData = Object.freeze(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -299,7 +299,7 @@ export default {
 }
 
 .result-line__team {
-    max-width: 100px;
+    max-width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -405,7 +405,7 @@ export default {
 }
 
 .near-event-time {
-    font-size: 16px;
+    font-size: 13px;
     font-family: 'metropolis', sans-serif;
     color: #003333;
     margin-bottom: 40px;
@@ -416,7 +416,6 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
-    white-space: nowrap;
 }
 
 .near-event-info__container .result-line__team_logo {
@@ -447,7 +446,7 @@ export default {
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    padding: 0 40px 20px 40px;
+    padding: 0 20px 20px 20px;
 }
 
 .near-event .result-line__team_name {
