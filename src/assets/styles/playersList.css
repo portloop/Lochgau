@@ -69,3 +69,14 @@
 .main-info .player-item {
 width: unset;
 }
+
+.team-photo-preview{
+    width: 240px;
+    height: 200px;
+}
+
+.team-photo-preview img {
+    width: 100%;
+    height: 100%;
+}
+

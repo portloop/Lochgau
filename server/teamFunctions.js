@@ -17,7 +17,7 @@ router.get('/teams', async (req, res) => {
 
 // Ендпоінт для створення нової команди
 router.post('/teams', async (req, res) => {
-  const { name } = req.body;
+  const { name, type, teamPhoto } = req.body;
 
   try {
     // Перевірка, чи команда з такою назвою вже існує
@@ -26,7 +26,7 @@ router.post('/teams', async (req, res) => {
       return res.status(400).json({ error: 'Team with this name already exists' });
     }
 
-    const newTeam = new Team({ name });
+    const newTeam = new Team({ name, type, teamPhoto });
     const savedTeam = await newTeam.save();
 
     res.json({ team: savedTeam });
@@ -56,10 +56,10 @@ router.delete('/teams/:id', async (req, res) => {
 // Ендпоінт для редагування команди за ідентифікатором
 router.put('/teams/:id', async (req, res) => {
   const { id } = req.params;
-  const { name } = req.body;
+  const { name, type, teamPhoto } = req.body;
 
   try {
-    const updatedTeam = await Team.findByIdAndUpdate(id, { name }, { new: true });
+    const updatedTeam = await Team.findByIdAndUpdate(id, { name, type, teamPhoto }, { new: true });
     if (!updatedTeam) {
       return res.status(404).json({ error: 'Team not found' });
     }
@@ -88,5 +88,17 @@ router.post('/teams/getTeamById', async (req, res) => {
   }
 });
 
+
+router.post('/teamsByGender', async (req, res) => {
+  const { gender } = req.body;
+
+  try {
+    const teams = await Team.find({ gender });
+    res.json({ teams });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 export default router;

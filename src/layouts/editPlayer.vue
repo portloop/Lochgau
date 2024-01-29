@@ -143,7 +143,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -173,7 +173,7 @@ export default {
         getPlayerData() {
             const playerId = this.$route.params.id;
 
-            axios.get(`http://194.15.113.90/players/${playerId}`)
+            axios.get(`http://localhost:3000/players/${playerId}`)
                 .then((response) => {
                     console.log(response.data);
                     this.name = response.data.name
@@ -202,7 +202,7 @@ export default {
                 nationality: this.nationality
             };
 
-            axios.put(`http://194.15.113.90/players/${playerId}`, updatedData)
+            axios.put(`http://localhost:3000/players/${playerId}`, updatedData)
                 .then(response => {
                     console.log('Player data updated:', response.data);
                     this.successPush = true;
@@ -220,7 +220,7 @@ export default {
         deletePlayerById() {
             const playerId = this.$route.params.id;
 
-            axios.delete(`http://194.15.113.90/players/${playerId}`)
+            axios.delete(`http://localhost:3000/players/${playerId}`)
                 .then((response) => {
                     // Обработка успешного удаления
                     console.log(response.data);

@@ -109,6 +109,8 @@
 
 
     </div>
+    <cropImgComponent v-if="showCropImg" :path="tempImgPath"  @cropped-image-uploaded="handleCroppedImageUploaded" />
+
 </template>
   
 <script>
@@ -119,6 +121,7 @@ import axios from "axios";
 import dashboardHeader from '../components/dashboardHeader.vue'
 import sideBar from "./sidebar.vue";
 import MarkdownIt from 'markdown-it';
+import cropImgComponent from "../components/cropImgComponent.vue";
 
 
 export default defineComponent({
@@ -127,6 +130,7 @@ export default defineComponent({
         MdEditor,
         dashboardHeader,
         sideBar,
+        cropImgComponent
 
     },
     data() {
@@ -137,7 +141,9 @@ export default defineComponent({
             images: [],
             videos: [],
             description: '',
-            successPush: false
+            successPush: false,
+            showCropImg: false,
+            tempImgPath: '',
 
         };
     },
@@ -156,7 +162,7 @@ export default defineComponent({
                     const form = new FormData();
                     form.append('file', file);
 
-                    return axios.post('http://194.15.113.90/api/media/upload', form, {
+                    return axios.post('http://localhost:3000/api/media/upload', form, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -180,7 +186,7 @@ export default defineComponent({
 
             const folder = 'media';
 
-            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -196,10 +202,14 @@ export default defineComponent({
             });
         },
 
+        handleCroppedImageUploaded(savedCroppedImagePath) {
+            this.images.push(savedCroppedImagePath)
+      this.showCropImg = false;
+    },
+
 
 
         uploadMedia(event) {
-            console.log('Media is called');
             const file = event.target.files[0];
             const formData = new FormData();
             formData.append('file', file);
@@ -214,31 +224,29 @@ export default defineComponent({
 
             if (allowedVideoExtensions.includes(fileExtension)) {
                 // Если расширение файла соответствует видео, загружаем его в массив videos
-                axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+                axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then(response => {
-                    console.log('Video uploaded:', response.data.filePath);
                     const videoUrl = response.data.filePath;
                     this.videos.push(videoUrl);
 
-                    console.log(this.videos);
                 }).catch(error => {
                     console.error('Error uploading video:', error);
                 });
             } else {
                 // Если это не видео, загружаем файл в массив images
-                axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+                axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then(response => {
-                    console.log('Image uploaded:', response.data.filePath);
                     const imageUrl = response.data.filePath;
-                    this.images.push(imageUrl);
+                    this.tempImgPath = imageUrl
+                    // this.images.push(imageUrl);
+                    this.showCropImg = true;
 
-                    console.log(this.images);
                 }).catch(error => {
                     console.error('Error uploading image:', error);
                 });
@@ -251,17 +259,14 @@ export default defineComponent({
             const formData = new FormData();
             formData.append('file', file);
 
-            const folder = 'news'; // Замените на нужную папку (players, gallery, news)
+            const folder = 'news'; 
 
-            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(response => {
-                console.log('File uploaded:', response.data.filePath);
                 this.previewImg = response.data.filePath
-                console.log(this.playerImg)
-                // Далее можно сохранить путь к файлу в переменной состояния или использовать по своему усмотрению
             }).catch(error => {
                 console.error('Error uploading file:', error);
             });
@@ -269,7 +274,7 @@ export default defineComponent({
 
 
         sendContent() {
-            axios.post('http://194.15.113.90/gallery/', {
+            axios.post('http://localhost:3000/gallery/', {
                 title: this.title,
                 team: this.team,
                 previewImg: this.previewImg,

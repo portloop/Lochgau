@@ -22,6 +22,7 @@ import fileUploadRouter from './fileUpload.js';
 import newsRoutes from './newsFunctions.js';
 import InviteKey from './models/InviteKey.js';
 import teamRoutes from './teamFunctions.js';
+import instagramRoutes from './instagramRoutes.js'
 import history from 'connect-history-api-fallback';
 
 
@@ -36,7 +37,8 @@ import {
 import { generateLink } from './controllers/InviteController.js';
 
 
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 
@@ -142,12 +144,14 @@ app.get('/players', async (req, res) => {
 
 app.get('/users/list', async (req, res) => {
   try {
-    const allUsers = await User.find();
+    const allUsers = await User.find().select('-password');
     res.json(allUsers);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
+
 app.get('/users/list/:id', async (req, res) => {
   try {
     const userId = req.params.id; // Отримуємо ID з URL
@@ -424,6 +428,10 @@ app.get('/check-key/:key', async (req, res) => {
 app.use('/api', newsRoutes);
 
 
+// Instagram Routes
+app.use('/api', instagramRoutes);
+
+
 // Gallery Functions
 
 app.get('/gallery', getAllGalleryItems);
@@ -436,6 +444,8 @@ app.delete('/gallery/:id', deleteGalleryItem);
 
 
 
+
+
 const distPath = path.join(__dirname, '../dist');
 app.use(express.static(distPath));
 const photoPath = path.join(__dirname, '../uploads/players/');
@@ -443,6 +453,8 @@ app.use(express.static(photoPath));
 const previewPath = path.join(__dirname, '../uploads/videos/');
 app.use(express.static(previewPath));
 
+const newsPath = path.join(__dirname, '../uploads/news');
+app.use('/uploads/news', express.static(newsPath, { dotfiles: 'allow' }));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 

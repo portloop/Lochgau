@@ -6,6 +6,14 @@ const teamSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  teamPhoto: {
+    type: String,
+    required: false,
+  }
 });
 
 const Team = mongoose.model('Team', teamSchema);

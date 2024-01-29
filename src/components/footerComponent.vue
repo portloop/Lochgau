@@ -14,26 +14,27 @@
                     </div>
                 </swiper-slide>
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
                         <img src="../assets/img/sponsorship/logo2.png" alt="">
                     </div>
                     
                 </swiper-slide>
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
+                        <img class="drop-shadow-logo" src="../assets/img/sponsorship/ergo_logo.svg" alt="">
+                    </div>
+                   
+                </swiper-slide>
+                <swiper-slide class="result-line__item">
+                    <div class="image-container bigger">
                         <img class="drop-shadow-logo" src="../assets/img/sponsorship/logo3.png" alt="">
                     </div>
                    
                 </swiper-slide>
+              
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
                         <img src="../assets/img/sponsorship/logo4.png" alt="">
-                    </div>
-                   
-                </swiper-slide>
-                <swiper-slide class="result-line__item">
-                    <div class="image-container">
-                        <img src="../assets/img/sponsorship/logo5.png" alt="">
                     </div>
                    
                 </swiper-slide>
@@ -43,30 +44,31 @@
                     </div>
                 </swiper-slide>
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
                         <img src="../assets/img/sponsorship/logo2.png" alt="">
                     </div>
                     
                 </swiper-slide>
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
+                        <img class="drop-shadow-logo" src="../assets/img/sponsorship/ergo_logo.svg" alt="">
+                    </div>
+                   
+                </swiper-slide>
+                <swiper-slide class="result-line__item">
+                    <div class="image-container bigger">
                         <img class="drop-shadow-logo" src="../assets/img/sponsorship/logo3.png" alt="">
                     </div>
                    
                 </swiper-slide>
+              
                 <swiper-slide class="result-line__item">
-                    <div class="image-container">
+                    <div class="image-container bigger">
                         <img src="../assets/img/sponsorship/logo4.png" alt="">
                     </div>
                    
                 </swiper-slide>
-                <swiper-slide class="result-line__item">
-                    <div class="image-container">
-                        <img src="../assets/img/sponsorship/logo5.png" alt="">
-                    </div>
-                   
-                </swiper-slide>
-               
+              
                
             </swiper>
             <div class="arrow-right" @click="swiper.slideNext()">

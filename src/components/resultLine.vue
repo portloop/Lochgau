@@ -1,128 +1,75 @@
 <template>
     <div class="result-main-container">
-
-        <div class="near-event" v-if="nextMatch">
-
-            <div class="near-event-timer">
-                {{ formatTime(days) }}D:{{ formatTime(hours) }}H:{{ formatTime(minutes) }}M
-            </div>
-            <div class="near-event-info__container">
-                <div class="near-event-tournament">
-                    {{ nextMatch.tournament || '...' }}
-                </div>
-                <div class="near-event-time">
-                    {{ nextMatch.time || '...' }}
-                </div>
-                <div class="result-line__teams_container" v-if="nextMatch.teams && nextMatch.teams[0]">
-                    <div class="team-item">
-                        <div class="result-line__team">
-                            <div class="result-line__team_logo">
-                                <img :src="nextMatch.teams[0].logo" alt="" v-if="nextMatch.teams[0].logo">
-                            </div>
-                            <div class="result-line__team_name">
-                                {{ nextMatch.teams[0].club || '...' }}
-                            </div>
+        <swiper :centeredSlides="true" :watchSlidesProgress="true" :slidesPerView="5" class="mySwiper" :initialSlide="3"
+            :navigation="{
+                prevEl: prev,
+                nextEl: next,
+            }" :loop="true" :modules="modules" :pagination="{ clickable: true }" :options="swiperOptions" ref="mySwiper"
+            :breakpoints="{
+                '375': {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                  },
+                '640': {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                '768': {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+                '1624': {
+                  slidesPerView: 5,
+                  spaceBetween: 50,
+                },
+              }"
+            >
+            <swiper-slide v-for="(item, index) in eventData" :key="index" :data-index="index" @click="getIndex(index)">
+                <div class="custom-slide">
+                    <div class="event-tournament">
+                        {{ item.tournament }}
+                    </div>
+                    <div class="event-date">
+                        {{ item.time }}
+                    </div>
+                    <div class="teams-info">
+                        <div class="vs-text">
+                            VS
                         </div>
-                        <div class="result-line__vs">VS</div>
-                        <div class="result-line__team">
-                            <div class="result-line__team_logo">
-                                <img :src="nextMatch.teams[1].logo" alt="" v-if="nextMatch.teams[1].logo">
+                        <div class="team-slot" v-for="team in item.teams">
+                            <div class="team-logo">
+                                <img :src="team.logo" alt="">
                             </div>
-                            <div class="result-line__team_name">
-                                {{ nextMatch.teams[1].club || '...' }}
+                            <div class="team-name">
+                                {{ team.club }}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-        <div class="result-line">
-            <div class="result-line__container">
-
-                <swiper class="resultSlider" :slides-per-view="5" @swiper="onSwiper" @slideChange="onSlideChange"
-                    :pagination="{ clickable: true }">
-                    <div class="swiper-pagination"></div>
-                    <swiper-slide v-for="(event, index) in eventData" :key="index" class="result-line__item"
-                        :class="{ 'active-slide': index * 3 === activeSlide * 3 }">
-                        <div class="result-line__tournament">
-                            <div class="result-line__tournament_data">
-                                <div class="result-line__name">{{ event.tournament }}</div>
-                                <div class="result-line__date">{{ event.time }}</div>
-                            </div>
-                            <div class="result-line__teams_container">
-                                <div class="result-line__team">
-                                    <div class="result-line__team_logo">
-                                        <img :src="event.teams[0].logo" alt="">
-                                    </div>
-                                </div>
-                                <div class="result-line__vs">VS</div>
-                                <div class="result-line__team">
-                                    <div class="result-line__team_logo">
-                                        <img :src="event.teams[1].logo" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide v-for="(event, index) in eventData" :key="index" class="result-line__item"
-                        :class="{ 'active-slide': index * 3 === activeSlide * 3 }">
-                        <div class="result-line__tournament">
-                            <div class="result-line__tournament_data">
-                                <div class="result-line__name">{{ event.tournament }}</div>
-                                <div class="result-line__date">{{ event.time }}</div>
-                            </div>
-                            <div class="result-line__teams_container">
-                                <div class="result-line__team">
-                                    <div class="result-line__team_logo">
-                                        <img :src="event.teams[0].logo" alt="">
-                                    </div>
-                                </div>
-                                <div class="result-line__vs">VS</div>
-                                <div class="result-line__team">
-                                    <div class="result-line__team_logo">
-                                        <img :src="event.teams[1].logo" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                </swiper>
-                <div class="arrow-right" @click="swiper.slideNext()">
-                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z"
-                            fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="arrow-left" @click="swiper.slidePrev()">
-                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z"
-                            fill-rule="nonzero" />
-                    </svg>
-                </div>
-            </div>
-        </div>
+            </swiper-slide>
+            <div ref="prev" class="swiper-button-prev"></div>
+            <div ref="next" class="swiper-button-next"></div>
+        </swiper>
     </div>
 </template>
   
 <script>
 import axios from 'axios';
-import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination } from 'swiper/modules';
 import moment from 'moment';
 import getData from '../../server/getData.js'
 
 
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import { ref } from 'vue';
 
 export default {
     components: {
@@ -130,22 +77,21 @@ export default {
         SwiperSlide,
 
     },
+
+
     setup() {
-        const onSwiper = (swiper) => {
-            console.log(swiper);
-        };
-        const onSlideChange = () => {
-            console.log('slide change');
-        };
+        const prev = ref(null);
+        const next = ref(null);
         return {
-            onSwiper,
-            onSlideChange,
+            modules: [Navigation],
+            prev,
+            next,
         };
     },
     data() {
         return {
             eventData: [],
-            activeSlide: 0,
+            // activeSlide: 2,
             swiper: null,
             durationInMinutes: 0,
             interval: null,
@@ -154,7 +100,20 @@ export default {
             formattedTime: '',
             nextEventIndex: 0,
             nextMatch: {},
-            hours: ''
+            hours: '',
+            activeSlides: '',
+            swiperOptions: {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                    clickable: true
+                },
+                on: {
+                    slideChange: this.onSlideChange,
+                },
+            },
+
+
         };
     },
 
@@ -230,20 +189,18 @@ export default {
 
 
 
-
-
-
-        onSlideChange() {
-            if (this.swiper) {
-                this.activeSlide = this.swiper.activeIndex;
-            }
-        },
+        //     slideNext() {
+        //   this.$refs.mySwiper.swiper.slideNext();
+        // },
+        // slidePrev() {
+        //   this.$refs.mySwiper.swiper.slidePrev();
+        // },
         onSwiper(swiper) {
             this.swiper = swiper;
         },
         async fetchData() {
             try {
-                const response = await axios.get('http://194.15.113.90/data');
+                const response = await axios.get('http://localhost:3000/data');
                 this.eventData = Object.freeze(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -251,10 +208,43 @@ export default {
 
             this.getNearMatch()
         },
+
+        onSlideChange() {
+
+            const swiperInstance = this.$refs.mySwiper.swiper;
+
+            // Если swiperInstance существует и realIndex доступен, устанавливаем класс 'active'
+            if (swiperInstance && swiperInstance.realIndex !== undefined) {
+                this.activeSlide = swiperInstance.realIndex;
+            }
+
+            console.log(this.activeSlides)
+
+        },
+
+        getCurrentIndex (index) {
+            console.log(index)
+        },
+
+
+        getIndex(index) {
+    console.log(index, this.activeSlides);
+  },
     },
+
     mounted() {
         this.fetchData();
+        this.onSlideChange(); // Вызываем метод для установки класса при загрузке страницы
 
+
+    },
+
+    watch: {
+        activeSlide(newIndex) {
+            const swiperInstance = this.$refs.mySwiper.swiper;
+            swiperInstance.slideTo(newIndex); // Перемещаем слайдер при изменении активного слайда
+            this.activeSlides = newIndex
+        },
     },
 };
 </script>
@@ -275,235 +265,145 @@ export default {
 }
 
 
-
-.result-line__tournament_data {
+.swiper-slide {
+    justify-content: center;
     display: flex;
     align-items: center;
+}
+
+.swiper {
+    padding: 80px 0;
+    background: rgba(235, 234, 234, .6);
+}
+
+.result-main-container{
+    overflow-x: hidden ;
+}
+
+
+
+.custom-slide {
+    display: flex;
     flex-direction: column;
-    font-family: 'metropolis', sans-serif;
-    color: #003333;
-    margin-bottom: 45px;
+    align-items: center;
+    font-family: 'metropolis' ,sans-serif;
+    color: #033;
+    width: 100%;
+    padding: 0 25px;
+    height: 150px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
 }
 
-.result-line__date {
-    font-family: 'dCondensed', sans-serif;
-    font-size: 14px;
-    margin-top: 10px;
+.event-tournament {
+    margin-bottom: 7px;
+    text-align: center;
 }
 
-.result-line__teams_container {
+.event-date {
+    margin-bottom: 40px;
+    font-size: 13px;
+}
+
+.teams-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     width: 100%;
 }
 
-.result-line__team {
-    max-width: 200px;
+.team-slot {
+    width: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-
-.result-line__item img {
-    mix-blend-mode: color;
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: multiply;
-
+.team-slot .team-logo {
+    margin-bottom: 8%;
 }
 
-.result-line__item .result-line__team_logo {
-    width: 50px;
-    height: 50px;
-    aspect-ratio: 3/2;
-
-}
-
-.arrow-left {
-    left: 0;
-}
-
-.arrow-right {
-    right: 0;
-}
-
-.arrow-right,
-.arrow-left {
+.vs-text {
     position: absolute;
-    width: 55px;
-    height: 60px;
-    top: calc(50% - 30px);
-    z-index: 999 !important;
-    opacity: 0.7;
-    transition: 0.2s;
+    top: 24px;
+    left: calc(50% - 17px);
+
+        font-family: 'goboldI', sans-serif;
+        font-size: 30px;
+        color: #c03;
 }
 
-.arrow-right:hover,
-.arrow-left:hover {
-    cursor: pointer;
-    opacity: 1;
+.team-name {
+    font-size: 14px;
 }
 
-.main-news-container {
-    position: relative;
-    z-index: 1;
+.swiper-button-prev, .swiper-button-next {
+    color: #212529
 }
 
-.result-main-container {
-    position: relative;
+.swiper{
+    height: 310px;
+    overflow: visible;
 }
 
-.near-event {
+.swiper-slide-active {
+    background-color: #fff;
+    height: 300px;
+    padding: 40px 0;
+    margin-top: -90px;
     background: #fff;
-    position: absolute;
-    z-index: 2;
-    top: -30px;
     width: 440px;
     height: 320px;
-    left: calc(50% - 220px);
     border-radius: 16px;
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    -webkit-box-shadow: 0px 5px 10px -7px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 5px 10px -7px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 5px 10px -7px rgba(0, 0, 0, 0.75);
+    position: relative;
+    box-shadow: 0 5px 10px -7px #000000bf;
 }
 
-.near-event-timer {
-    border-radius: 16px 16px 0 0;
-    font-size: 18px;
-
-}
-
-.near-event-info__container {
-    padding: 0 40px 40px 40px;
+.swiper-slide-active::before {
+    position: absolute;
+    content: "123123";
+    top: 0;
+    left: 0;
+    width: 100%;
 
 
-}
-
-.near-event-timer {
     background: #cc0033;
     color: #fff;
     font-family: 'goboldI';
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
     padding: 5px 0;
-}
-
-.near-event-tournament {
-    font-family: 'metropolis', sans-serif;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.near-event-time {
-    font-size: 13px;
-    font-family: 'metropolis', sans-serif;
-    color: #003333;
-    margin-bottom: 40px;
+    height: fit-content;
+    border-radius: 16px 16px 0 0;
 }
 
 
-.result-line__team {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.near-event-info__container .result-line__team_logo {
-    width: 60px;
-    height: 60px;
-}
-
-.near-event-info__container .result-line__team_logo img {
-    width: 100%;
-    height: 100%;
-}
-
-.near-event-info__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #003333;
-    width: 100%;
-    padding: 40px 0;
-}
-
-.near-event-tournament {
-    margin-bottom: 7px;
-}
-
-.near-event .team-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    padding: 0 20px 20px 20px;
-}
-
-.near-event .result-line__team_name {
-    font-size: 16px;
-    color: #003333;
-    font-family: 'metropolis', sans-serif;
-    margin-top: 15px;
-}
-
-
-.result-line__item {
-    display: flex;
-    flex-direction: column;
-    padding: 0 40px;
-    justify-content: center;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-    margin-right: 0 !important;
-    width: 425px !important;
-}
-
-
-
-@media screen and (max-width:635px) {
-    .near-event-info__container {
-        padding: 10px 0 ;
-    }    
-
-    .near-event {
-        height: 260px;
-        top: -2px;
-        width: 350px;
-        left: calc(50% - 175px);
+@media screen and (max-width: 600px) {
+    .result-main-container{
+        padding: 20px;
     }
 
-    .result-line__vs {
-        font-size: 26px;
+
+
+    .swiper-button-prev{
+        left: -20px;
+    }
+    .swiper-button-next{
+        right: -20px;
     }
 
-    .near-event-timer {
-        font-size: 16px;
-    }
 
-    .near-event-tournament, .near-event-time, .near-event .result-line__team_name {
-        font-size: 14px;
+    .custom-slide {
+        padding: 0 5px;
     }
-
-    .resultSlider {
-        display: none;
-    }
-    .result-line__container {
-        height: 140px;
-
-    }
-
-    .arrow-left, .arrow-right {
-        display: none;
-    }
+   
 }
 </style>
 

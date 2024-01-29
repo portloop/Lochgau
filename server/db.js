@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
 import session from "express-session";
 import connectMongo from "connect-mongo";
+import dotenv from "dotenv"; // Импортируем пакет dotenv
+
+dotenv.config(); // Загружаем переменные окружения из файла .env
+
 
 const MongoStore = connectMongo(session);
 
 async function connectToDatabase() {
-  mongoose.connect('mongodb://localhost:27017/SoccerClub', {
+  mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -25,3 +29,6 @@ async function connectToDatabase() {
 }
 
 export { connectToDatabase };
+
+
+// 'mongodb://localhost:27017/SoccerClub'

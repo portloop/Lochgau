@@ -120,6 +120,10 @@ export default {
 @import url('../../../assets/styles/verein/main.css');
 @import url('../../../assets/styles/verein/vereinsfuehrungComponent.css');
 
+.header {
+    margin-bottom: 90px !important;
+}
+
 .main-container {
     position: relative;
     display: flex;
