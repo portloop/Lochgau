@@ -93,7 +93,7 @@ export default {
 
     methods: {
         createNew() {
-            axios.post('https://194.15.113.90/api/teams', {
+            axios.post('http://194.15.113.90/api/teams', {
                 name: this.name,
                 type: this.type,
                 teamPhoto: this.teamPhoto,
@@ -117,7 +117,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`https://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

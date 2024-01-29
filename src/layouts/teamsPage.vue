@@ -60,7 +60,7 @@ export default {
             this.$router.push(`/editTeam/${teamId}`)
         },
         getTeams() {
-            axios.get('https://194.15.113.90/api/teams')
+            axios.get('http://194.15.113.90/api/teams')
                 .then((response) => {
                     console.log(response.data)
                     this.teams = response.data
@@ -71,7 +71,7 @@ export default {
                 })
         },
         getPlayers() {
-            axios.get('https://194.15.113.90/users/list')
+            axios.get('http://194.15.113.90/users/list')
                 .then((response) => {
                     console.log(response.data)
                     this.players = response.data
@@ -102,7 +102,7 @@ export default {
             const teamId = team._id;
 
             axios
-                .delete(`https://194.15.113.90/api/teams/${teamId}`)
+                .delete(`http://194.15.113.90/api/teams/${teamId}`)
                 .then((response) => {
                     console.log(response);
                     this.getTeams()

@@ -30,7 +30,7 @@ export default {
     methods: {
         async getPostsList() {
             try {
-                const tokenResponse = await axios.get('https://194.15.113.90/api/insta-token');
+                const tokenResponse = await axios.get('http://194.15.113.90/api/insta-token');
                 const instaToken = tokenResponse.data;
 
                 const mediaResponse = await axios.get(`https://graph.instagram.com/me?fields=media&access_token=${instaToken}`);

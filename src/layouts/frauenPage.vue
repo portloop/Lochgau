@@ -494,7 +494,7 @@ export default {
 
     methods: {
         getPlayers() {
-            axios.get('https://194.15.113.90/users/list')
+            axios.get('http://194.15.113.90/users/list')
                 .then((response) => {
                     const players = response.data.filter(player => player.team === this.isActive && player.role === 'User');
                     const trainers = response.data.filter(player => player.team === this.isActive && player.role === 'trainer');
@@ -523,7 +523,7 @@ export default {
 
 
         getTeamList() {
-            axios.get('https://194.15.113.90/api/teams')
+            axios.get('http://194.15.113.90/api/teams')
                 .then((response) => {
                     this.teams = response.data.teams.filter(item => item.type == 'female')
                     this.activeTeam = this.teams[0]

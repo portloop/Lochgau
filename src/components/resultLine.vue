@@ -200,7 +200,7 @@ export default {
         },
         async fetchData() {
             try {
-                const response = await axios.get('https://194.15.113.90/data');
+                const response = await axios.get('http://194.15.113.90/data');
                 this.eventData = Object.freeze(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);

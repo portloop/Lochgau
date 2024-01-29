@@ -12,7 +12,7 @@ async function generateLink() {
   await inviteKey.save();
 
   // Возвращаем ссылку с ключом
-  return `https://194.15.113.90/user/register/${key}`;
+  return `http://194.15.113.90/user/register/${key}`;
 }
 
 export { generateLink };

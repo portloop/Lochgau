@@ -91,7 +91,7 @@ export default {
 
             console.log(teamName);
 
-            axios.get(`https://194.15.113.90/users/list/`)
+            axios.get(`http://194.15.113.90/users/list/`)
                 .then((response) => {
                     console.log('Users:', response.data);
 
