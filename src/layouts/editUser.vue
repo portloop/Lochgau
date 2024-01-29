@@ -318,7 +318,6 @@ export default {
                 username: this.username,
                 firstName: this.firstName,
                 lastName: this.lastName,
-                password: this.password,
                 photo: this.photo,
                 dateOfBirth: this.dateOfBirth,
                 team: this.selectedTeam,
