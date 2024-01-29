@@ -98,7 +98,7 @@ export default {
 
     methods: {
         getContent() {
-  axios.get('http://localhost:3000/gallery')
+  axios.get('https://194.15.113.90/gallery')
     .then((response) => {
       this.content = response.data
         .filter(item => item.videos && item.videos.length > 0 && item.previewImg)

@@ -52,7 +52,7 @@ export default {
 
     methods: {
         fetchData () {
-            axios.get('http://localhost:3000/data')
+            axios.get('https://194.15.113.90/data')
             .then((response) => {
                 this.eventsData = response.data;
             })

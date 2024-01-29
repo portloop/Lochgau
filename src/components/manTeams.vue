@@ -22,7 +22,7 @@ export default {
 
     methods: {
         getTeamList () {
-            axios.get('http://localhost:3000/api/teams')
+            axios.get('https://194.15.113.90/api/teams')
             .then((response) => {
                 this.teams = response.data.teams.filter(item => item.type == 'male')
             })

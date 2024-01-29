@@ -126,7 +126,7 @@ export default defineComponent({
                     const form = new FormData();
                     form.append('file', file);
 
-                    return axios.post('http://localhost:3000/api/news/upload', form, {
+                    return axios.post('https://194.15.113.90/api/news/upload', form, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -150,7 +150,7 @@ export default defineComponent({
 
             const folder = 'videos';
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`https://194.15.113.90/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -173,7 +173,7 @@ export default defineComponent({
 
             const folder = 'news'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://localhost:3000/api/${folder}/upload`, formData, {
+            axios.post(`https://194.15.113.90/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -190,7 +190,7 @@ export default defineComponent({
         seendDataToDb() {
             const newsId = this.$route.params.id
 
-            axios.put(`http://localhost:3000/api/news/${newsId}`, {
+            axios.put(`https://194.15.113.90/api/news/${newsId}`, {
                 title: this.title,
                 videoLink: this.videoLink,
                 markdownContent: this.markdownContent,
@@ -229,7 +229,7 @@ export default defineComponent({
         getNews() {
             const newsId = this.$route.params.id;
 
-            axios.get(`http://localhost:3000/api/news/${newsId}`)
+            axios.get(`https://194.15.113.90/api/news/${newsId}`)
                 .then((response) => {
                     console.log(response.data)
                     this.title = response.data.title;

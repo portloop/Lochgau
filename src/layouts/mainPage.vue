@@ -146,7 +146,7 @@ export default {
         },
 
         getNews () {
-            axios.get('http://localhost:3000/api/news')
+            axios.get('https://194.15.113.90/api/news')
             .then((response) => {
                 this.newsArray = response.data;
                 console.log(this.newsArray)
@@ -162,7 +162,7 @@ export default {
         },
 
        getGalleryItems () {
-        axios.get('http://localhost:3000/gallery')
+        axios.get('https://194.15.113.90/gallery')
         .then((response) => {
             this.galleryArray = response.data.slice(-3)
             console.log(this.galleryArray)
