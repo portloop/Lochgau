@@ -19,10 +19,12 @@ import { verifyToken } from './checker.js';
 import sessionChecker from './sessionChecker.js';
 import Player from './models/player.js'; 
 import fileUploadRouter from './fileUpload.js';
+import uploadDocuments from './uploadDocuments.js'
 import newsRoutes from './newsFunctions.js';
 import InviteKey from './models/InviteKey.js';
 import teamRoutes from './teamFunctions.js';
 import instagramRoutes from './instagramRoutes.js'
+import documentsRouter from './documentsRouter.js';
 import history from 'connect-history-api-fallback';
 
 
@@ -352,6 +354,7 @@ app.use('/api', teamRoutes);
 // Add new player routes
 
 app.use('/api', fileUploadRouter);
+app.use('/api', uploadDocuments);
 
 app.put('/players/:id', async (req, res) => {
   const playerId = req.params.id;
@@ -431,6 +434,9 @@ app.use('/api', newsRoutes);
 // Instagram Routes
 app.use('/api', instagramRoutes);
 
+// Documents Routes
+app.use('/api/documents/', documentsRouter);
+
 
 // Gallery Functions
 
@@ -452,6 +458,8 @@ const photoPath = path.join(__dirname, '../uploads/players/');
 app.use(express.static(photoPath));
 const previewPath = path.join(__dirname, '../uploads/videos/');
 app.use(express.static(previewPath));
+const documentsPath = path.join(__dirname, '../documents');
+app.use(express.static(documentsPath));
 
 const newsPath = path.join(__dirname, '../uploads/news');
 app.use('/uploads/news', express.static(newsPath, { dotfiles: 'allow' }));

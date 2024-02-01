@@ -12,16 +12,13 @@
                     <div class="preview-table bg-gray-100">
                         <div class="preview-table-title coolGray">
                             <span>Spieler</span>
-                            <button type="button" @click="this.$router.push('/player/add')"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Neu hinzufügen
-                            </button>
+                           
 
                         </div>
                         <div class="preview-table-container bg-gray-50">
                             <div v-for="(player, index) in players" :key="index" class="preview-table-item">
                                 <div class="preview-table-item-name">
-                                    {{ player.name }}
+                                    {{ player.firstName }} {{ player.lastName }}
                                 </div>
                                 <div class="preview-table-item-team">
                                     {{ player.team }}
@@ -183,16 +180,19 @@ export default {
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('http://194.15.113.90/players');
-                this.players = Object.freeze(response.data);
-                console.log(this.players)
+                const response = await axios.get('http://194.15.113.90/users/list');
+                this.players = response.data.filter(player => player.role === "User");
+                console.log('Fetched players:', this.players)
             } catch (error) {
                 console.error('Error fetching players:', error);
             }
         },
+
+
+       
         viewPlayer(player) {
             console.log(player.id);
-            this.$router.push(`/player/edit/${player._id}`)
+            this.$router.push(`/user/edit/${player._id}`)
         },
 
         getNewsList() {

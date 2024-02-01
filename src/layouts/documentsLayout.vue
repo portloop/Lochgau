@@ -1,21 +1,107 @@
 <template>
     <dashboardHeader />
+    <div v-if="successPush"
+        class="push p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert">
+        The data was successfully changed
+    </div>
 
+    <div v-if="failPush" class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert">
+        <span class="font-medium">Error!</span> Check the data you have entered.
+    </div>
+    <div class="popup" v-if="showPopup">
+        <div class="popup-container">
+            <div class="title mb-3">Upload a document:</div>
+            <div class="w-full mb-3">
+                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title:</label>
+                <input v-model="documentTitle" type="text" id="first_name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Title of document" required>
+            </div>
+            <div class="flex mb-3 items-center justify-center w-full">
+                <label for="dropzone-file"
+                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
+                                upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400"></p>
+                    </div>
+                    <input id="dropzone-file" @change="uploadFile" type="file" class="hidden" />
+                </label>
+            </div>
+            <div class="url mb-3" v-if="documentUrl">
+                Current File: {{ documentUrl }}
+            </div>
+            <div class="buttons">
+                <button @click="sendData" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-3 text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+
+                <button @click="closePopup" type="button"
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel</button>
+
+            </div>
+
+        </div>
+    </div>
     <div class="container-sidebar">
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
                 Documents:
-                <button type="button" 
-                class="text-white bg-blue-700 ml-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Ein neues Dokument hinzufügen
-            </button>
-            <div v-if="registrationLink">
-                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invite link:</label>
+                <button @click="openPopup" type="button"
+                    class="text-white bg-blue-700 ml-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    Ein neues Dokument hinzufügen
+                </button>
+
             </div>
+            <div class="player-list-container">
+
             </div>
-            <div class="player-list-container" >
-              
+            <div class="documents-table-header flex justify-between">
+                <div class="head">Title</div>
+                <div class="head">File Path</div>
+                <div class="head">Added By</div>
+                <div class="head">Actions</div>
+            </div>
+            <div class="documents-list mt-4">
+                <div class="document-item py-4 flex justify-between" v-for="document in documentList">
+
+                    <div class="document-title">
+                        {{ document.title }}
+                    </div>
+                    <div class="document-path">
+                        {{ document.filePath }}
+                    </div>
+                    <div class="document-creator">
+                        {{ document.creator }}
+                    </div>
+                    <div class="document-buttons">
+                        <a :href="document.filePath" download type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mr-3 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                <path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z" />
+                            </svg>
+                        </a>
+                        <button type="button" @click='deleteDocument(document._id)'
+                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                            <svg fill="white" width="18" height="18" clip-rule="evenodd" fill-rule="evenodd"
+                                stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m20.015 6.506h-16v14.423c0 .591.448 1.071 1 1.071h14c.552 0 1-.48 1-1.071 0-3.905 0-14.423 0-14.423zm-5.75 2.494c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-4.5 0c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-.75-5v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-16.507c-.413 0-.747-.335-.747-.747s.334-.747.747-.747zm4.5 0v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </button>
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -33,7 +119,16 @@ export default {
     data() {
         return {
             players: [],
-            registrationLink: ''
+            registrationLink: '',
+
+            showPopup: false,
+            documentTitle: '',
+            documentUrl: '',
+            successPush: false,
+            failPush: false,
+
+            documentList: [],
+
         }
     },
 
@@ -48,81 +143,156 @@ export default {
         //     }
         // },
 
-        async fetchPlayers() {
-    try {
-        const response = await axios.get('http://194.15.113.90/users/list');
-        const allPlayers = Object.freeze(response.data);
+        uploadFile(event) {
+            const file = event.target.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
 
-        // Фильтруем только тренеров
-        const trainers = allPlayers.filter(player => player.role === "trainer");
-
-        // Преобразуем формат даты
-        const playersFormatted = trainers.map(player => {
-            return {
-                _id: player._id,
-                username: player.username,
-                firstName: player.firstName,
-                lastName: player.lastName,
-                dateOfBirth: new Date(player.dateOfBirth).toLocaleDateString('en-GB'), // Форматируем дату
-                password: player.password,
-                role: player.role,
-                __v: player.__v,
-                team: player.team,
-                parentPhone: player.parentPhone,
-                passport: player.passport,
-                phone: player.phone,
-                photo: player.photo,
-                position: player.position,
-                street: player.street,
-                zip: player.zip,
-                parent: player.parent,
-                city: player.city,
-                nationality: player.nationality,
-                height: player.height,
-                weight: player.weight
-            };
-        });
-
-        this.players = Object.freeze(playersFormatted);
-        console.log(this.players);
-    } catch (error) {
-        console.error('Error fetching trainers:', error);
-    }
-},
-
-
-        viewPlayer(player) {
-            console.log(player.id);
-            this.$router.push(`/user/edit/${player._id}`)
+            axios.post(`http://194.15.113.90/api/documents/uploadFile`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(response => {
+                console.log('File uploaded:', response.data.filePath);
+                this.documentUrl = response.data.filePath
+                // Далее можно сохранить путь к файлу в переменной состояния или использовать по своему усмотрению
+            }).catch(error => {
+                console.error('Error uploading file:', error);
+            });
+        },
+        openPopup() {
+            this.showPopup = true;
         },
 
 
-        deletePlayer(event) {
-            const dataIdValue = event.target.dataset.id;
+        closePopup() {
+            this.documentTitle = '',
+                this.documentUrl = '',
+                this.showPopup = false
+        },
 
-            axios.delete(`http://194.15.113.90/users/list/${dataIdValue}`)
+        sendData() {
+            console.log('User ID:', this.$store.state.userData._id)
+            let user = this.$store.state.userData._id;
+            console.log(
+                'Title:', this.documentTitle,
+                'Url:', this.documentUrl,
+                'User:', user
+            )
+
+            axios.post(`http://194.15.113.90/api/documents/add`, {
+                title: this.documentTitle,
+                filePath: this.documentUrl,
+                creator: user,
+            })
                 .then((response) => {
-                    console.log('Article successfully deleted');
-                    this.fetchPlayers(); // Запускаем метод для получения обновленного списка
-                    this.$router.push('/users/list');
+                    console.log(response.data)
+                    this.successPush = true;
+
+                    this.documentTitle = '',
+                        this.documentUrl = '',
+                        this.showPopup = false,
+                        setTimeout(() => {
+                            this.successPush = false
+                        }, 3000)
+
+                        this.getAllDocuments();
                 })
                 .catch((error) => {
-                    console.log('Error while deleting data', error);
-                });
+                    this.failPush = true;
+                    setTimeout(() => { this.failPush = false }, 3000)
+                })
         },
 
-        generateLink () {
-            axios.get('http://194.15.113.90/generate-link')
+        downloadFile(filePath) {
+            window.location.href = `http://localhost:3000${filePath}`
+        },
+
+        async getAllDocuments() {
+            try {
+                const response = await axios.get('http://194.15.113.90/api/documents/list');
+                this.documentList = response.data;
+
+                // Обработка каждого документа
+                for (const document of this.documentList) {
+                    document.creator = await this.getPlayerInfo(document.creator);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        async getPlayerInfo(playerId) {
+            try {
+                const response = await axios.get(`http://194.15.113.90/users/list/${playerId}`);
+                const playerInfo = response.data;
+                const fullName = `${playerInfo.firstName} ${playerInfo.lastName}`;
+                console.log(fullName);
+                return fullName;
+            } catch (error) {
+                console.log(error);
+                return ''; // или другое значение по умолчанию, в случае ошибки
+            }
+        },
+
+
+        deleteDocument(id) {
+            axios.delete(`http://194.15.113.90/api/documents/${id}`)
             .then((response) => {
-                this.registrationLink = response.data.link
-                console.log(response.data.link)
+                this.getAllDocuments();
             })
         }
     },
 
+
+
     mounted() {
-        this.fetchPlayers()
+        this.getAllDocuments();
     }
 }
 </script>
-<style scoped>@import url(../assets/styles/playersList.css);</style>
+<style scoped>
+@import url(../assets/styles/playersList.css);
+
+
+.popup {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.popup-container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+
+}
+
+.push {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.document-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.document-buttons{
+    display: flex;
+    align-items: center;
+}
+</style>

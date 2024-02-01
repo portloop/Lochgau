@@ -1,5 +1,12 @@
 <template>
     <headerComponent />
+    <div v-if="successPush" class="push p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+        The data was successfully changed
+      </div>
+
+      <div v-if="failPush" class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <span class="font-medium">Error!</span> Check the data you have entered.
+      </div>
     <div class="main-container">
         <div class="register-title">
             Profil bearbeiten {{ firstName }} {{ lastName }}
@@ -135,7 +142,7 @@
                         <option selected>User role</option>
                         <option value="admin">Admin</option>
                         <option value="User">Player</option>
-                        <option value="coach">Coach</option>
+                        <option value="trainer">Coach</option>
                        
                     </select>
                 </div>
@@ -238,7 +245,8 @@ export default {
             role: '',
             height: '',
             weight: '',
-
+            successPush: false,
+            failPush: false,
         }
     },
     methods: {
@@ -343,10 +351,18 @@ export default {
                 .then(response => {
                     // Обрабатываем успешный ответ
                     console.log(response.data);
+                    this.successPush = true;
+                    setTimeout(() => {
+                        this.successPush = false
+                    }, 2000);
                 })
                 .catch(error => {
                     // Обрабатываем ошибку
                     console.error('Error submitting form:', error);
+                    this.failPush = true;
+                    setTimeout(() => {
+                        this.failPush = false
+                    }, 2000);
                 });
         }
     },
@@ -382,4 +398,10 @@ export default {
 
 <style>
 @import url('../assets/styles/registerPage.css');
+
+.push {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
 </style>
