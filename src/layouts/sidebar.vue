@@ -120,6 +120,14 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Documents</span>
                         </a>
                     </li>
+
+                  <li v-if="this.$store.state.userRole == 'admin'" @click="this.$router.push('/dashboard/page-list')">
+                      <a href="#"
+                          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M22 24h-20v-24h14l6 6v18zm-7-23h-12v22h18v-16h-6v-6zm1 5h4.586l-4.586-4.586v4.586z"/></svg>
+                          <span class="flex-1 ms-3 whitespace-nowrap">Pages</span>
+                      </a>
+                  </li>
                     <!-- <li v-if="this.$store.state.userRole == 'admin'">
                         <a href="#"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

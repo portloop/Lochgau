@@ -26,7 +26,7 @@ export default {
 
     methods: {
         getAllNews() {
-            axios.get('http://194.15.113.90/api/news')
+            axios.get('http://149.100.159.188/api/news')
                 .then((response) => {
                     this.news = response.data.slice(-5).map((item) => {
                         const date = new Date(item.publishedAt);

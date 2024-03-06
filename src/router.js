@@ -49,6 +49,7 @@ import neubauKunstrasenLayout from './layouts/verein/vereinsgelaende/neubauKunst
 import mitgliedschaftLayout from './layouts/verein/vereinsgelaende/mitgliedschaftLayout.vue'
 import ehrenamtLayout from './layouts/verein/vereinsgelaende/ehrenamtLayout.vue'
 import foerdervereinLayout from './layouts/verein/vereinsgelaende/foerdervereinLayout.vue'
+import pageList from './layouts/pageList.vue'
 
 
 
@@ -62,7 +63,8 @@ import sucheLayout from './layouts/verein/interaktiv/sucheLayout.vue'
 import impressumLayout from './layouts/verein/interaktiv/impressumLayout.vue'
 import datenschutzerklaerungLayout from './layouts/verein/interaktiv/datenschutzerklaerungLayout.vue'
 
-
+import vereinUniversal from './layouts/vereinLayout.vue'
+import addVereinPage from './layouts/addVereinPage.vue'
 
 
 
@@ -99,6 +101,7 @@ const router = createRouter({
     { path: '/gallery/:id', component: galleryItem },
     { path: '/sponsoring', component: sponsoringPage },
     { path: '/dashboard/news', component: dashboardNews, meta: { requiresAuth: true, role: !'User'} },
+    { path: '/dashboard/page-list', component: pageList, meta: { requiresAuth: true, role: !'User'} },
 
 
     // Verein Routers
@@ -147,7 +150,12 @@ const router = createRouter({
     { path: '/verein/interaktiv/kontakt', component: kontaktLayout },
     { path: '/verein/interaktiv/suche', component: sucheLayout },
     { path: '/verein/interaktiv/impressum', component: impressumLayout },
-    { path: '/verein/interaktiv/datenschutzerklaerung', component: datenschutzerklaerungLayout }
+    { path: '/verein/interaktiv/datenschutzerklaerung', component: datenschutzerklaerungLayout },
+
+
+    // Verein Universal
+    { path: '/verein/:name?', component: vereinUniversal },
+    { path: '/dashboard/addVereinPage', component: addVereinPage }
   ]
 });
 

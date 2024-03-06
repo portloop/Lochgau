@@ -1,0 +1,93 @@
+// pages.js
+import express from 'express';
+const router = express.Router();
+import Page from './models/pageModel.js'; // Путь к вашей модели
+
+// Получение всех страниц
+router.get('/pages/all', async (req, res) => {
+  try {
+    const pages = await Page.find();
+    res.json(pages);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Добавление новой страницы
+router.post('/pages/add', async (req, res) => {
+  const { url, htmlContent, author, title, category } = req.body;
+
+  const newPage = new Page({
+    url,
+    htmlContent,
+    author,
+    title,
+    category
+  });
+
+  try {
+    const savedPage = await newPage.save();
+    res.status(201).json(savedPage);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Удаление страницы
+router.delete('/pages/:id', async (req, res) => {
+  try {
+    const removedPage = await Page.findByIdAndDelete(req.params.id);
+    res.json(removedPage);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Редактирование страницы
+router.patch('/pages/:id', async (req, res) => {
+  try {
+    const updatedPage = await Page.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedPage);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+// Get categories
+
+router.get('/pages/categories', async (req, res) => {
+  try {
+    const uniqueCategories = await Page.distinct('category');
+
+    const categorizedPages = await Promise.all(
+      uniqueCategories.map(async (category) => {
+        const pagesInCategory = await Page.find({ category });
+        const pageURLs = pagesInCategory.map((page) => page.url);
+        return { category, pageURLs };
+      })
+    );
+
+    res.json(categorizedPages);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Измененный роут
+router.get('/pages/url/:url', async (req, res) => {
+  try {
+    const requestedUrl = req.params.url;
+    console.log("Requested URL:", requestedUrl);
+    
+    const page = await Page.findOne({ url: requestedUrl });
+    
+    console.log("Found page:", page);
+    res.json(page);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+export default router;

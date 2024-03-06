@@ -26,6 +26,7 @@ import teamRoutes from './teamFunctions.js';
 import instagramRoutes from './instagramRoutes.js'
 import documentsRouter from './documentsRouter.js';
 import history from 'connect-history-api-fallback';
+import pagesRoutes from './pages.js'
 
 
 import {
@@ -436,6 +437,9 @@ app.use('/api', instagramRoutes);
 
 // Documents Routes
 app.use('/api/documents/', documentsRouter);
+
+// Pages routes
+app.use('/api', pagesRoutes)
 
 
 // Gallery Functions

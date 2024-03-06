@@ -1,38 +1,25 @@
 <template>
     <div class="dropdown-container">
-        <div class="dropdown-item">
-            <div class="dropdown-item-name" :class="{ 'active-tab': isActive === 'Unser' }">
-                Unser Verein
+        <div class="dropdown-item" v-for="category in categories" :key="category.category">
+            <div class="dropdown-item-name" :class="{ 'active-tab': isActive === category.category }">
+                <!-- Используем router-link, если есть только одна ссылка, иначе просто текст -->
+                <router-link v-if="category.pageURLs.length === 1" :to="`/verein/` + category.pageURLs[0]" class="dropdown-item-name-link" @click="setActiveCategory(category.category)">
+                    {{ category.category }}
+                </router-link>
+                <div v-else>
+                    {{ category.category }}
+                </div>
             </div>
-            <div class="dropdown-item-menu">
-                <router-link to="../unser-verein/vereinsfuehrung" class="dropdown-item-menu-link">
-                    Vereinsführung
-                </router-link>
-                <router-link to="../unser-verein/ansprechpartner" class="dropdown-item-menu-link">
-                    Ansprechpartner
-                </router-link>
-                <router-link to="../unser-verein/schiedsrichter" class="dropdown-item-menu-link">
-                    Schiedsrichter
-                </router-link>
-                <router-link to="../unser-verein/portraet" class="dropdown-item-menu-link">
-                    Porträt
-                </router-link>
-                <router-link to="../unser-verein/vereinsziele" class="dropdown-item-menu-link">
-                    Vereinsziele
-                </router-link>
-                <router-link to="../unser-verein/chronik" class="dropdown-item-menu-link">
-                    Chronik
-                </router-link>
-                <router-link to="../unser-verein/erfolge" class="dropdown-item-menu-link">
-                    Erfolge
-                </router-link>
-                <router-link to="../unser-verein/satzung" class="dropdown-item-menu-link">
-                    Satzung
+            <div class="dropdown-item-menu" v-show="category.pageURLs.length > 1">
+                <!-- Используем router-link внутри v-for, чтобы создать ссылки для каждой страницы -->
+                <router-link :to="`/verein/` + url" v-for="url in category.pageURLs" :key="url" class="dropdown-item-menu-link" @click="setActiveCategory(category.category)">
+                    {{ spliceLink(url) }}
                 </router-link>
             </div>
         </div>
         
-        <div class="dropdown-item">
+        
+        <!-- <div class="dropdown-item">
             <div class="dropdown-item-name" :class="{ 'active-tab': isActive === 'Vereinsaktivitäten' }">
                 Vereinsaktivitäten
             </div>
@@ -122,15 +109,42 @@
                
                
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data () {
         return {
-            isActive: 'Unser'
+            isActive: 'Unser',
+            categories: [],
         }
+    },
+
+    methods: {
+        getCategories () {
+            axios.get('http://149.100.159.188/api/pages/categories')
+            .then((response) => {
+                this.categories = response.data
+                console.log('Categories:', this.categories)
+            })
+        },
+
+        setActiveCategory(category) {
+      this.isActive = category;
+    },
+
+        spliceLink(str) {
+      if (str && typeof str === 'string' && str.length > 1) {
+        return str.toUpperCase();
+      }
+      return str; 
+    },
+    },
+
+    created () {
+        this.getCategories();
     }
 }
 </script>
@@ -142,6 +156,7 @@ export default {
         justify-content: space-between;
         max-width: 1440px;
         margin: 0 auto;
+        margin-bottom: 70px;
 
     }
 

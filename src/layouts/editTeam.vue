@@ -93,7 +93,7 @@ export default {
         getTeam() {
             const teamId = this.$route.params.id
 
-            axios.post(`http://194.15.113.90/api/teams/getTeamById`, { id: teamId })
+            axios.post(`http://149.100.159.188/api/teams/getTeamById`, { id: teamId })
                 .then((response) => {
                     this.teamId = response.data.team._id;
                     this.teamName = response.data.team.name
@@ -105,7 +105,7 @@ export default {
         sendData() {
             const teamId = this.$route.params.id
 
-            axios.put(`http://194.15.113.90/api/teams/${teamId}`, {
+            axios.put(`http://149.100.159.188/api/teams/${teamId}`, {
                 name: this.teamName,
                 type: this.type,
                 teamPhoto: this.teamPhoto,
@@ -125,7 +125,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://194.15.113.90/api/${folder}/upload`, formData, {
+            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

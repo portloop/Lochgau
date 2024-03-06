@@ -57,6 +57,7 @@
     "vue-photoswipe": "^1.0.3",
     "vue-router": "^4.2.5",
     "vue-simplemde": "^2.1.1",
+    "vuedraggable": "^4.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
