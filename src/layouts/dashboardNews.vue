@@ -76,7 +76,7 @@
     <button @click="this.$router.push('/news/add')">Asd</button>
 </template>
 <script>
-import sideBar from './sidebar.vue'
+import sideBar from './sideBar.vue'
 import axios from 'axios';
 import dashboardHeader from '../components/dashboardHeader.vue';
 export default {

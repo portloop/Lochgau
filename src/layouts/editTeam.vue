@@ -71,7 +71,7 @@
 </template>
 <script>
 import dashboardHeader from '../components/dashboardHeader.vue';
-import sideBar from './sidebar.vue'
+import sideBar from './sideBar.vue'
 
 import axios from 'axios';
 export default {

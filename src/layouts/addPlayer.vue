@@ -102,7 +102,7 @@
 </template>
 <script>
 import axios from 'axios';
-import sideBar from './sidebar.vue'
+import sideBar from './sideBar.vue'
 
 import dashboardHeader from '../components/dashboardHeader.vue';
 export default {
