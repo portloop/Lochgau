@@ -130,7 +130,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
+            axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -159,7 +159,7 @@ export default {
 
 
         sendData() {
-            axios.post('http://149.100.159.188/players/add', {
+            axios.post('http://srv489299.hstgr.cloud/players/add', {
                 photo: this.playerImg,
                 name: this.name,
                 dateOfBirth: this.dateOfBirth,

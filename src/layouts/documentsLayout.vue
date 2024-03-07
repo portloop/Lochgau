@@ -135,7 +135,7 @@ export default {
     methods: {
         // async fetchPlayers() {
         //     try {
-        //         const response = await axios.get('http://149.100.159.188/users/list');
+        //         const response = await axios.get('http://srv489299.hstgr.cloud/users/list');
         //         this.players = Object.freeze(response.data);
         //         console.log(this.players)
         //     } catch (error) {
@@ -148,7 +148,7 @@ export default {
             const formData = new FormData();
             formData.append('file', file);
 
-            axios.post(`http://149.100.159.188/api/documents/uploadFile`, formData, {
+            axios.post(`http://srv489299.hstgr.cloud/api/documents/uploadFile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -180,7 +180,7 @@ export default {
                 'User:', user
             )
 
-            axios.post(`http://149.100.159.188/api/documents/add`, {
+            axios.post(`http://srv489299.hstgr.cloud/api/documents/add`, {
                 title: this.documentTitle,
                 filePath: this.documentUrl,
                 creator: user,
@@ -210,7 +210,7 @@ export default {
 
         async getAllDocuments() {
             try {
-                const response = await axios.get('http://149.100.159.188/api/documents/list');
+                const response = await axios.get('http://srv489299.hstgr.cloud/api/documents/list');
                 this.documentList = response.data;
 
                 // Обработка каждого документа
@@ -224,7 +224,7 @@ export default {
 
         async getPlayerInfo(playerId) {
             try {
-                const response = await axios.get(`http://149.100.159.188/users/list/${playerId}`);
+                const response = await axios.get(`http://srv489299.hstgr.cloud/users/list/${playerId}`);
                 const playerInfo = response.data;
                 const fullName = `${playerInfo.firstName} ${playerInfo.lastName}`;
                 console.log(fullName);
@@ -237,7 +237,7 @@ export default {
 
 
         deleteDocument(id) {
-            axios.delete(`http://149.100.159.188/api/documents/${id}`)
+            axios.delete(`http://srv489299.hstgr.cloud/api/documents/${id}`)
             .then((response) => {
                 this.getAllDocuments();
             })

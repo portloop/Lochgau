@@ -54,7 +54,7 @@ export default {
             try {
                 // Отправляем FormData на сервер
                 const folder = 'videos';
-                const uploadUrl = `http://149.100.159.188/api/${folder}/upload`;
+                const uploadUrl = `http://srv489299.hstgr.cloud/api/${folder}/upload`;
 
                 const uploadResponse = await axios.post(uploadUrl, formData, {
                     headers: {

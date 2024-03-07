@@ -146,7 +146,7 @@ export default {
         },
 
         getNews () {
-            axios.get('http://149.100.159.188/api/news')
+            axios.get('http://srv489299.hstgr.cloud/api/news')
             .then((response) => {
                 this.newsArray = response.data;
                 console.log(this.newsArray)
@@ -162,7 +162,7 @@ export default {
         },
 
        getGalleryItems () {
-        axios.get('http://149.100.159.188/gallery')
+        axios.get('http://srv489299.hstgr.cloud/gallery')
         .then((response) => {
             this.galleryArray = response.data.slice(-3)
             console.log(this.galleryArray)

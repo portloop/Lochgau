@@ -65,6 +65,7 @@ import datenschutzerklaerungLayout from './layouts/verein/interaktiv/datenschutz
 
 import vereinUniversal from './layouts/vereinLayout.vue'
 import addVereinPage from './layouts/addVereinPage.vue'
+import editVerein from './layouts/editVerein.vue'
 
 
 
@@ -155,7 +156,8 @@ const router = createRouter({
 
     // Verein Universal
     { path: '/verein/:name?', component: vereinUniversal },
-    { path: '/dashboard/addVereinPage', component: addVereinPage }
+    { path: '/dashboard/addVereinPage', component: addVereinPage },
+    { path: '/dashboard/pages/edit/:id', component: editVerein }
   ]
 });
 

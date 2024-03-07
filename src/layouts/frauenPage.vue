@@ -494,7 +494,7 @@ export default {
 
     methods: {
         getPlayers() {
-            axios.get('http://149.100.159.188/users/list')
+            axios.get('http://srv489299.hstgr.cloud/users/list')
                 .then((response) => {
                     const players = response.data.filter(player => player.team === this.isActive && player.role === 'User');
                     const trainers = response.data.filter(player => player.team === this.isActive && player.role === 'trainer');
@@ -523,7 +523,7 @@ export default {
 
 
         getTeamList() {
-            axios.get('http://149.100.159.188/api/teams')
+            axios.get('http://srv489299.hstgr.cloud/api/teams')
                 .then((response) => {
                     this.teams = response.data.teams.filter(item => item.type == 'female')
                     this.activeTeam = this.teams[0]

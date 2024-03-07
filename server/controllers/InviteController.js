@@ -12,7 +12,7 @@ async function generateLink() {
   await inviteKey.save();
 
   // Возвращаем ссылку с ключом
-  return `http://149.100.159.188/user/register/${key}`;
+  return `http://srv489299.hstgr.cloud/user/register/${key}`;
 }
 
 export { generateLink };

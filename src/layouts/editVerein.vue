@@ -436,6 +436,18 @@ export default {
             });
         },
 
+        getDataFromServer () {
+            let id = this.$route.params.id
+
+            axios.get(`http://srv489299.hstgr.cloud/api/pages/id/${id}`)
+            .then((response) => {
+                this.category = response.data.category;
+                this.title = response.data.title;
+                this.url = response.data.url;
+                this.content = response.data.htmlContent;
+            })
+        },
+
         updateText(index) {
             const updatedText = this.$refs.editableContent[index].innerText;
             this.content.leftside[index].text = updatedText;
@@ -566,7 +578,8 @@ export default {
 
 
         sendData () {
-            axios.post('http://srv489299.hstgr.cloud/api/pages/add', { 
+            let id = this.$route.params.id
+            axios.patch(`http://srv489299.hstgr.cloud/api/pages/${id}`, { 
                 url: this.url,
                 category: this.category,
                 title: this.title,
@@ -588,6 +601,10 @@ export default {
         }
 
 
+    },
+
+    mounted () {
+        this.getDataFromServer();
     }
 }
 </script>

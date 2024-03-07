@@ -180,7 +180,7 @@ export default {
     methods: {
         async fetchPlayers() {
             try {
-                const response = await axios.get('http://149.100.159.188/users/list');
+                const response = await axios.get('http://srv489299.hstgr.cloud/users/list');
                 this.players = response.data.filter(player => player.role === "User");
                 console.log('Fetched players:', this.players)
             } catch (error) {
@@ -197,7 +197,7 @@ export default {
 
         getNewsList() {
             console.log('Method is called');
-            axios.get('http://149.100.159.188/api/news')
+            axios.get('http://srv489299.hstgr.cloud/api/news')
                 .then((response) => {
                     this.news = response.data;
 
@@ -243,7 +243,7 @@ export default {
         deleteGallery(galleryItem, index) {
             const itemId = galleryItem._id;
 
-            axios.delete(`http://149.100.159.188/gallery/${itemId}`)
+            axios.delete(`http://srv489299.hstgr.cloud/gallery/${itemId}`)
                 .then((response) => {
                     console.log(response);
                     // Видаляємо елемент з масиву за його індексом
@@ -255,7 +255,7 @@ export default {
         },
 
         deleteNews(newsId, index) {
-            axios.delete(`http://149.100.159.188/api/news/${newsId}`)
+            axios.delete(`http://srv489299.hstgr.cloud/api/news/${newsId}`)
                 .then((response) => {
                     console.log(response);
                     // Видаляємо елемент з масиву за його індексом
@@ -267,7 +267,7 @@ export default {
         },
 
         getGallery() {
-            axios.get(`http://149.100.159.188/gallery`)
+            axios.get(`http://srv489299.hstgr.cloud/gallery`)
                 .then((response) => {
                     console.log(response.data)
                     this.gallery = response.data

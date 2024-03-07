@@ -2,7 +2,7 @@
     <div>
         <headerComponent />
         <vereinLine />
-        <div class="content-box">
+        <div class=" content-box">
             <div class="leftside" v-if="data.htmlContent?.leftside">
                 <!-- <section v-for="item in data.htmlContent?.leftside" v-html="item"></section> -->
                 <div v-for="item in data.htmlContent.leftside" :class="item.class" v-html="item.text"></div>
@@ -91,7 +91,7 @@ export default {
     methods: {
         async fetchData(name) {
             try {
-                const response = await axios.get(`http://149.100.159.188/api/pages/url/${name}`);
+                const response = await axios.get(`http://srv489299.hstgr.cloud/api/pages/url/${name}`);
                 this.data = response.data;
             } catch (error) {
                 console.error(error);
@@ -99,7 +99,7 @@ export default {
         },
         async fetchFirstPage() {
             try {
-                const response = await axios.get('http://149.100.159.188/api/pages/all');
+                const response = await axios.get('http://srv489299.hstgr.cloud/api/pages/all');
                 const firstPage = response.data[0];
                 console.log('Pages', response.data)
                 if (firstPage) {

@@ -51,7 +51,7 @@
         const newsId = this.$route.params.id;
         console.log(newsId);
   
-        axios.get(`http://149.100.159.188/api/news/${newsId}`)
+        axios.get(`http://srv489299.hstgr.cloud/api/news/${newsId}`)
           .then((response) => {
             this.articleData = response.data
             const formattedDate = new Date(this.articleData.publishedAt).toLocaleString('ru-RU', {

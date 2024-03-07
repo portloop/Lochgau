@@ -92,7 +92,7 @@ export default {
 
     methods: {
         getGalleryList () {
-            axios.get('http://149.100.159.188/gallery/')
+            axios.get('http://srv489299.hstgr.cloud/gallery/')
             .then((response) => {
                 console.log(response)
                 this.galleryList = response.data

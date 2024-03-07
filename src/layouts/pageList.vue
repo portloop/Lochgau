@@ -33,20 +33,21 @@
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ item.url }}
+                                /{{ item.url }}
                             </th>
                             <td class="px-6 py-4">
                                 {{ formatDate(item.createdAt) }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ getName(item.author) }}
+                                Admin
                             </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
+                            
                             <td class="px-6 py-4 text-right">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="#" @click="this.$router.push(`/dashboard/pages/edit/${item._id}`)"
+                                    class="font-medium mr-4 text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+
+                                    <a href="#" @click="deletePage(item._id)"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
                             </td>
                         </tr>
                     </tbody>
@@ -75,7 +76,7 @@ export default {
 
     methods: {
         getAllPages() {
-            axios.get('http://149.100.159.188/api/pages/all')
+            axios.get('http://srv489299.hstgr.cloud/api/pages/all')
                 .then((response) => {
                     console.log(response.data)
                     this.pages = response.data
@@ -98,9 +99,14 @@ export default {
             return formattedDate;
         },
 
+        deletePage (id) {
+            axios.delete(`http://srv489299.hstgr.cloud/api/pages/${id}`)
+            .then((response) => this.getAllPages())
+        },
+
         getName (id) {
             console.log(id)
-            axios.get(`http://149.100.159.188/players/${id}`)
+            axios.get(`http://srv489299.hstgr.cloud/players/${id}`)
             .then((response) => {
                 return response.data
             })

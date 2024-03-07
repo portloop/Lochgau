@@ -75,6 +75,21 @@ router.get('/pages/categories', async (req, res) => {
 });
 
 // Измененный роут
+router.get('/pages/id/:id', async (req, res) => {
+  try {
+    const requestedId = req.params.id;
+    console.log("Requested URL:", requestedId);
+    
+    const page = await Page.findOne({ _id: requestedId });
+    
+    console.log("Found page:", page);
+    res.json(page);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Измененный роут
 router.get('/pages/url/:url', async (req, res) => {
   try {
     const requestedUrl = req.params.url;
