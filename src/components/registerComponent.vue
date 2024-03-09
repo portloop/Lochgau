@@ -134,7 +134,7 @@ export default {
     register() {
       if (this.isEmailValid() && this.isPasswordValid() && this.isNameValid() && this.isDateOfBirthValid()) {
         axios
-          .post('http://srv489299.hstgr.cloud/auth/register', {
+          .post('http://149.100.159.188/auth/register', {
             username: this.email,
             password: this.password,
             firstName: this.firstName,

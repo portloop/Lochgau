@@ -124,7 +124,7 @@ export default {
 
     methods: {
         getCategories () {
-            axios.get('http://srv489299.hstgr.cloud/api/pages/categories')
+            axios.get('http://149.100.159.188/api/pages/categories')
             .then((response) => {
                 this.categories = response.data
                 console.log('Categories:', this.categories)

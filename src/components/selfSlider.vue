@@ -52,7 +52,7 @@ export default {
 
     methods: {
         fetchData () {
-            axios.get('http://srv489299.hstgr.cloud/data')
+            axios.get('http://149.100.159.188/data')
             .then((response) => {
                 this.eventsData = response.data;
             })

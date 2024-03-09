@@ -439,7 +439,7 @@ export default {
         getDataFromServer () {
             let id = this.$route.params.id
 
-            axios.get(`http://srv489299.hstgr.cloud/api/pages/id/${id}`)
+            axios.get(`http://149.100.159.188/api/pages/id/${id}`)
             .then((response) => {
                 this.category = response.data.category;
                 this.title = response.data.title;
@@ -531,7 +531,7 @@ export default {
 
             const folder = 'news'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -579,7 +579,7 @@ export default {
 
         sendData () {
             let id = this.$route.params.id
-            axios.patch(`http://srv489299.hstgr.cloud/api/pages/${id}`, { 
+            axios.patch(`http://149.100.159.188/api/pages/${id}`, { 
                 url: this.url,
                 category: this.category,
                 title: this.title,

@@ -76,7 +76,7 @@ export default {
 
     methods: {
         getAllPages() {
-            axios.get('http://srv489299.hstgr.cloud/api/pages/all')
+            axios.get('http://149.100.159.188/api/pages/all')
                 .then((response) => {
                     console.log(response.data)
                     this.pages = response.data
@@ -100,13 +100,13 @@ export default {
         },
 
         deletePage (id) {
-            axios.delete(`http://srv489299.hstgr.cloud/api/pages/${id}`)
+            axios.delete(`http://149.100.159.188/api/pages/${id}`)
             .then((response) => this.getAllPages())
         },
 
         getName (id) {
             console.log(id)
-            axios.get(`http://srv489299.hstgr.cloud/players/${id}`)
+            axios.get(`http://149.100.159.188/players/${id}`)
             .then((response) => {
                 return response.data
             })

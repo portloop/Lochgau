@@ -50,7 +50,7 @@ export default {
             this.$router.push(`/news/${newsId}`)
         },
         getNewsList() {
-            axios.get('http://srv489299.hstgr.cloud/api/news')
+            axios.get('http://149.100.159.188/api/news')
                 .then((response) => {
                     this.news = response.data.map(item => {
                         const date = new Date(item.publishedAt);

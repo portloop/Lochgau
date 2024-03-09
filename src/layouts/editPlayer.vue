@@ -143,7 +143,7 @@ export default {
 
             const folder = 'players'; // Замените на нужную папку (players, gallery, news)
 
-            axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -173,7 +173,7 @@ export default {
         getPlayerData() {
             const playerId = this.$route.params.id;
 
-            axios.get(`http://srv489299.hstgr.cloud/players/${playerId}`)
+            axios.get(`http://149.100.159.188/players/${playerId}`)
                 .then((response) => {
                     console.log(response.data);
                     this.name = response.data.name
@@ -202,7 +202,7 @@ export default {
                 nationality: this.nationality
             };
 
-            axios.put(`http://srv489299.hstgr.cloud/players/${playerId}`, updatedData)
+            axios.put(`http://149.100.159.188/players/${playerId}`, updatedData)
                 .then(response => {
                     console.log('Player data updated:', response.data);
                     this.successPush = true;
@@ -220,7 +220,7 @@ export default {
         deletePlayerById() {
             const playerId = this.$route.params.id;
 
-            axios.delete(`http://srv489299.hstgr.cloud/players/${playerId}`)
+            axios.delete(`http://149.100.159.188/players/${playerId}`)
                 .then((response) => {
                     // Обработка успешного удаления
                     console.log(response.data);

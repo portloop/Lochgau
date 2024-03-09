@@ -22,7 +22,7 @@ export default {
 
     methods: {
         getTeamList () {
-            axios.get('http://srv489299.hstgr.cloud/api/teams')
+            axios.get('http://149.100.159.188/api/teams')
             .then((response) => {
                 this.teams = response.data.teams.filter(item => item.type == 'male')
             })

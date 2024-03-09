@@ -162,7 +162,7 @@ export default defineComponent({
                     const form = new FormData();
                     form.append('file', file);
 
-                    return axios.post('http://srv489299.hstgr.cloud/api/media/upload', form, {
+                    return axios.post('http://149.100.159.188/api/media/upload', form, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -186,7 +186,7 @@ export default defineComponent({
 
             const folder = 'media';
 
-            axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -224,7 +224,7 @@ export default defineComponent({
 
             if (allowedVideoExtensions.includes(fileExtension)) {
                 // Если расширение файла соответствует видео, загружаем его в массив videos
-                axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+                axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -237,7 +237,7 @@ export default defineComponent({
                 });
             } else {
                 // Если это не видео, загружаем файл в массив images
-                axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+                axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -261,7 +261,7 @@ export default defineComponent({
 
             const folder = 'news'; 
 
-            axios.post(`http://srv489299.hstgr.cloud/api/${folder}/upload`, formData, {
+            axios.post(`http://149.100.159.188/api/${folder}/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -274,7 +274,7 @@ export default defineComponent({
 
 
         sendContent() {
-            axios.post('http://srv489299.hstgr.cloud/gallery/', {
+            axios.post('http://149.100.159.188/gallery/', {
                 title: this.title,
                 team: this.team,
                 previewImg: this.previewImg,

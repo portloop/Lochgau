@@ -62,7 +62,7 @@ export default {
 
         login() {
             if (this.isEmailValid() && this.isPasswordValid() && this.email.length > 0 && this.password.length > 0) {
-                axios.post('http://srv489299.hstgr.cloud/auth/login', {
+                axios.post('http://149.100.159.188/auth/login', {
                     username: this.email,
                     password: this.password
                 })

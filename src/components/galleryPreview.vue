@@ -98,7 +98,7 @@ export default {
 
     methods: {
         getContent() {
-  axios.get('http://srv489299.hstgr.cloud/gallery')
+  axios.get('http://149.100.159.188/gallery')
     .then((response) => {
       this.content = response.data
         .filter(item => item.videos && item.videos.length > 0 && item.previewImg)
