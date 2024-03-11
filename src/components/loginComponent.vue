@@ -1,4 +1,13 @@
 <template>
+    <div v-show="errorAuth"
+        class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <span class="font-medium">You have entered incorrect data!</span> Please check your login and password
+    </div>
+
+    <div v-show="internalError"
+    class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    <span class="font-medium">Internal server error.</span> Please try again later.
+</div>
     <div class="popup">
         <div class="popup-container">
             <div class="close" @click="closePopup">
@@ -46,7 +55,10 @@ export default {
             email: '',
             password: '',
             emailError: false,
-            passwordError: false
+            passwordError: false,
+
+            errorAuth: false,
+            internalError: false,
         }
     },
     watch: {
@@ -76,6 +88,19 @@ export default {
                     })
                     .catch(error => {
                         console.error('Login failed. Please check your inputs.', error);
+                        if (error.response.status) {
+                            this.errorAuth = true;
+                            setTimeout(() => {
+                                this.errorAuth = false;
+                            }, 3000)
+                        } else {
+                            this.internalError = true;
+                            setTimeout(() => {
+                                this.internalError = true;
+                            }, 3000)
+                        }
+
+
                     });
             } else {
                 this.emailError = !this.isEmailValid() || this.email.length === 0;
@@ -117,4 +142,8 @@ export default {
 </script>
 <style scoped>
 @import url(../assets/styles/components/loginComponent.css);
+
+.push {
+    z-index: 99999;
+}
 </style>

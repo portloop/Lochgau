@@ -79,7 +79,7 @@ const router = createRouter({
     { path: '/player/edit/:id', component: editPlayer, meta: { requiresAuth: true, role: !'User' } },
     { path: '/news/add', component: addNews, meta: { requiresAuth: true, role: !'User' } },
     { path: '/news/edit/:id', component: editNews, meta: { requiresAuth: true, role: !'User' } },
-    { path: '/news/:id', component: articlePage, meta: { requiresAuth: true} },
+    { path: '/news/:id', component: articlePage },
     { path: '/gallery', component: galleryPage, meta: { requiresAuth: true} },
     { path: '/gallery/edit/:id', component: editGalleryItem, meta: { requiresAuth: true} },
     { path: '/dashboard/players', component: playersList, meta: { requiresAuth: true, role: !'User' }  },
