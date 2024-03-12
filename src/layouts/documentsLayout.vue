@@ -53,23 +53,16 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
-                Documents:
+                Dokumente:
                 <button @click="openPopup" type="button"
                     class="text-white bg-blue-700 ml-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Ein neues Dokument hinzufügen
                 </button>
 
             </div>
-            <div class="player-list-container">
-
-            </div>
-            <div class="documents-table-header flex justify-between">
-                <div class="head">Title</div>
-                <div class="head">File Path</div>
-                <div class="head">Added By</div>
-                <div class="head">Actions</div>
-            </div>
-            <div class="documents-list mt-4">
+         
+           
+            <!-- <div class="documents-list mt-4">
                 <div class="document-item py-4 flex justify-between" v-for="document in documentList">
 
                     <div class="document-title">
@@ -102,7 +95,60 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                   Datei
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Hinzugefugt von
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" v-for="document in documentList">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                   {{ document.title }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ document.creator }}
+                </td>
+               
+               
+                <td class="px-6 py-4 text-right flex align-items-center justify-end">
+                    <a :href="document.filePath" download type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mr-3 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                        <path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z" />
+                    </svg>
+                </a>
+                <button type="button" @click='deleteDocument(document._id)'
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    <svg fill="white" width="18" height="18" clip-rule="evenodd" fill-rule="evenodd"
+                        stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m20.015 6.506h-16v14.423c0 .591.448 1.071 1 1.071h14c.552 0 1-.48 1-1.071 0-3.905 0-14.423 0-14.423zm-5.75 2.494c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-4.5 0c.414 0 .75.336.75.75v8.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-8.5c0-.414.336-.75.75-.75zm-.75-5v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-16.507c-.413 0-.747-.335-.747-.747s.334-.747.747-.747zm4.5 0v-.5h-3v.5z"
+                            fill-rule="nonzero" />
+                    </svg>
+                </button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
         </div>
     </div>
 </template>

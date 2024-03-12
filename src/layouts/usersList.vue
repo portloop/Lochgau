@@ -5,17 +5,65 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
-                Spielerliste:
+                Benutzer:
                 <button type="button" @click="generateLink"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Einen Link erstellen
+                Link erstellen
             </button>
             <div v-if="registrationLink">
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invite link:</label>
                 <input v-model="registrationLink" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
             </div>
             </div>
-            <div class="player-list-container" v-if="players && players.length > 0">
+
+
+            
+
+<div class="relative overflow-x-auto mt-4" v-if="players && players.length > 0">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                   Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Rolle
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Funktion
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Aktion
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="player in players">
+                <th scope="row" class="px-6 w-25 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ player.firstName }} {{ player.lastName }}
+                </th>
+                <td class="px-6 py-4 w-25">
+                    {{ player.role }}
+                </td>
+                <td class="px-6 py-4 w-25">
+                    {{ player.position }}
+                </td>
+                <td class="px-1 py-4">
+                    <button type="button" @click="viewPlayer(player)" :data-id="player._id"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Bearbeiten</button>
+                    <button type="button" @click="deletePlayer" :data-id="player._id"
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Löschen</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+
+
+            <!-- <div class="player-list-container" v-if="players && players.length > 0">
                 <div class="players-item" v-for="(player, index) in players" :key="index">
                     <div class="player-item main-info">
                         <div class="player-item photo">
@@ -37,21 +85,16 @@
                     <div class="player-item age">
                         {{ player.email }}
                     </div>
-                    <div class="player-item age">
-                        {{ player.dateOfBirth }}
-                    </div>
+                    
                     <div class="player-item">
                         {{ player.role }}
                     </div>
                     <div class="player-item">
                         {{ player.position }}
                     </div>
-                    <button type="button" @click="viewPlayer(player)" :data-id="player._id"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Bearbeiten</button>
-                    <button type="button" @click="deletePlayer" :data-id="player._id"
-                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Löschen</button>
+                   
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="dashboard-header">
         <div class="dashboard-header__container">
             <div class="dashboard-header_logo">
-                Coach Dashboard
+               Mein FVL
             </div>
             <div class="dashboard-header__buttons">
                 <div class="dh__buttons_item">

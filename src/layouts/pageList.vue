@@ -4,8 +4,8 @@
         <sideBar />
         <div class="content w-full p-4">
             <div class="title-section flex justify-between" >
-                <div class="title text-2xl mb-4">Page list</div>
-                <button class="red-btn" @click="this.$router.push('/dashboard/addVereinPage')">Add new</button>
+                <div class="title text-2xl mb-4">Seiten</div>
+                <button class="red-btn" @click="this.$router.push('/dashboard/addVereinPage')">Neu hinzufügen</button>
             </div>
 
 
@@ -18,10 +18,10 @@
                                 URL
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Created at
+                                Erstellt am
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Author
+                                Erstellt von
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -44,10 +44,10 @@
                             
                             <td class="px-6 py-4 text-right">
                                 <a href="#" @click="this.$router.push(`/dashboard/pages/edit/${item._id}`)"
-                                    class="font-medium mr-4 text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    class="font-medium mr-4 text-blue-600 dark:text-blue-500 hover:underline">Bearbeiten</a>
 
                                     <a href="#" @click="deletePage(item._id)"
-                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Löschen</a>
                             </td>
                         </tr>
                     </tbody>

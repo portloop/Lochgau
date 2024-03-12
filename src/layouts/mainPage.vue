@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <a @click="this.$router.push('/news')" class="all-news">
-                    All News
+                    Alle News
                 </a>
             </div>
             

@@ -4,9 +4,15 @@
         <vereinLine />
         <div class=" content-box">
             <div class="leftside" v-if="data.htmlContent?.leftside">
-                <!-- <section v-for="item in data.htmlContent?.leftside" v-html="item"></section> -->
-                <div v-for="item in data.htmlContent.leftside" :class="item.class" v-html="item.text"></div>
+                <template v-for="item in data.htmlContent.leftside">
+                    <div :class="item.class" v-if="item.tag === 'img' && item.imgPath">
+                        <img :src="item.imgPath" :class="item.class" alt="Image">
+                    </div>
+                    <div :class="item.class" v-else-if="item.tag" v-html="item.text"></div>
+                </template>
             </div>
+            
+            
 
             <div class="rightside" v-if="data.htmlContent && data.htmlContent.rightside">
 

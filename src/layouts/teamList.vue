@@ -4,8 +4,15 @@
     <div class="container-sidebar">
         <sideBar />
         <div class="content-box">
-            <div class="content-box-title">
-                Mannschaft :
+            <div class="content-box-title flex justify-between">
+                <span>Mannschaft:</span>
+                <div class="buttons">
+                    <button type="button" @click="this.$router.push('/dashboard/teams/player/add')"
+                    class="text-white mr-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    Eine neue hinzufügen
+                </button>
+                </div>
+                
 
             </div>
 
@@ -20,13 +27,13 @@
                                 Vollständiger Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Email
+                                Mannschaft
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Position
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Mannschaft
+                                Pass Nr.
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Telefon
@@ -43,13 +50,13 @@
                             </td>
                             <!-- Додайте інші комірки для інших властивостей об'єкта гравця -->
                             <td class="px-6 py-4">
-                                {{ player.username }}
+                                {{ player.team }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ player.position }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ player.phone }}
+                                {{ player.passport }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ player.phone }}

@@ -320,7 +320,7 @@
 
 <script>
 import dashboardHeader from '../components/dashboardHeader.vue'
-import sideBar from '../components/sideBar.vue'
+import sideBar from '../layouts/sideBar.vue'
 import draggable from 'vuedraggable';
 import axios from 'axios'
 import lastNews from '../components/vareinPage/lastNews.vue';

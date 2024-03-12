@@ -5,7 +5,7 @@
 
         <div class="content-box">
             <div class="content-box__title">
-                Hello, {{ this.$store.state.userData.firstName }} 👋
+                Hallo, {{ this.$store.state.userData.firstName }} 👋
             </div>
             <div class="miniblock-container">
                 <div class="content-container ">
@@ -26,7 +26,7 @@
                                 <div class="preview-table-item-button">
                                     <button @click="viewPlayer(player)" :data-id="player._id" type="button"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Siehe
+                                        Ansehen
                                     </button>
                                 </div>
                             </div>

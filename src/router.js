@@ -50,7 +50,7 @@ import mitgliedschaftLayout from './layouts/verein/vereinsgelaende/mitgliedschaf
 import ehrenamtLayout from './layouts/verein/vereinsgelaende/ehrenamtLayout.vue'
 import foerdervereinLayout from './layouts/verein/vereinsgelaende/foerdervereinLayout.vue'
 import pageList from './layouts/pageList.vue'
-
+import addPlayerToTeam from './layouts/addPlayerToTeam.vue'
 
 
 // Interaktiv
@@ -74,7 +74,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: mainPage, meta: { requiresAuth: true } },
     { path: '/dashboard', component: dashboardPage, meta: { requiresAuth: true, role: !'User' } },
-    { path: '/player/add', component: addPlayer, meta: { requiresAuth: true, role: !'user' } },
+    // { path: '/dashboard/player/add', component: addPlayer, meta: { requiresAuth: true, role: !'User' } },
     { path: '/player/add', component: addPlayer, meta: { requiresAuth: true, role: 'admin' } },
     { path: '/player/edit/:id', component: editPlayer, meta: { requiresAuth: true, role: !'User' } },
     { path: '/news/add', component: addNews, meta: { requiresAuth: true, role: !'User' } },
@@ -103,7 +103,7 @@ const router = createRouter({
     { path: '/sponsoring', component: sponsoringPage },
     { path: '/dashboard/news', component: dashboardNews, meta: { requiresAuth: true, role: !'User'} },
     { path: '/dashboard/page-list', component: pageList, meta: { requiresAuth: true, role: !'User'} },
-
+    { path: '/dashboard/teams/player/add', component: addPlayerToTeam, meta: { requiresAuth: true, role: !'User' } },
 
     // Verein Routers
 
