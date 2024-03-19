@@ -6,30 +6,29 @@
         <sideBar />
         <div class="content-box">
             <div class="content-box-title">
-                Edit Team:
+                Mannschaft bearbeiten:
             </div>
             <div class="w-25">
 
                 <div class="team-id mb-3">
                     Team ID: {{ teamId }}
                 </div>
-                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Team
-                    name:</label>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name Mannschaft:</label>
                 <input v-model="teamName" type="text" id="first_name"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Team name" required>
 
-                <label for="countries" class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Type:</label>
+                <label for="countries" class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Mannschaftsart:</label>
                 <select v-model="type" id="countries"
                     class="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Choose a country</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="junior">Junior</option>
+                    <option value="male">Herren</option>
+                    <option value="female">Juniorinnen</option>
+                    <option value="junior">Junioren</option>
                 </select>
                 <div class="mt-4 mb-2 photo-player items-center justify-center w-full">
                     <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                       Team Photo:
+                        Mannschaftsbild:
                     </label>
 
                     <label for="dropzone-file"
@@ -41,9 +40,8 @@
                                     stroke-width="2"
                                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                             </svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click
-                                    to upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Bild hier hochladen</span></p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG oder GIF (MAX. 800x400px)
                             </p>
                         </div>
                         <input ref="fileInput" id="dropzone-file" type="file" @change="uploadFile" class="hidden" />
@@ -60,7 +58,7 @@
                 </div>
             </div>
             <button type="button" @click="sendData"
-                class=" mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+                class=" mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Speichern</button>
 
 
 

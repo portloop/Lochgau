@@ -348,6 +348,19 @@ app.get('/players/:playerId', async (req, res) => {
   }
 });
 
+app.post('/users/getUser', async (req, res) => {
+  try {
+    const userId = req.body.userid; // Получаем значение userid из тела запроса
+    const userData = await Player.findOne({ userId: userId }); // Поиск данных пользователя в базе данных
+    if (!userData) {
+      return res.status(404).json({ message: 'User data not found' });
+    }
+    res.json(userData); // Возвращаем данные пользователя
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Teams routes
 app.use('/api', teamRoutes);
 

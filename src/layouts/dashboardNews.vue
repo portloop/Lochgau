@@ -54,7 +54,7 @@
                                         </svg>
                                     </button>
 
-                                    <button @click="deleteNews(newsItem._id, index)" type="button"
+                                    <button @click="showDeletePopup(newsItem._id, index)" type="button"
                                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                         <svg width="20" height="20" :data-id="newsItem._id" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -73,7 +73,19 @@
 
         </div>
     </div>
-    <button @click="this.$router.push('/news/add')">Asd</button>
+
+    <div class="popup" v-show="showDeletion">
+        <div class="popup-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.094l-4.157-4.104 4.1-4.141-1.849-1.849-4.105 4.159-4.156-4.102-1.833 1.834 4.161 4.12-4.104 4.157 1.834 1.832 4.118-4.159 4.143 4.102 1.848-1.849z"/></svg>            </div>
+
+            <div class="title">Endgültig löschen?</div>
+            <div class="buttons">
+                <button class="positive" @click="deleteNews">Ja</button>
+                <button class="negative" @click="closeDeletePopup">Nein</button>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 import sideBar from './sideBar.vue'
@@ -84,7 +96,10 @@ export default {
         return {
             players: [],
             news: [],
-            gallery: []
+            gallery: [],
+            tempId: '',
+            tempIndex: '',
+            showDeletion: false
         }
     },
 
@@ -167,12 +182,13 @@ export default {
                 });
         },
 
-        deleteNews(newsId, index) {
-            axios.delete(`http://149.100.159.188/api/news/${newsId}`)
+        deleteNews() {
+            axios.delete(`http://149.100.159.188/api/news/${this.tempId}`)
                 .then((response) => {
                     console.log(response);
                     // Видаляємо елемент з масиву за його індексом
-                    this.news.splice(index, 1);
+                    this.news.splice(this.tempIndex, 1);
+                    this.showDeletion = false;
                 })
                 .catch((error) => {
                     console.error(error);
@@ -194,6 +210,18 @@ export default {
             const newsId = event.target.dataset.id;
 
             this.$router.push(`/news/edit/${newsId}`)
+        },
+
+        showDeletePopup (id, index) {
+            this.tempId = id;
+            this.tempIndex = index;
+            this.showDeletion = true;
+        },
+
+        closeDeletePopup () {
+            this.tempId = '';
+            this.tempIndex = '';
+            this.showDeletion = false;
         }
     },
 

@@ -12,9 +12,9 @@
     </div>
     <div class="popup" v-if="showPopup">
         <div class="popup-container">
-            <div class="title mb-3">Upload a document:</div>
+            <div class="title mb-3">Dokument hinzufugen:</div>
             <div class="w-full mb-3">
-                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title:</label>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titel:</label>
                 <input v-model="documentTitle" type="text" id="first_name"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Title of document" required>
@@ -35,15 +35,18 @@
                     <input id="dropzone-file" @change="uploadFile" type="file" class="hidden" />
                 </label>
             </div>
+
+            <pdf-viewer :src="pdfSrc" :isLoading="isLoading" @loaded="onDocumentLoad"/>
+
             <div class="url mb-3" v-if="documentUrl">
                 Current File: {{ documentUrl }}
             </div>
             <div class="buttons">
                 <button @click="sendData" type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-3 text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-3 text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Speichern</button>
 
                 <button @click="closePopup" type="button"
-                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel</button>
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Abbrechen</button>
 
             </div>
 
@@ -126,13 +129,18 @@
                
                
                 <td class="px-6 py-4 text-right flex align-items-center justify-end">
+
+                    <a target="_blank" :href="document.filePath" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mr-3 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <svg width="24" height="18" fill="#fff" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.998 5c-4.078 0-7.742 3.093-9.853 6.483-.096.159-.145.338-.145.517s.048.358.144.517c2.112 3.39 5.776 6.483 9.854 6.483 4.143 0 7.796-3.09 9.864-6.493.092-.156.138-.332.138-.507s-.046-.351-.138-.507c-2.068-3.403-5.721-6.493-9.864-6.493zm.002 3c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4zm0 1.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill-rule="nonzero"/></svg>
+                </a>
                     <a :href="document.filePath" download type="button"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mr-3 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                         <path d="M12 21l-8-9h6v-12h4v12h6l-8 9zm9-1v2h-18v-2h-2v4h22v-4h-2z" />
                     </svg>
                 </a>
-                <button type="button" @click='deleteDocument(document._id)'
+                <button type="button" @click='showDeletePopup(document._id)'
                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                     <svg fill="white" width="18" height="18" clip-rule="evenodd" fill-rule="evenodd"
                         stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
@@ -151,16 +159,34 @@
 
         </div>
     </div>
+
+
+    <div class="popup" v-show="showDeletion">
+        <div class="popup-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.094l-4.157-4.104 4.1-4.141-1.849-1.849-4.105 4.159-4.156-4.102-1.833 1.834 4.161 4.12-4.104 4.157 1.834 1.832 4.118-4.159 4.143 4.102 1.848-1.849z"/></svg>            </div>
+
+            <div class="title">Endgültig löschen?</div>
+            <div class="buttons">
+                <button class="positive" @click="deleteDocument">Ja</button>
+                <button class="negative" @click="closeDeletePopup">Nein</button>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 import dashboardHeader from '../components/dashboardHeader.vue';
 import sideBar from './sideBar.vue'
 
+import PdfViewer from '@tato30/vue-pdf';
+
+
 import axios from 'axios';
 export default {
     components: {
         dashboardHeader,
-        sideBar
+        sideBar,
+        PdfViewer
     },
     data() {
         return {
@@ -174,6 +200,11 @@ export default {
             failPush: false,
 
             documentList: [],
+            pdfSrc: '',
+
+            showDeletion: false,
+            tempId: '',
+            
 
         }
     },
@@ -283,10 +314,21 @@ export default {
 
 
         deleteDocument(id) {
-            axios.delete(`http://149.100.159.188/api/documents/${id}`)
+            axios.delete(`http://149.100.159.188/api/documents/${this.tempId}`)
             .then((response) => {
                 this.getAllDocuments();
+                this.showDeletion = false;
             })
+        },
+
+        showDeletePopup(id) {
+            this.tempId = id;
+            this.showDeletion = true;
+        },
+
+        closeDeletePopup () {
+            this.tempId = '';
+            this.showDeletion = false;
         }
     },
 

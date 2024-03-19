@@ -3,31 +3,33 @@
     <div class="flex">
         <sideBar />
         <div class="content w-full p-4">
-            <div class="title">Add new page:</div>
+            <div class="title">Neue Seite hinzufugen:</div>
             <div class="page-info flex">
                 <div class="w-50 mr-3">
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Page
-                        title:</label>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seiten
+                        Titel:</label>
                     <input type="text" v-model="title" id="title"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Title" required />
                 </div>
                 <div class="w-50 mr-3">
-                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Category</label>
+                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link
+                        Kategorie</label>
                     <input type="text" v-model="category" id="title"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="URL" required />
                 </div>
 
                 <div class="w-50">
-                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Page url
-                        (example: home, in browser will be as lochgau.com/verein/home):</label>
+                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seiten url
+                        (Beispiel: home... im Browser wird es dann als /home
+                        dargestellt):</label>
                     <input type="text" v-model="url" id="title"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="URL" required />
                 </div>
             </div>
-            <div class="title">Page content</div>
+            <div class="title">Seiten Inhalt</div>
             <div class="editor-section w-full flex justify-between">
                 <div class="editor-leftside">
                     <!-- <div v-for="(section, index) in content?.leftside"  contenteditable="true"  @blur="updateText(index)" :class="section.className" v-html="section.text"></div> -->
@@ -70,9 +72,9 @@
                                 d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
                                 fill-rule="nonzero" />
                         </svg>
-                        <span>Add new element</span>
+                        <span>Neues Element hinzufügen</span>
                     </div>
-        <div class="red-btn mt-4" @click="sendData">Send</div>
+                    <div class="red-btn mt-4" @click="sendData">Hinzufügen</div>
 
                 </div>
 
@@ -88,22 +90,185 @@
                             </svg>
                         </div>
                     </div>
-                    <chronikPopup v-if="content.rightside.includes('chronikPopup')" />
-                    <compWeitere v-if="content.rightside.includes('compWeitere')" />
-                    <ehrenamtComponent v-if="content.rightside.includes('ehrenamtComponent')" />
-                    <graphicComponent v-if="content.rightside.includes('graphicComponent')" />
-                    <kontaktComponent v-if="content.rightside.includes('kontaktComponent')" />
-                    <mitgliederComponent v-if="content.rightside.includes('mitgliederComponent')" />
-                    <oktoberFest v-if="content.rightside.includes('oktoberFest')" />
-                    <ortsteilturnierPopup v-if="content.rightside.includes('ortsteilturnierPopup')" />
-                    <mitgliederComponent v-if="content.rightside.includes('mitgliederComponent')" />
-                    <pizzaComponent v-if="content.rightside.includes('pizzaComponent')" />
-                    <presseComp v-if="content.rightside.includes('presseComp')" />
-                    <spendenkontoLayout v-if="content.rightside.includes('spendenkontoLayout')" />
-                    <sponsorighComp v-if="content.rightside.includes('sponsorighComp')" />
-                    <stammtischComponent v-if="content.rightside.includes('stammtischComponent')" />
-                    <tournierVatertagsturnier v-if="content.rightside.includes('tournierVatertagsturnier')" />
-                    <weindorfPopup v-if="content.rightside.includes('weindorfPopup')" />
+                    <div class="popup-right" v-if="content.rightside.includes('chronikPopup')">
+                        <chronikPopup />
+                        <div class="edit-popup delete" @click="deleteRightPopup('chronikPopup')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('compWeitere')">
+                        <compWeitere />
+                        <div class="edit-popup delete" @click="deleteRightPopup('compWeitere')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('ehrenamtComponent')">
+                        <ehrenamtComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('ehrenamtComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('graphicComponent')">
+                        <graphicComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('graphicComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('kontaktComponent')">
+                        <kontaktComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('kontaktComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('mitgliederComponent')">
+                        <mitgliederComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('mitgliederComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('oktoberFest')">
+                        <oktoberFest />
+                        <div class="edit-popup delete" @click="deleteRightPopup('oktoberFest')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('ortsteilturnierPopup')">
+                        <ortsteilturnierPopup />
+                        <div class="edit-popup delete" @click="deleteRightPopup('ortsteilturnierPopup')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('pizzaComponent')">
+                        <pizzaComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('pizzaComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('presseComp')">
+                        <presseComp />
+                        <div class="edit-popup delete" @click="deleteRightPopup('presseComp')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('spendenkontoLayout')">
+                        <spendenkontoLayout />
+                        <div class="edit-popup delete" @click="deleteRightPopup('spendenkontoLayout')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('sponsorighComp')">
+                        <sponsorighComp />
+                        <div class="edit-popup delete" @click="deleteRightPopup('sponsorighComp')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('stammtischComponent')">
+                        <stammtischComponent />
+                        <div class="edit-popup delete" @click="deleteRightPopup('stammtischComponent')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('tournierVatertagsturnier')">
+                        <tournierVatertagsturnier />
+                        <div class="edit-popup delete" @click="deleteRightPopup('tournierVatertagsturnier')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="popup-right" v-if="content.rightside.includes('weindorfPopup')">
+                        <weindorfPopup />
+                        <div class="edit-popup delete" @click="deleteRightPopup('weindorfPopup')">
+                            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                                    fill-rule="nonzero" />
+                            </svg>
+                        </div>
+                    </div>
                     <section class="content" v-for="section in content?.rightside" v-html="section.text"></section>
                     <div class="add-new mt-2" @click="this.showPopupEditor = true">
                         <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
@@ -112,7 +277,7 @@
                                 d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z"
                                 fill-rule="nonzero" />
                         </svg>
-                        <span>Add new element</span>
+                        <span>Neues Element hinzufügen</span>
                     </div>
                 </div>
             </div>
@@ -121,14 +286,14 @@
     </div>
     <div class="elements-popup" v-show="showEditor">
         <div class="popup-container">
-            <span class="red-text">Choose element</span>
+            <span class="red-text">Element auswählen</span>
             <div class="elements-box">
                 <div class="element" @click="addParagraph">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path
                             d="M22 0h-20v6h1.999c0-1.174.397-3 2.001-3h4v16.874c0 1.174-.825 2.126-2 2.126h-1v2h9.999v-2h-.999c-1.174 0-2-.952-2-2.126v-16.874h4c1.649 0 2.02 1.826 2.02 3h1.98v-6z" />
                     </svg>
-                    <span>Paragraph</span>
+                    <span>Text</span>
                 </div>
 
                 <div class="element" @click="addTitle">
@@ -136,7 +301,8 @@
                         <path
                             d="M22 0h-20v6h1.999c0-1.174.397-3 2.001-3h4v16.874c0 1.174-.825 2.126-2 2.126h-1v2h9.999v-2h-.999c-1.174 0-2-.952-2-2.126v-16.874h4c1.649 0 2.02 1.826 2.02 3h1.98v-6z" />
                     </svg>
-                    <span>Title</span>
+                    <span>Überschrift
+                        schwarz</span>
                 </div>
 
                 <div class="element" @click="addRedTitle">
@@ -144,7 +310,7 @@
                         <path
                             d="M22 0h-20v6h1.999c0-1.174.397-3 2.001-3h4v16.874c0 1.174-.825 2.126-2 2.126h-1v2h9.999v-2h-.999c-1.174 0-2-.952-2-2.126v-16.874h4c1.649 0 2.02 1.826 2.02 3h1.98v-6z" />
                     </svg>
-                    <span>Red title</span>
+                    <span>Überschrift rot</span>
                 </div>
 
                 <label for="file_input">
@@ -153,7 +319,7 @@
                             <path
                                 d="M14 9l-2.519 4-2.481-1.96-5 6.96h16l-6-9zm8-5v16h-20v-16h20zm2-2h-24v20h24v-20zm-20 6c0-1.104.896-2 2-2s2 .896 2 2c0 1.105-.896 2-2 2s-2-.895-2-2z" />
                         </svg>
-                        <span>Image</span>
+                        <span>Bild</span>
                     </div>
                 </label>
                 <input
@@ -242,80 +408,139 @@
             <span class="red-text">Choose element</span>
             <div class="elements-box">
                 <div class="element" @click="this.content.rightside.push('lastNews'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>News block</span>
                 </div>
 
                 <div class="element" @click="this.content.rightside.push('chronikPopup'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Chronik block</span>
                 </div>
 
-                <div class="element" @click="this.content.rightside.push('ehrenamtComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('ehrenamtComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Ehrenamt block</span>
                 </div>
 
-                <div class="element" @click="this.content.rightside.push('graphicComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('graphicComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Graphic block</span>
                 </div>
 
-                <div class="element" @click="this.content.rightside.push('kontaktComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('kontaktComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Kontakt block</span>
                 </div>
 
-                <div class="element" @click="this.content.rightside.push('mitgliederComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('mitgliederComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Mitglieder block</span>
                 </div>
                 <div class="element" @click="this.content.rightside.push('oktoberFest'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Oktoberfest block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('ortsteilturnierPopup'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('ortsteilturnierPopup'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Ortsteilturnier block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('pizzaComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('pizzaComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Pizza block</span>
                 </div>
                 <div class="element" @click="this.content.rightside.push('presseComp'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Presse block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('spendenkontoLayout'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('spendenkontoLayout'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Spendenkonto block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('sponsorighComp'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('sponsorighComp'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Sponsorigh block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('stammtischComponent'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('stammtischComponent'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Stammtisch block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('tournierVatertagsturnier'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('tournierVatertagsturnier'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Tournier Vatertagsturnier block</span>
                 </div>
-                <div class="element" @click="this.content.rightside.push('weindorfPopup'); this.showPopupEditor = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                <div class="element"
+                    @click="this.content.rightside.push('weindorfPopup'); this.showPopupEditor = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z" />
+                    </svg>
                     <span>Weindorf block</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div v-show="successPush" class=" push p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+    <div v-show="successPush"
+        class=" push p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert">
         <span class="font-medium">Success!</span>The page has been added
-      </div>
-      <div v-show="failPush" class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    </div>
+    <div v-show="failPush"
+        class="push p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
         <span class="font-medium">Ooops..</span> Something went wrong
-      </div>
+    </div>
 </template>
 
 <script>
@@ -366,17 +591,10 @@ export default {
         sponsorighComp,
         stammtischComponent,
         tournierVatertagsturnier,
-        weindorfPopup
-
-
-
-
-
-
-
+        weindorfPopup,
     },
 
- 
+
     data() {
         return {
             title: '',
@@ -405,7 +623,7 @@ export default {
             showPopupEditor: false,
 
             componentsList: [
-                
+
             ],
 
             url: '',
@@ -565,27 +783,36 @@ export default {
         },
 
 
-        sendData () {
-            axios.post('http://149.100.159.188/api/pages/add', { 
+        sendData() {
+            axios.post('http://149.100.159.188/api/pages/add', {
                 url: this.url,
                 category: this.category,
                 title: this.title,
                 htmlContent: this.content,
                 author: this.$store.state.userData._id
-             })
-             .then((response) => {
-                this.successPush = true;
-                setTimeout(() => {
-                    this.successPush = false
-                }, 3000)
             })
-            .catch((error) => {
-                this.failPush = true;
-                setTimeout(() => {
-                    this.failPush = false
-                }, 3000)
-            })
+                .then((response) => {
+                    this.successPush = true;
+                    setTimeout(() => {
+                        this.successPush = false
+                    }, 3000)
+                })
+                .catch((error) => {
+                    this.failPush = true;
+                    setTimeout(() => {
+                        this.failPush = false
+                    }, 3000)
+                })
+        },
+
+
+        deleteRightPopup(str) {
+            let index = this.content.rightside.indexOf(str);
+            if (index !== -1) {
+                this.content.rightside.splice(index, 1);
+            }
         }
+
 
 
     }
@@ -624,5 +851,31 @@ export default {
 
 .draggable-item:active {
     cursor: grabbing;
+}
+
+.popup-right {
+    position: relative;
+}
+
+.popup-right .delete {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: -5px;
+    top: -5px;
+    border-radius: 50px;
+    opacity: 0;
+    transition: .2s;
+}
+
+.popup-right:hover .delete {
+    opacity: 0.5;
+}
+
+.popup-right .delete:hover {
+    cursor: pointer;
+    opacity: 1;
+    background-color: #c36;
+    fill: #fff
 }
 </style>

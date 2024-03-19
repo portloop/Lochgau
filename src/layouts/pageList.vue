@@ -46,7 +46,7 @@
                                 <a href="#" @click="this.$router.push(`/dashboard/pages/edit/${item._id}`)"
                                     class="font-medium mr-4 text-blue-600 dark:text-blue-500 hover:underline">Bearbeiten</a>
 
-                                    <a href="#" @click="deletePage(item._id)"
+                                    <a href="#" @click="showDeletePopup(item._id)"
                                     class="font-medium text-red-600 dark:text-red-500 hover:underline">Löschen</a>
                             </td>
                         </tr>
@@ -54,6 +54,20 @@
                 </table>
             </div>
 
+        </div>
+    </div>
+
+
+    <div class="popup" v-show="showDeletion">
+        <div class="popup-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.094l-4.157-4.104 4.1-4.141-1.849-1.849-4.105 4.159-4.156-4.102-1.833 1.834 4.161 4.12-4.104 4.157 1.834 1.832 4.118-4.159 4.143 4.102 1.848-1.849z"/></svg>            </div>
+
+            <div class="title">Endgültig löschen?</div>
+            <div class="buttons">
+                <button class="positive" @click="deletePage">Ja</button>
+                <button class="negative" @click="closeDeletePopup">Nein</button>
+            </div>
         </div>
     </div>
 </template>
@@ -71,6 +85,8 @@ export default {
     data() {
         return {
             pages: [],
+            showDeletion: false,
+            tempId: ''
         }
     },
 
@@ -100,8 +116,10 @@ export default {
         },
 
         deletePage (id) {
-            axios.delete(`http://149.100.159.188/api/pages/${id}`)
-            .then((response) => this.getAllPages())
+            axios.delete(`http://149.100.159.188/api/pages/${this.tempId}`)
+            .then((response) => {
+                this.getAllPages(); this.showDeletion = false;
+            })
         },
 
         getName (id) {
@@ -110,6 +128,16 @@ export default {
             .then((response) => {
                 return response.data
             })
+        },
+
+        showDeletePopup (id) {
+            this.tempId = id;
+            this.showDeletion = true;
+        },
+
+        closeDeletePopup () {
+            this.tempId = '';
+            this.showDeletion = false;
         }
     },
 

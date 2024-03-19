@@ -1,42 +1,47 @@
 <template>
     <div>
         <headerComponent />
-        <vereinLine />
-        <div class=" content-box">
-            <div class="leftside" v-if="data.htmlContent?.leftside">
-                <template v-for="item in data.htmlContent.leftside">
-                    <div :class="item.class" v-if="item.tag === 'img' && item.imgPath">
-                        <img :src="item.imgPath" :class="item.class" alt="Image">
-                    </div>
-                    <div :class="item.class" v-else-if="item.tag" v-html="item.text"></div>
-                </template>
+        <div class="wrap">
+            <vereinLine class="top-line"/>
+        <vereinLineLeft class="left-line" />
+            <div class=" content-box">
+                <div class="leftside" v-if="data.htmlContent?.leftside">
+                    <template v-for="item in data.htmlContent.leftside">
+                        <div :class="item.class" v-if="item.tag === 'img' && item.imgPath">
+                            <img :src="item.imgPath" :class="item.class" alt="Image">
+                        </div>
+                        <div :class="item.class" v-else-if="item.tag" v-html="item.text"></div>
+                    </template>
+                </div>
+                
+                
+    
+                <div class="rightside" v-if="data.htmlContent && data.htmlContent.rightside">
+    
+                    <lastNews v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('lastNews')" />
+                    <chronikPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('chronikPopup')" />
+                    <compWeitere v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('compWeitere')" />
+                    <ehrenamtComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('ehrenamtComponent')" />
+                    <graphicComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('graphicComponent')" />
+                    <kontaktComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('kontaktComponent')" />
+                    <mitgliederComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('mitgliederComponent')" />
+                    <oktoberFest v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('oktoberFest')" />
+                    <ortsteilturnierPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('ortsteilturnierPopup')" />
+                    <mitgliederComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('mitgliederComponent')" />
+                    <pizzaComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('pizzaComponent')" />
+                    <presseComp v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('presseComp')" />
+                    <spendenkontoLayout v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('spendenkontoLayout')" />
+                    <sponsorighComp v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('sponsorighComp')" />
+                    <stammtischComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('stammtischComponent')" />
+                    <tournierVatertagsturnier v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('tournierVatertagsturnier')" />
+                    <weindorfPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('weindorfPopup')" />
+                
+                </div>
+                
             </div>
-            
-            
-
-            <div class="rightside" v-if="data.htmlContent && data.htmlContent.rightside">
-
-                <lastNews v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('lastNews')" />
-                <chronikPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('chronikPopup')" />
-                <compWeitere v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('compWeitere')" />
-                <ehrenamtComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('ehrenamtComponent')" />
-                <graphicComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('graphicComponent')" />
-                <kontaktComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('kontaktComponent')" />
-                <mitgliederComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('mitgliederComponent')" />
-                <oktoberFest v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('oktoberFest')" />
-                <ortsteilturnierPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('ortsteilturnierPopup')" />
-                <mitgliederComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('mitgliederComponent')" />
-                <pizzaComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('pizzaComponent')" />
-                <presseComp v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('presseComp')" />
-                <spendenkontoLayout v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('spendenkontoLayout')" />
-                <sponsorighComp v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('sponsorighComp')" />
-                <stammtischComponent v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('stammtischComponent')" />
-                <tournierVatertagsturnier v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('tournierVatertagsturnier')" />
-                <weindorfPopup v-if="data.htmlContent.rightside && data.htmlContent.rightside.includes('weindorfPopup')" />
-            
-            </div>
-            
         </div>
+        
+       
         <footerComponent />
     </div>
 </template>
@@ -46,6 +51,7 @@ import axios from 'axios';
 import headerComponent from '../components/headerComponent.vue';
 import footerComponent from '../components/footerComponent.vue';
 import vereinLine from '../components/vereinLine.vue';
+import vereinLineLeft from '../components/vereinLineLeft.vue'
 
 import lastNews from '../components/vareinPage/lastNews.vue';
 import chronikPopup from '../components/vareinPage/chronikPopup.vue';
@@ -87,7 +93,8 @@ export default {
         sponsorighComp,
         stammtischComponent,
         tournierVatertagsturnier,
-        weindorfPopup
+        weindorfPopup,
+        vereinLineLeft
     },
     data () {
         return {

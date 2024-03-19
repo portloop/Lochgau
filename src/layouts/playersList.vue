@@ -101,7 +101,7 @@
                 <td class="px-6 py-4 text-right">
                     <button type="button" @click="viewPlayer(player)" :data-id="player._id"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Bearbeiten</button>
-                <button type="button" @click="deletePlayer" :data-id="player._id"
+                <button type="button" @click="showDeletePopup(player._id)" :data-id="player._id"
                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Löschen</button>
                 </td>
             </tr>
@@ -110,6 +110,19 @@
     </table>
 </div>
 
+        </div>
+    </div>
+
+    <div class="popup" v-show="showDeletion">
+        <div class="popup-container">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.094l-4.157-4.104 4.1-4.141-1.849-1.849-4.105 4.159-4.156-4.102-1.833 1.834 4.161 4.12-4.104 4.157 1.834 1.832 4.118-4.159 4.143 4.102 1.848-1.849z"/></svg>            </div>
+
+            <div class="title">Endgültig löschen?</div>
+            <div class="buttons">
+                <button class="positive" @click="deletePlayer">Ja</button>
+                <button class="negative" @click="closeDeletePopup">Nein</button>
+            </div>
         </div>
     </div>
 </template>
@@ -126,7 +139,10 @@ export default {
     data() {
         return {
             players: [],
-            registrationLink: ''
+            registrationLink: '',
+
+            tempId: '',
+            showDeletion: false
         }
     },
 
@@ -191,13 +207,14 @@ export default {
 
 
         deletePlayer(event) {
-            const dataIdValue = event.target.dataset.id;
 
-            axios.delete(`http://149.100.159.188/users/list/${dataIdValue}`)
+            axios.delete(`http://149.100.159.188/users/list/${this.tempId}`)
                 .then((response) => {
                     console.log('Article successfully deleted');
                     this.fetchPlayers(); // Запускаем метод для получения обновленного списка
+                    this.showDeletion = false;
                 })
+
                 .catch((error) => {
                     console.log('Error while deleting data', error);
                 });
@@ -209,6 +226,16 @@ export default {
                 this.registrationLink = response.data.link
                 console.log(response.data.link)
             })
+        },
+
+        showDeletePopup (id) {
+            this.tempId = id;
+            this.showDeletion = true;
+        },
+
+        closeDeletePopup () {
+            this.tempId = '';
+            this.showDeletion = false;
         }
     },
 

@@ -50,6 +50,7 @@ import mitgliedschaftLayout from './layouts/verein/vereinsgelaende/mitgliedschaf
 import ehrenamtLayout from './layouts/verein/vereinsgelaende/ehrenamtLayout.vue'
 import foerdervereinLayout from './layouts/verein/vereinsgelaende/foerdervereinLayout.vue'
 import pageList from './layouts/pageList.vue'
+import editProfile from './layouts/editProfile.vue'
 import addPlayerToTeam from './layouts/addPlayerToTeam.vue'
 
 
@@ -90,7 +91,7 @@ const router = createRouter({
     { path: '/user/register/:key?', component: registerComponent },
     { path: '/user/edit/:id', component: editUser, meta: { requiresAuth: true, role: !'User' }  },
     { path: '/editTeam/:id', component: editTeam, meta: { requiresAuth: true, role: !'User' }  },
-
+    { path: '/profile/:id', component: editProfile },
     { path: '/dashboard/teams', component: teamsPage, meta: { requiresAuth: true, role: !'User' } },
     { path: '/dashboard/teams/add', component: addTeam, meta: { requiresAuth: true, role: !'User' } },
     { path: '/analytics', component: analyticsPage, meta: { requiresAuth: true, role: !'User' } },
