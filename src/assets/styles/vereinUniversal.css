@@ -59,6 +59,42 @@
     display: none;
 }
 
+.block-container {
+    padding: 10px;
+    max-width: 500px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 10px 10px 26px -15px #000000bf;
+    margin-bottom: 20px;
+}
+
+.block-container .title {
+    color: #c36;
+    font-family: goboldI, sans-serif;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.block-container .dark-title, .block-container .red-title {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.block-container div.paragraph {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.block-container div.right-img {
+    width: 100%;
+}
+
+.block-container div.right-img img {
+    width: 100%;
+}
+
 
 @media screen and (max-width: 1750px) {
     .content-box {
